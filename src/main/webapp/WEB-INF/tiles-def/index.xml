@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+    <definition name="index" template="/WEB-INF/views/index.jsp">
+    	<put-attribute name="title" value="메인페이지 인덱스"/>
+    	<put-attribute name="header" value="/WEB-INF/views/common/header.jsp"/>
+    	<put-attribute name="body" value=""/>
+    	<put-attribute name="left" value="/WEB-INF/views/common/left-common.jsp"/>
+    	<put-attribute name="footer" value="/WEB-INF/views/common/footer.jsp"/>
+    </definition>
+    
+    <definition name="non.left" template="/WEB-INF/views/index_NonLeft.jsp">
+    	<put-attribute name="title" value="왼쪽 메뉴 없는 인덱스"/>
+    	<put-attribute name="header" value="/WEB-INF/views/common/header.jsp"/>
+    	<put-attribute name="body" value=""/>
+    	<put-attribute name="left" value=""/>
+    	<put-attribute name="footer" value="/WEB-INF/views/common/footer.jsp"/>
+    </definition>
+</tiles-definitions>

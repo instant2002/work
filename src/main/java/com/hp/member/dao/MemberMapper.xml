@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper   
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hp.member.dao.MemberMapper">
+	<select id="insert" resultType="MemberCommand" parameterType="map">
+		INSERT INTO 
+			member(
+				user_id,
+				user_pwd,
+				user_name,
+				email,
+				phonenum1,
+				phonenum2,
+				postnum,
+				address1,
+				address2,
+				birth,
+				gender,
+				regdate
+				)
+			VALUES (
+				#{user_id},
+				#{user_pwd},
+				#{user_name},
+				#{email},
+				#{phonenum1},
+				#{phonenum2},
+				#{postnum},
+				#{address1},
+				#{address2},
+				#{birth},
+				#{gender},
+				sysdate()
+			)
+	</select>
+</mapper>

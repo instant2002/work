@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper   
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hp.book.dao.BookMapper">
+	<select id="getBookList" parameterType="Criteria" resultType="PostCommand">
+		SELECT
+			*
+		FROM
+			book_info
+			<where>
+				is_sale != 'N'
+				<if test="book_group == 1">
+				AND book_group LIKE CONCAT('%','1','%')
+				</if>
+				<if test="book_group == 2">
+				AND book_group LIKE CONCAT('%','2','%')
+				</if>
+				<if test="keyword != null and !keyword.equals('')">
+				AND book_name LIKE CONCAT('%',#{keyword},'%')
+				</if>
+			</where>
+			<choose>
+				<when test="sortby == 'price'">
+					ORDER BY origin_price - dc_price ASC
+				</when>
+				<when test="sortby == 'release_date'">
+					ORDER BY release_date DESC
+				</when>
+				<when test="sortby == 'name_asc'">
+					ORDER BY book_name	ASC
+				</when>
+				<when test="sortby == 'name_desc'">
+					ORDER BY book_name DESC
+				</when>
+				<otherwise>
+					ORDER BY book_order	ASC
+				</otherwise>
+			</choose>
+		LIMIT #{pageStart}, #{perPageNum}
+	</select>
+	
+	<select id="getBookListCount" parameterType="Criteria" resultType="Integer">
+    SELECT
+			COUNT(*)
+		FROM
+			book_info
+			<where>
+				is_sale != 'N'
+				<if test="book_group == 1">
+				AND book_group LIKE CONCAT('%','1','%')
+				</if>
+				<if test="book_group == 2">
+				AND book_group LIKE CONCAT('%','2','%')
+				</if>
+				<if test="keyword != null and !keyword.equals('')">
+				AND book_name LIKE CONCAT('%',#{keyword},'%')
+				</if>
+			</where>
+			<choose>
+				<when test="sortby == 'price'">
+					ORDER BY origin_price - dc_price ASC
+				</when>
+				<when test="sortby == 'release_date'">
+					ORDER BY release_date DESC
+				</when>
+				<when test="sortby == 'name_asc'">
+					ORDER BY book_name	ASC
+				</when>
+				<when test="sortby == 'name_desc'">
+					ORDER BY book_name DESC
+				</when>
+				<otherwise>
+					ORDER BY book_order	ASC
+				</otherwise>
+			</choose>
+	</select>
+</mapper>

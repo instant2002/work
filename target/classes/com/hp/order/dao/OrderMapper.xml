@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper   
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hp.order.dao.OrderMapper">
+	<select id="getOrderBook" parameterType="list" resultType="OrderCommand" >
+		SELECT
+			*
+		FROM
+			book_info
+		WHERE
+			product_no IN
+		<foreach collection="list" item="item" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</select>
+	
+	<insert id="orderComplete" parameterType="PaymentCommand"> 
+	<![CDATA[ 
+			INSERT INTO 
+			order_books(
+				product_no,
+				quantity,
+				order_code,
+				tid,
+				user_id,
+				buyername,
+				buyeremail,
+				recipientname,
+				recipientemail,
+				buyertel,
+				recipienttel,
+				buyertel2,
+				recipienttel2,
+				recipient_postnum,
+				recipient_address1,
+				recipient_address2,
+				buyer_memo,
+				amount_payment,
+				payMethod,
+				origin_price,
+				dc_price,
+				cardNum,
+				cardQuota,
+				isPayment,
+				payment_status,
+				delivery_status
+				)
+			VALUES (
+				#{product_no},
+				#{quantity},
+				#{order_code},
+				#{tid},
+				#{user_id},
+				#{buyername},
+				#{buyeremail},
+				#{recipientname},
+				#{recipientemail},
+				#{buyertel},
+				#{recipienttel},
+				#{buyertel2},
+				#{recipienttel2},
+				#{recipient_postnum},
+				#{recipient_address1},
+				#{recipient_address2},
+				#{buyer_memo},
+				#{amount_payment},
+				#{payMethod},
+				#{origin_price},
+				#{dc_price},
+				#{cardNum},
+				#{cardQuota},
+				'Y',
+				'P',
+				'W'
+			)ON DUPLICATE KEY
+			UPDATE
+			order_date = CURRENT_TIMESTAMP
+			]]>
+	</insert>
+	
+	<select id="getPaymentList" parameterType="String" resultType="PaymentCommand">
+		SELECT
+			a.*,
+            b.book_name,
+            b.origin_price,
+            b.dc_price,
+            b.book_img_storedName
+		FROM 
+			order_books a
+		LEFT JOIN  
+			book_info b
+        ON 
+        	a.product_no = b.product_no
+		WHERE
+			a.order_code = #{order_code}; 
+	</select>
+</mapper>

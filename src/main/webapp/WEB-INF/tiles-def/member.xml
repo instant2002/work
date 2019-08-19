@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+
+	<definition name="memberLoginForm" extends="non.left">
+ 		<put-attribute name="title" value="로그인  폼"/>
+ 		<put-attribute name="body" value="/WEB-INF/views/member/memberLoginForm.jsp"/>
+ 	</definition>
+
+	<definition name="registAgreeForm" extends="non.left"> 
+    	<put-attribute name="title" value="회원 가입 약관 동의"/>
+    	<put-attribute name="body" value="/WEB-INF/views/member/registAgreeForm.jsp"/>
+    </definition>
+    
+	<definition name="registrationForm" extends="non.left"> 
+    	<put-attribute name="title" value="회원 가입 폼"/>
+    	<put-attribute name="body" value="/WEB-INF/views/member/registrationForm.jsp"/>
+    </definition>
+ 	 	
+</tiles-definitions>

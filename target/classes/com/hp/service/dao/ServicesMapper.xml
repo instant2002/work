@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper   
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hp.service.dao.ServicesMapper">    
+	<select id="getNoticeList" parameterType="List" resultType="NoticeCommand">
+			SELECT
+				*
+			FROM
+				notice
+	</select>
+	
+	<select id="getNoticeSomeList" parameterType="List" resultType="NoticeCommand">
+			SELECT
+				*
+			FROM
+				notice
+			Limit 5
+	</select>
+	
+	<select id="getNoticeFile" parameterType="Integer" resultType="NoticeFileCommand">
+		SELECT
+			*
+		FROM
+			notice_file
+		WHERE
+			notice_idx = #{num}
+	</select>
+	
+	<insert id="qnaSub" parameterType="QnaCommand"> 
+	<![CDATA[ 
+			INSERT INTO 
+			question(
+				user_id,
+				user_name,
+				phone,
+				email,
+				title,
+				contents
+				)
+			VALUES (
+				#{user_id},
+				#{user_name},
+				#{phone},
+				#{email},
+				#{title},
+				#{contents}
+			)
+			]]>
+	</insert>
+</mapper>

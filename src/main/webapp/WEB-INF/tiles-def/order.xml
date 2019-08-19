@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+
+<definition name="orderCheckForm" extends="non.left">
+	<put-attribute name="title" value="주문 확인 페이지"/>
+	<put-attribute name="body" value="/WEB-INF/views/order/orderCheckForm.jsp"/>
+</definition>
+    
+<definition name="orderInfoForm" extends="non.left">
+    <put-attribute name="title" value="주문서 입력 페이지"/>
+	<put-attribute name="body" value="/WEB-INF/views/order/orderInfoForm.jsp"/>
+</definition>
+    
+<definition name="orderPaymentResult" extends="non.left">
+	<put-attribute name="title" value="결제 완료 페이지"/>
+    <put-attribute name="body" value="/WEB-INF/views/order/orderPaymentResult.jsp"/>
+</definition>
+
+<definition name="inipay_close" extends="non.left">
+	<put-attribute name="title" value="결제 닫기"/>
+    <put-attribute name="body" value="/WEB-INF/views/INIpayStdSample/close.jsp"/>
+</definition>
+
+<definition name="inipay_popup" extends="non.left">
+	<put-attribute name="title" value="결제 팝업"/>
+    <put-attribute name="body" value="/WEB-INF/views/INIpayStdSample/popup.jsp"/>
+</definition>
+
+</tiles-definitions>

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+	
+	<definition name="mypage.index" template="/WEB-INF/views/index.jsp">
+		<put-attribute name="title" value="마이페이지 인덱스"/>
+    	<put-attribute name="header" value="/WEB-INF/views/common/header.jsp"/>
+    	<put-attribute name="body" value=""/>
+    	<put-attribute name="left" value="/WEB-INF/views/common/left-mypage.jsp"/>
+    	<put-attribute name="footer" value="/WEB-INF/views/common/footer.jsp"/>
+    </definition>
+
+	<definition name="mypage" extends="mypage.index">
+    	<put-attribute name="title" value="마이페이지 메인"/>
+    	<put-attribute name="body" value="/WEB-INF/views/mypage/mypageForm.jsp"/>
+    </definition>
+    
+	<definition name="secessionForm" extends="mypage.index">
+    	<put-attribute name="title" value="회원탈퇴 페이지"/>
+    	<put-attribute name="body" value="/WEB-INF/views/mypage/secessionForm.jsp"/>
+    </definition>
+    
+	<definition name="identificationForm" extends="mypage.index">
+    	<put-attribute name="title" value="신원 확인"/>
+    	<put-attribute name="body" value="/WEB-INF/views/mypage/identificationForm.jsp"/>
+    </definition>
+    
+	<definition name="editInfoForm" extends="mypage.index">
+    	<put-attribute name="title" value="회원정보 수정 페이지"/>
+    	<put-attribute name="body" value="/WEB-INF/views/mypage/editInfoForm.jsp"/>
+    </definition>
+    
+	<definition name="basketList" extends="mypage.index">
+    	<put-attribute name="title" value="장바구니 리스트 페이지"/>
+    	<put-attribute name="body" value="/WEB-INF/views/mypage/basketList.jsp"/>
+    </definition>
+    
+	<definition name="wishList" extends="mypage.index">
+    	<put-attribute name="title" value="위시 리스트 페이지"/>
+    	<put-attribute name="body" value="/WEB-INF/views/mypage/wishList.jsp"/>
+    </definition>
+    
+	<definition name="qnaList" extends="mypage.index">
+    	<put-attribute name="title" value="QnA 리스트"/>
+    	<put-attribute name="body" value="/WEB-INF/views/mypage/qnaList.jsp"/>
+    </definition>
+    
+	<definition name="qnaView" extends="mypage.index">
+    	<put-attribute name="title" value="QnA 상세보기"/>
+    	<put-attribute name="body" value="/WEB-INF/views/mypage/qnaView.jsp"/>
+    </definition>
+    
+	<definition name="orderList" extends="mypage.index">
+    	<put-attribute name="title" value="주문 목록"/>
+    	<put-attribute name="body" value="/WEB-INF/views/mypage/orderList.jsp"/>
+    </definition>
+    
+	<definition name="orderDetail" extends="mypage.index">
+    	<put-attribute name="title" value="주문 상세 보기"/>
+    	<put-attribute name="body" value="/WEB-INF/views/mypage/orderDetail.jsp"/>
+    </definition>
+    
+	<definition name="orderCancelList" extends="mypage.index">
+    	<put-attribute name="title" value="주문 취소 리스트"/>
+    	<put-attribute name="body" value="/WEB-INF/views/mypage/orderCancelList.jsp"/>
+    </definition>
+    
+	<definition name="orderCancelDetail" extends="mypage.index">
+    	<put-attribute name="title" value="주문 취소 상세 보기"/>
+    	<put-attribute name="body" value="/WEB-INF/views/mypage/orderCancelDetail.jsp"/>
+    </definition>
+    
+	<definition name="inicancel" extends="mypage.index">
+    	<put-attribute name="title" value="취소 테스트 폼"/>
+    	<put-attribute name="body" value="/WEB-INF/views/INIpayStdSample/InIcancel1.jsp"/>
+    </definition>
+    
+</tiles-definitions>

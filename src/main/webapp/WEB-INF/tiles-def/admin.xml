@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+
+	<definition name="admin.index" template="/WEB-INF/views/index.jsp">
+		<put-attribute name="title" value="마이페이지 인덱스"/>
+    	<put-attribute name="header" value="/WEB-INF/views/common/header.jsp"/>
+    	<put-attribute name="body" value=""/>
+    	<put-attribute name="left" value="/WEB-INF/views/common/left-admin.jsp"/>
+    	<put-attribute name="footer" value="/WEB-INF/views/common/footer.jsp"/>
+    </definition>
+    
+	<definition name="postingBookForm" extends="admin.index">
+ 		<put-attribute name="title" value="상품 등록"/>
+ 		<put-attribute name="body" value="/WEB-INF/views/admin/postingBookForm.jsp"/>
+ 	</definition>
+ 	
+	<definition name="postingBookList" extends="admin.index">
+ 		<put-attribute name="title" value="등록된 상품 목록"/>
+ 		<put-attribute name="body" value="/WEB-INF/views/admin/postingBookList.jsp"/>
+ 	</definition>
+ 	
+	<definition name="postingBookEditForm" extends="admin.index">
+ 		<put-attribute name="title" value="등록된 상품 목록"/>
+ 		<put-attribute name="body" value="/WEB-INF/views/admin/postingBookEditForm.jsp"/>
+ 	</definition>
+ 	
+	<definition name="postingBookCateForm" extends="admin.index">
+ 		<put-attribute name="title" value="상품 분류"/>
+ 		<put-attribute name="body" value="/WEB-INF/views/admin/postingBookCateForm.jsp"/>
+ 	</definition>
+ 	
+	<definition name="postingNoticeForm" extends="admin.index">
+ 		<put-attribute name="title" value="공지사항 등록"/>
+ 		<put-attribute name="body" value="/WEB-INF/views/admin/postingNoticeForm.jsp"/>
+ 	</definition>
+ 	
+	<definition name="postingNoticeList" extends="admin.index">
+ 		<put-attribute name="title" value="공지사항 목록"/>
+ 		<put-attribute name="body" value="/WEB-INF/views/admin/postingNoticeList.jsp"/>
+ 	</definition>
+ 	
+	<definition name="postingNoticeEditForm" extends="admin.index">
+ 		<put-attribute name="title" value="공지사항 수정"/>
+ 		<put-attribute name="body" value="/WEB-INF/views/admin/postingNoticeEditForm.jsp"/>
+ 	</definition>
+ 	
+	<definition name="qnaAdminList" extends="admin.index">
+ 		<put-attribute name="title" value="Qna 리스트"/>
+ 		<put-attribute name="body" value="/WEB-INF/views/admin/qnaAdminList.jsp"/>
+ 	</definition>
+ 	
+	<definition name="qnaAdminView" extends="admin.index">
+ 		<put-attribute name="title" value="Qna 리스트"/>
+ 		<put-attribute name="body" value="/WEB-INF/views/admin/qnaAdminView.jsp"/>
+ 	</definition>
+ 	
+	<definition name="orderAdminList" extends="admin.index">
+ 		<put-attribute name="title" value="주문 리스트"/>
+ 		<put-attribute name="body" value="/WEB-INF/views/admin/orderAdminList.jsp"/>
+ 	</definition>
+ 	
+	<definition name="orderAdminDetail" extends="admin.index">
+ 		<put-attribute name="title" value="주문 상세보기"/>
+ 		<put-attribute name="body" value="/WEB-INF/views/admin/orderAdminDetail.jsp"/>
+ 	</definition>
+ 	
+	<definition name="orderCancelAdminList" extends="admin.index">
+ 		<put-attribute name="title" value="주문  취소 리스트"/>
+ 		<put-attribute name="body" value="/WEB-INF/views/admin/orderCancelAdminList.jsp"/>
+ 	</definition>
+ 	
+	<definition name="orderCancelAdminDetail" extends="admin.index">
+ 		<put-attribute name="title" value="주문  취소 상세보기"/>
+ 		<put-attribute name="body" value="/WEB-INF/views/admin/orderCancelAdminDetail.jsp"/>
+ 	</definition>
+
+</tiles-definitions>

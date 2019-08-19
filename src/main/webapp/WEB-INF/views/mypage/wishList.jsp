@@ -1,0 +1,221 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<div class="col-xs-12">
+<form action="/customer/wishDelete.do" method="POST" id="wishDelete">
+</form>
+<form action="/order/orderingInfo.do" method="POST" id="orderInfoSubForm"/>
+	<div class="col-xs-12 text-center">
+		<h2><strong>위시리스트</strong></h2>
+	</div>
+	<table class="table">
+		<thead style="font-weight: bold; border: solid #ddd; border-width: 2px 0px; background: #f9f9f9;">
+			<tr>
+				<td style="width: 16px;"><input type="checkbox" id="wish_checkbox_all" checked="checked"></td>
+				<td style="width: 80px;"></td>
+				<td>상품 정보</td>
+				<td>상품 금액</td>
+				<td>할인 금액</td>
+				<td>배송비</td>
+			</tr>
+		</thead>
+		<c:choose>
+	<c:when test="${empty wish}">
+		<td colspan="6" class="text-center">위시리스트가 비어있습니다.</td>
+		</table>
+	</c:when>
+	<c:otherwise>
+	
+		<tbody>
+		<c:forEach var="wish" items="${wish}" varStatus="status">
+		<input type="hidden" value="${wish.product_no }" id="product_no_${status.index}">
+			<tr>
+				<td style="vertical-align: middle;"><input type="checkbox" class="wish_checkbox" id="wish_checkbox_${status.index}" checked="checked" value="${status.index}"></td>
+				<td><img src="${pageContext.request.contextPath}${wish.book_img_storedName}" style="width: 80px;"></td>
+				<td style="vertical-align: middle;">
+					<a href="/book/detailView.do?product_no=${wish.product_no }">${wish.book_name}</a>
+				</td>
+				<td id="origin_price_${status.index }" style="vertical-align: middle;"><fmt:formatNumber value="${wish.origin_price}" groupingUsed="true"/>원</td>
+				<td id="dc_price_${status.index }" style="vertical-align: middle;"><fmt:formatNumber value="${wish.dc_price}" groupingUsed="true"/>원</td>
+				<td style="vertical-align: middle;">기본 배송비</td>
+			</tr>
+			
+		</c:forEach>
+			<tr style="background: #d7d9db;">
+			<td colspan="7" style="text-align: right;">기본 배송비 : 2,500원</td>
+			</tr>
+		</tbody>
+	</table>
+	
+	<div class="col-xs-12" style="margin-bottom: 20px; padding-right: 0; padding-left: 0;">
+	<div class="col-md-6" style="padding-left: 0;">
+		<button type="button" class="btn btn-yet-col btn-sm" onclick="toBasket('select')" style="border: 1px solid #acc;">
+			선택 장바구니에 담기
+		</button>
+		<button type="button" class="btn btn-yet-col btn-sm" onclick="toBasket('all')" style="margin-left: 10px; border: 1px solid #acc;">
+			전체 장바구니에 담기
+		</button>
+	</div>
+	<div class="col-md-2"></div>
+		<div class="col-md-4" style="padding-right: 0;">
+			<button type="button" class="btn btn-yet-col btn-sm" onclick="deletewish('select')" style="float: right; margin-left: 10px;">
+				선택 삭제
+			</button>
+			<button type="button" class="btn btn-yet-col btn-sm" onclick="deletewish('all')" style="float: right;">
+				전체 삭제
+			</button>
+		</div>
+	</div>
+</form>
+</c:otherwise>
+</c:choose>
+<script type="text/javascript">
+
+//위시리스트 제거
+function deletewish(action){
+	var checkedVal = new Array();
+	var allCheckBoxVal = new Array();
+	var product_arr = new Array();
+	
+	<c:forEach var="wish" items="${wish}" varStatus="status">
+	checkedVal[${status.index}] = $("#wish_checkbox_${status.index}:checked").val();
+	allCheckBoxVal[${status.index}] = $("#wish_checkbox_${status.index}").val();
+	</c:forEach>
+	
+	if(action == "all"){
+		for(var i=0;i<allCheckBoxVal.length;i++){
+			if(allCheckBoxVal[i] != undefined){
+				product_arr[i] = $("#product_no_"+allCheckBoxVal[i]).val();
+			}
+		}
+	}else{
+		if($(".wish_checkbox:checked").length == 0){
+			alert("선택된 제품이 없습니다.");
+			return false;
+		}
+		
+		for(var i=0;i<checkedVal.length;i++){
+			if(checkedVal[i] != undefined){
+				product_arr[i] = $("#product_no_"+checkedVal[i]).val();
+			}
+		}
+	}
+	
+	//배열 빈 요소 제거
+	product_arr = $.grep(product_arr,function(n){ return n == " " || n; });
+	
+	if(!confirm(product_arr.length+"개의 상품을 삭제하시겠습니까?")){
+		return false;
+	};
+	
+	$.ajax({
+		url:'/customer/wishDelete.do',
+		type:'post',
+		data:{
+			'product_arr':product_arr
+		},
+		dataType:'json',
+		async:true,
+		traditional:true,
+		cache:false,
+		timeout:30000,
+		success:function(data){
+			if(data){
+				window.location.reload();
+			}else{
+				alert("처리 중 오류가 발생하였습니다.\n지속적인 오류가 발생될 시 고객센터에 문의해 주시기 바랍니다.");
+			}
+		},
+		error:function(){
+			alert("처리 중 오류가 발생하였습니다.\n지속적인 오류가 발생될 시 고객센터에 문의해 주시기 바랍니다.");
+		}
+	});
+}
+
+function toBasket(action){
+	var checkedVal = new Array();
+	var allCheckBoxVal = new Array();
+	var product_arr = new Array();
+	
+	<c:forEach var="wish" items="${wish}" varStatus="status">
+	checkedVal[${status.index}] = $("#wish_checkbox_${status.index}:checked").val();
+	allCheckBoxVal[${status.index}] = $("#wish_checkbox_${status.index}").val();
+	</c:forEach>
+	
+	if(action == "all"){
+		for(var i=0;i<allCheckBoxVal.length;i++){
+			if(allCheckBoxVal[i] != undefined){
+				product_arr[i] = $("#product_no_"+allCheckBoxVal[i]).val();
+			}
+		}
+	}else{
+		if($(".wish_checkbox:checked").length == 0){
+			alert("선택된 제품이 없습니다.");
+			return false;
+		}
+		
+		for(var i=0;i<checkedVal.length;i++){
+			if(checkedVal[i] != undefined){
+				product_arr[i] = $("#product_no_"+checkedVal[i]).val();
+			}
+		}
+	}
+	
+	//배열 빈 요소 제거
+	product_arr = $.grep(product_arr,function(n){ return n == " " || n; });
+	
+	if(!confirm(product_arr.length+"개의 상품을 장바구니에 담으시겠습니까?")){
+		return false;
+	};
+	
+	$.ajax({
+		url:'/customer/toBasket.do',
+		type:'post',
+		data:{
+			'product_arr':product_arr
+		},
+		dataType:'json',
+		async:true,
+		traditional:true,
+		cache:false,
+		timeout:30000,
+		success:function(data){
+			if(data){
+				window.location.href='/customer/basketList.do';
+			}else{
+				alert("처리 중 오류가 발생하였습니다.\n지속적인 오류가 발생될 시 고객센터에 문의해 주시기 바랍니다.");
+			}
+		},
+		error:function(){
+			alert("처리 중 오류가 발생하였습니다.\n지속적인 오류가 발생될 시 고객센터에 문의해 주시기 바랍니다.");
+		}
+	});
+}
+
+$(document).ready(function(){
+	$("#wish_checkbox_all").click(function(){
+		var isChecked = $(this).is(":checked");
+		$(".wish_checkbox").prop("checked", isChecked);
+	});
+	
+	$(".wish_checkbox").click(function(){
+		var isChecked = $(this).is(":checked");
+		var cb_count = $(".wish_checkbox").length;
+		var cb_count_chk = $(".wish_checkbox:checked").length;
+		if(cb_count == cb_count_chk){
+			active = true;
+			isChecked = true;
+		}else{
+			active = false;
+		}
+		if($("#wish_checkbox_all").is(":checked") || active){
+			$("#wish_checkbox_all").prop("checked", isChecked);
+			}
+		});
+	 
+	});
+	
+
+</script>

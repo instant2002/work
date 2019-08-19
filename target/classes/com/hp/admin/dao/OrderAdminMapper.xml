@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper   
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hp.admin.dao.OrderAdminMapper">
+
+	<select id="getOrderAdminListCount" parameterType="Criteria" resultType="Integer">
+		SELECT 
+			COUNT(DISTINCT order_code)
+		FROM 
+			order_books 
+		<where>
+			refund_status = 'N'
+			<if test="delivery_status != null and !delivery_status.equals('')">
+				AND delivery_status = #{delivery_status}
+			</if>
+			<if test="isPayment != null and !isPayment.equals('')">
+				AND isPayment = #{isPayment}
+			</if>
+			<if test="order_code != null and !order_code.equals('')">
+				AND a.order_code = #{order_code}
+			</if>
+			<if test="user_id != null and !user_id.equals('')">
+				AND a.user_id = #{user_id}
+			</if>
+			<if test="fromDate != null and !fromDate.equals('') and toDate != null and !toDate.equals('')">
+				AND date(order_date) BETWEEN #{fromDate} AND #{toDate}
+			</if>
+		</where> 
+	</select>
+	
+	<select id="getOrderAdminList" parameterType="Criteria" resultType="OrderAdminCommand">
+		SELECT 
+			a.*, b.book_name, b.book_img_storedName, c.*, count(a.user_id) as group_count
+		FROM 
+			order_books a
+		LEFT JOIN 
+			book_info b
+		ON a.product_no = b.product_no
+		LEFT JOIN 
+			delivery c
+		ON a.order_code = c.order_code
+		<where>
+			refund_status = 'N'
+			<if test="delivery_status != null and !delivery_status.equals('')">
+				AND a.delivery_status = #{delivery_status}
+			</if>
+			<if test="isPayment != null and !isPayment.equals('')">
+				AND a.isPayment = #{isPayment}
+			</if>
+			<if test="order_code != null and !order_code.equals('')">
+				AND a.order_code = #{order_code}
+			</if>
+			<if test="user_id != null and !user_id.equals('')">
+				AND a.user_id = #{user_id}
+			</if>
+			<if test="fromDate != null and !fromDate.equals('') and toDate != null and !toDate.equals('')">
+				AND date(a.order_date) BETWEEN #{fromDate} AND #{toDate}
+			</if>
+		</where> 
+		GROUP BY a.order_code
+		LIMIT #{pageStart}, #{perPageNum}
+	</select>
+	
+	<select id="getOrderAdminDetail" parameterType="String" resultType="OrderAdminCommand">
+	SELECT 
+			a.*, b.book_name, b.book_img_storedName, c.*
+		FROM 
+			order_books a
+		LEFT JOIN 
+			book_info b
+		ON a.product_no = b.product_no
+		LEFT JOIN 
+			delivery c
+		ON a.order_code = c.order_code
+		WHERE 
+			a.refund_status = 'N' AND 
+			a.order_code = #{order_code}
+	</select>
+	
+	<select id="getCancelOrderAdminListCount" parameterType="Criteria" resultType="Integer">
+		SELECT 
+			COUNT(DISTINCT order_code)
+		FROM 
+			order_cancel 
+		<where>
+			refund_status != 'N'
+			<if test="refund_status != null and !refund_status.equals('')">
+				AND refund_status = #{refund_status}
+			</if>
+			<if test="order_code != null and !order_code.equals('')">
+				AND order_code = #{order_code}
+			</if>
+			<if test="user_id != null and !user_id.equals('')">
+				AND user_id = #{user_id}
+			</if>
+			<if test="fromDate != null and !fromDate.equals('') and toDate != null and !toDate.equals('')">
+				AND date(cancel_rquest_date) BETWEEN #{fromDate} AND #{toDate}
+			</if>
+		</where> 
+	</select>
+	
+	<select id="getCancelOrderAdminList" parameterType="Criteria" resultType="OrderAdminCommand">
+		SELECT 
+			a.*, c.book_name, c.book_img_storedName, b.amount_payment, count(b.order_code) as group_count
+		FROM 
+			order_cancel a
+		LEFT JOIN 
+			order_books b
+		ON a.order_code = b.order_code
+		LEFT JOIN 
+			book_info c
+		ON b.product_no = c.product_no
+		<where>
+			a.refund_status != 'N'
+			<if test="refund_status != null and !refund_status.equals('')">
+				AND a.refund_status = #{refund_status}
+			</if>
+			<if test="order_code != null and !order_code.equals('')">
+				AND a.order_code = #{order_code}
+			</if>
+			<if test="user_id != null and !user_id.equals('')">
+				AND a.user_id = #{user_id}
+			</if>
+			<if test="fromDate != null and !fromDate.equals('') and toDate != null and !toDate.equals('')">
+				AND date(a.cancel_rquest_date) BETWEEN #{fromDate} AND #{toDate}
+			</if>
+		</where> 
+		GROUP BY b.order_code
+		LIMIT #{pageStart}, #{perPageNum}
+	</select>
+	
+	<select id="getOrderCancelAdminDetail" parameterType="String" resultType="OrderAdminCommand">
+	SELECT 
+			a.cancel_msg, a.cancel_rquest_date, a.canceler_tel, a.canceler_email, b.*, c.book_name, c.book_img_storedName
+		FROM 
+			order_cancel a
+		LEFT JOIN 
+			order_books b
+		ON a.order_code = b.order_code
+		LEFT JOIN 
+			book_info c
+		ON b.product_no = c.product_no
+		WHERE 
+			a.refund_status != 'N' AND 
+			a.order_code = #{order_code}
+	</select>
+	
+	<insert id="shipProduct" parameterType="CourierCommand"> 
+	<![CDATA[ 
+			INSERT INTO 
+			delivery(
+				order_code,
+				courier_company,
+				courier_number,
+				courier_status
+				)
+			VALUES (
+				#{order_code},
+				#{courier_company},
+				#{courier_number},
+				#{courier_status}
+			)
+			ON DUPLICATE KEY
+			UPDATE
+			courier_company = #{courier_company},
+			courier_number = #{courier_number},
+			courier_status = #{courier_status}
+			]]>
+	</insert>
+	
+	<select id="getCourierData" parameterType="String" resultType="CourierCommand">
+	SELECT 
+			*
+		FROM 
+			delivery
+		WHERE 
+			order_code = #{order_code}
+	</select>
+	
+</mapper>

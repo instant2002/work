@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper   
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hp.admin.dao.PostMapper">
+	<insert id="uploadBookInfo" parameterType="PostCommand"> 
+	<![CDATA[ 
+			INSERT INTO 
+			book_info(
+				book_name,
+				origin_price,
+				discounted,
+				dc_price,
+				book_group,
+				book_cate,
+				book_priority,
+				book_img_name,
+				book_img_storedName,
+				book_img_size,
+				book_order,
+				writer,
+				translator,
+				book_page,
+				release_date,
+				book_explanation
+				)
+			VALUES (
+				#{book_name},
+				#{origin_price},
+				#{discounted},
+				]]>
+				<choose>
+					<when test="dc_price == 0">
+						null,
+					</when>
+					<otherwise>
+						#{dc_price},
+					</otherwise>
+				</choose>
+				<![CDATA[
+				#{book_group},
+				#{book_cate},
+				#{book_priority},
+				#{book_img_name},
+				#{book_img_storedName},
+				#{book_img_size},
+				#{book_order},
+				#{writer},
+				#{translator},
+				#{book_page},
+				#{release_date},
+				#{book_explanation}
+			)
+			]]>
+	</insert>
+	
+	<select id="getAllBooksInfo" parameterType="List" resultType="PostCommand">
+		SELECT
+			*
+		FROM
+			book_info
+	</select>
+	
+	<select id="getMainBooksInfo" parameterType="List" resultType="PostCommand">
+		SELECT
+			*
+		FROM
+			book_info
+		WHERE
+			is_sale != 'N' AND
+			book_group LIKE CONCAT('%',#{group},'%')
+	</select>
+	
+	<update id="postingBookEditSub" parameterType="PostCommand">
+		UPDATE 
+			book_info
+		SET
+			book_name = #{book_name},
+			origin_price = #{origin_price},
+			discounted = #{discounted},
+			dc_price = #{dc_price},
+			book_group = #{book_group},
+			is_sale = #{is_sale},
+			stock = #{stock},
+			book_img_name = #{book_img_name},
+			book_img_storedName = #{book_img_storedName},
+			book_img_size = #{book_img_size},
+			book_order = #{book_order},
+			writer = #{writer},
+			translator = #{translator},
+			book_page = #{book_page},
+			release_date = #{release_date},
+			book_explanation = #{book_explanation}
+		WHERE
+			product_no = #{product_no}
+	</update>
+	
+	<insert id="uploadNotice" parameterType="NoticeCommand"> 
+	<![CDATA[ 
+			INSERT INTO 
+			notice(
+				user_id,
+				title,
+				contents,
+				notice_img_name,
+				notice_img_storedName,
+				views,
+				notice_order
+				)
+			VALUES (
+				#{user_id},
+				#{title},
+				#{contents},
+				#{notice_img_name},
+				#{notice_img_storedName},
+				#{views},
+				#{notice_order}
+			)
+			]]>
+	<selectKey keyProperty="num" resultType="Integer">
+        SELECT LAST_INSERT_ID()
+    </selectKey>
+	</insert>
+	
+	<insert id="uploadNoticeFile" parameterType="hashmap"> 
+	<![CDATA[ 
+			INSERT INTO 
+			notice_file(
+				notice_idx,
+				notice_file_name,
+				notice_file_storedName
+				)
+			VALUES (
+				#{notice_idx},
+				#{notice_file_name},
+				#{notice_file_storedName}
+			)
+			]]>
+	</insert>
+	
+	<select id="getNoticeList" parameterType="List" resultType="NoticeCommand">
+		SELECT
+			*
+		FROM
+			notice
+	</select>
+	
+	<select id="getNoticeFile" parameterType="Integer" resultType="NoticeCommand">
+		SELECT
+			*
+		FROM
+			notice_file
+		WHERE
+			notice_idx = #{num}
+	</select>
+	
+	<update id="postingNoticeEditSub" parameterType="PostCommand">
+		UPDATE 
+			notice
+		SET
+			title = #{title},
+			contents = #{contents},
+			notice_img_name = #{notice_img_name},
+			notice_img_storedName = #{notice_img_storedName},
+			notice_order = #{notice_order}
+		WHERE
+			num = #{num}
+	</update>
+	
+	<select id="getQnaList" resultType="QnaAdminCommand">
+		SELECT
+			*
+		FROM
+			question
+	</select>
+	
+	<insert id="qnaAnsSub" parameterType="QnaAdminCommand"> 
+	<![CDATA[ 
+			INSERT INTO 
+			answer(
+				ansQuesIdx,
+				ansContents
+				)
+			VALUES (
+				#{idx},
+				#{ansContents}
+			)
+			]]>
+	</insert>
+</mapper>

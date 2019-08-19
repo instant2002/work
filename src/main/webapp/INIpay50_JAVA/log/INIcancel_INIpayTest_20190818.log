@@ -1,0 +1,427 @@
+[17:06:39] INFO <00001> START cancel (NV5531B20190213 cancel Windows 10 JSP pureJAVA  1.8.0_144)
+[17:06:39] INFO <00001> DEBUG PRINT : 
+[17:06:39] INFO <00001> TID        : StdpayISP_INIpayTest20190816170046653216
+[17:06:39]DEBUG <00001> CANCELMSG  : aasfasdasd
+[17:06:39]DEBUG <00001> INIPAYHOME   : /D:\study\work\src\main\webapp\INIpay50_JAVA
+[17:06:39]DEBUG <00001> MID          : INIpayTest
+[17:06:39]DEBUG <00001> ADMIN(KEYPW) : 1111
+[17:06:39]DEBUG <00001> CRYPTO       : execure
+[17:06:39] INFO <00001> EXTRUS CRYPTO USE!!
+[17:06:39]DEBUG <00001> TX_PGPUBSN : 30
+[17:06:39]DEBUG <00001> TX_MPUBSN : 0
+[17:06:39]DEBUG <00001> BodyLen : 1110
+[17:06:39] INFO <00001> 1차 PG : formpg.inicis.com
+[17:06:39] INFO <00001> NSLOOKUP OK (formpg.inicis.com) => IP : 39.115.212.10
+[17:06:39] INFO <00001> Connect to 39.115.212.10:34049
+[17:06:39]DEBUG <00001> PG ADDRESS(PORT) : 39.115.212.10(34049)
+[17:06:39]DEBUG <00001> IP ADDRESS(PORT) : 39.115.212.10(34049)
+[17:06:39]DEBUG <00001> Connect TimeOut  : 5 sec.
+[17:06:39] INFO <00001> SET TX_ENCODECHARSET:KSC5601, SYSTEM ENCODING:MS949
+[17:06:39] INFO <00001> SEND OK
+[17:06:39] INFO <00001> RECV OK
+[17:06:39]DEBUG <00001> 0108200175D SHA1                   0                                      300430INIpayTest                    StdpayISP_INIpayTest20190816170046653216<?xml version="1.0" encoding="UTF-8"?>
+<INIpay>
+  <CancelInfo>
+    <ResultCode>501626</ResultCode>
+    <ResultMsg urlencode="1">%B1%E2+%C3%EB%BC%D2+%B0%C5%B7%A1</ResultMsg>
+    <SessionKey>mc8/GPvksJN27n0PLh3uzjCOb8L8Dl9k3aU4g7cZ2JLvKuPQBSayZ6xt+IC1EjBK
+WADyFcj9URbOMAE+ju8MXORNvGXrOhDfi2SfDKvkEXU1iwNnp877YAnYrQzrsxzm
+vyb3saDtYwZfrV6M6OPyzj6IZBOXc+v6bgDb3zyEpS47MPJnpuplng==
+</SessionKey>
+    <Encrypted>qSKT0cMBR9HvYyF03wWPBhXEybQRZO1/Ef8bq6CZRVYxt8Pa+MPtFzzP26PPx3h4
+lHGFL+kEQfDP5pyRJocuiUQuofffFGq05qmVA+4lcbqWlNzWLLWq54ZfIeyghjfk
++e4vXTABJflei95ROxUxdHMmzKCh3D+TUIWo2TFcTKOv03nImRpkXiFGJQWouF3h
+UqE/gIMQT6KblOEdcTikRMsDuCcuzJFg6NIa3AEcffbgVjXBzZiU3Goz7kZYKAMh
+3dy2KsGtdgPXUXxocgN5IDSOx7yJ2YDCvLhw6eMXgFpBD0ocRMS8uQ==
+</Encrypted>
+  </CancelInfo>
+  <ManageInfo/>
+  <ReservedInfo>
+    <MReserved1 urlencode="1"></MReserved1>
+    <MReserved2 urlencode="1"></MReserved2>
+    <MReserved3 urlencode="1"></MReserved3>
+    <PGReserved1 urlencode="1"></PGReserved1>
+    <PGReserved2 urlencode="1"></PGReserved2>
+    <PGReserved3 urlencode="1"></PGReserved3>
+  </ReservedInfo>
+</INIpay>
+z/5OcWAZxsuNgn2Ns/wkrwccPOMU9byisnmqjFNh1UTG6Rd8WW9bLpo8tdWwIIZO
+kNnw4oZm4CMfNubDCw5ZDq0qM69eiW8s7W1zT1rGywJXWJNLjIC+lh5bmFlp6KP5
+bLNv2dBHGaHTf2BJkv7IwhvvdD8IRjB4AkEav8BtPJw=
+
+[17:06:39] INFO <00001> SOCKET CONNECTION CLOSE
+[17:06:39] INFO <00001> Pay Connection  LapTime[0.128 sec. ] 
+[17:06:39]DEBUG <00001> RESULT_PARSE_DATA(NM|VL) : Encrypted|qSKT0cMBR9HvYyF03wWPBhXEybQRZO1/Ef8bq6CZRVYxt8Pa+MPtFzzP26PPx3h4
+lHGFL+kEQfDP5pyRJocuiUQuofffFGq05qmVA+4lcbqWlNzWLLWq54ZfIeyghjfk
++e4vXTABJflei95ROxUxdHMmzKCh3D+TUIWo2TFcTKOv03nImRpkXiFGJQWouF3h
+UqE/gIMQT6KblOEdcTikRMsDuCcuzJFg6NIa3AEcffbgVjXBzZiU3Goz7kZYKAMh
+3dy2KsGtdgPXUXxocgN5IDSOx7yJ2YDCvLhw6eMXgFpBD0ocRMS8uQ==
+
+[17:06:39]DEBUG <00001> RESULT_PARSE_DATA(NM|VL) : SessionKey|mc8/GPvksJN27n0PLh3uzjCOb8L8Dl9k3aU4g7cZ2JLvKuPQBSayZ6xt+IC1EjBK
+WADyFcj9URbOMAE+ju8MXORNvGXrOhDfi2SfDKvkEXU1iwNnp877YAnYrQzrsxzm
+vyb3saDtYwZfrV6M6OPyzj6IZBOXc+v6bgDb3zyEpS47MPJnpuplng==
+
+[17:06:39]DEBUG <00001> RESULT_PARSE_DATA(NM|VL) : ResultMsg|기 취소 거래
+[17:06:39]DEBUG <00001> RESULT_PARSE_DATA(NM|VL) : ResultCode|501626
+[17:06:39]DEBUG <00001> TX_RESULTMSG : [501626|기 취소 거래]
+[17:06:39]DEBUG <00001> TX_RESULTCODE : 01
+[17:06:39]DEBUG <00001> signChecked=true
+[17:06:39] INFO <00001> SIGN CHECK OK
+[17:06:39] INFO <00001> DECRYPT OK
+[17:06:39]DEBUG <00001> <?xml version="1.0" encoding="UTF-8"?>
+<CancelInfo>
+  <CancelDate></CancelDate>
+  <CancelTime></CancelTime>
+  <ResultCode>501626</ResultCode>
+  <ResultMsg urlencode="1">%B1%E2+%C3%EB%BC%D2+%B0%C5%B7%A1</ResultMsg>
+</CancelInfo>
+
+[17:06:39]DEBUG <00001> RESULT_PARSE_DATA(NM|VL) : ResultMsg|기 취소 거래
+[17:06:39]DEBUG <00001> RESULT_PARSE_DATA(NM|VL) : ResultCode|501626
+[17:06:39]DEBUG <00001> TX_RESULTMSG : [501626|기 취소 거래]
+[17:06:39]DEBUG <00001> TX_RESULTCODE : 01
+[17:06:39] INFO <00001> TRANSACTION COMPLETE 
+[17:06:39] INFO <00001> END cancel, [ TID:StdpayISP_INIpayTest20190816170046653216 ], 01|[501626|기 취소 거래],  LapTime[0.729 sec. ] 
+[17:06:39] INFO --------------------------------------------------------------------------------
+[17:15:41] INFO <00002> START cancel (NV5531B20190213 cancel Windows 10 JSP pureJAVA  1.8.0_144)
+[17:15:41] INFO <00002> DEBUG PRINT : 
+[17:15:41] INFO <00002> TID        : StdpayISP_INIpayTest20190818171453787450
+[17:15:41]DEBUG <00002> CANCELMSG  : 시러!
+[17:15:41]DEBUG <00002> INIPAYHOME   : /D:\study\work\src\main\webapp\INIpay50_JAVA
+[17:15:41]DEBUG <00002> MID          : INIpayTest
+[17:15:41]DEBUG <00002> ADMIN(KEYPW) : 1111
+[17:15:41]DEBUG <00002> CRYPTO       : execure
+[17:15:41] INFO <00002> EXTRUS CRYPTO USE!!
+[17:15:41]DEBUG <00002> TX_PGPUBSN : 30
+[17:15:41]DEBUG <00002> TX_MPUBSN : 0
+[17:15:41]DEBUG <00002> BodyLen : 1110
+[17:15:41] INFO <00002> 1차 PG : formpg.inicis.com
+[17:15:41] INFO <00002> NSLOOKUP OK (formpg.inicis.com) => IP : 39.115.212.10
+[17:15:41] INFO <00002> Connect to 39.115.212.10:34049
+[17:15:41]DEBUG <00002> PG ADDRESS(PORT) : 39.115.212.10(34049)
+[17:15:41]DEBUG <00002> IP ADDRESS(PORT) : 39.115.212.10(34049)
+[17:15:41]DEBUG <00002> Connect TimeOut  : 5 sec.
+[17:15:41] INFO <00002> SET TX_ENCODECHARSET:KSC5601, SYSTEM ENCODING:MS949
+[17:15:41] INFO <00002> SEND OK
+[17:15:42] INFO <00002> RECV OK
+[17:15:42]DEBUG <00002> 0108200175D SHA1                   0                                      300430INIpayTest                    StdpayISP_INIpayTest20190818171453787450<?xml version="1.0" encoding="UTF-8"?>
+<INIpay>
+  <CancelInfo>
+    <ResultCode>170000</ResultCode>
+    <ResultMsg urlencode="1">%C1%A4%BB%F3%BF%CF%B7%E1</ResultMsg>
+    <SessionKey>jeVXZOnNRnnPTuK+MCq+LmybCChxdwQ4FWyk3jcyDRbX7g4lebaqK/nEE8GsjAkT
+O8c+bgJmQKiPQw8+Rtd5U1ymQCBptmzP2SwULxriw8WIYmDuO3wlUQQuGc7QuB1B
+qjZNgCA+1hz+MaK0d+TP0hBvjLdD3+sAIB3Q+FQEqmfstuVgOpKwGg==
+</SessionKey>
+    <Encrypted>9/G42h1hqUzkEfYQn6s14Ric1OdU53BcSNOBbBRXQ6g8LnpfUOHwg7dK/OSJR9AQ
+BH9wX9o/MQVo8aQQSZMAw61ORKCTMfnxwu027CUwpRLMmezzOqEUeUKKFeC+Ji8N
+q7JmgD5pn7vlTkKgRHcxrS13BklXT2Ft6rtLPiRGkIB6oaobZt1L2UK/qWmTYYxZ
+P4d0gCoJQ9bNwxrOWD3n3+MRpQri/teCrIBP8ru1BSrwABUjFHDj2dDGfuKOTbb2
+yWJl/qFAFMyGPEp1OoOtItZrc1ITUGSCRrOtwG+9qFNoN6APwbcM25J6zqVPPnmU
+</Encrypted>
+  </CancelInfo>
+  <ManageInfo/>
+  <ReservedInfo>
+    <MReserved1 urlencode="1"></MReserved1>
+    <MReserved2 urlencode="1"></MReserved2>
+    <MReserved3 urlencode="1"></MReserved3>
+    <PGReserved1 urlencode="1"></PGReserved1>
+    <PGReserved2 urlencode="1"></PGReserved2>
+    <PGReserved3 urlencode="1"></PGReserved3>
+  </ReservedInfo>
+</INIpay>
+Olys+JYeRrXNfMxfYsZVOKjYFGeIdmWxhZdd30FW9HhZ5TIrRAmWL+V8AwXfkJPe
+wJ1X1wpcCrd9Jb6jNFYEinbS2e20D4kcrkOF7k2QvwvEbgbr2oLGmrzTE365qCp7
+rX4XRDDL78AxU4r2VbR/X1ClGB97vDoUmu6T2zBWCZs=
+
+[17:15:42] INFO <00002> SOCKET CONNECTION CLOSE
+[17:15:42] INFO <00002> Pay Connection  LapTime[0.539 sec. ] 
+[17:15:42]DEBUG <00002> RESULT_PARSE_DATA(NM|VL) : Encrypted|9/G42h1hqUzkEfYQn6s14Ric1OdU53BcSNOBbBRXQ6g8LnpfUOHwg7dK/OSJR9AQ
+BH9wX9o/MQVo8aQQSZMAw61ORKCTMfnxwu027CUwpRLMmezzOqEUeUKKFeC+Ji8N
+q7JmgD5pn7vlTkKgRHcxrS13BklXT2Ft6rtLPiRGkIB6oaobZt1L2UK/qWmTYYxZ
+P4d0gCoJQ9bNwxrOWD3n3+MRpQri/teCrIBP8ru1BSrwABUjFHDj2dDGfuKOTbb2
+yWJl/qFAFMyGPEp1OoOtItZrc1ITUGSCRrOtwG+9qFNoN6APwbcM25J6zqVPPnmU
+
+[17:15:42]DEBUG <00002> RESULT_PARSE_DATA(NM|VL) : SessionKey|jeVXZOnNRnnPTuK+MCq+LmybCChxdwQ4FWyk3jcyDRbX7g4lebaqK/nEE8GsjAkT
+O8c+bgJmQKiPQw8+Rtd5U1ymQCBptmzP2SwULxriw8WIYmDuO3wlUQQuGc7QuB1B
+qjZNgCA+1hz+MaK0d+TP0hBvjLdD3+sAIB3Q+FQEqmfstuVgOpKwGg==
+
+[17:15:42]DEBUG <00002> RESULT_PARSE_DATA(NM|VL) : ResultMsg|정상완료
+[17:15:42]DEBUG <00002> RESULT_PARSE_DATA(NM|VL) : ResultCode|170000
+[17:15:42]DEBUG <00002> TX_RESULTMSG : [170000|정상완료]
+[17:15:42]DEBUG <00002> TX_RESULTCODE : 00
+[17:15:42]DEBUG <00002> signChecked=true
+[17:15:42] INFO <00002> SIGN CHECK OK
+[17:15:42] INFO <00002> DECRYPT OK
+[17:15:42]DEBUG <00002> <?xml version="1.0" encoding="UTF-8"?>
+<CancelInfo>
+  <CancelDate>20190818</CancelDate>
+  <CancelTime>171542</CancelTime>
+  <ResultCode>170000</ResultCode>
+  <ResultMsg urlencode="1">%C1%A4%BB%F3%BF%CF%B7%E1</ResultMsg>
+</CancelInfo>
+
+[17:15:42]DEBUG <00002> RESULT_PARSE_DATA(NM|VL) : ResultMsg|정상완료
+[17:15:42]DEBUG <00002> RESULT_PARSE_DATA(NM|VL) : ResultCode|170000
+[17:15:42]DEBUG <00002> RESULT_PARSE_DATA(NM|VL) : CancelTime|171542
+[17:15:42]DEBUG <00002> RESULT_PARSE_DATA(NM|VL) : CancelDate|20190818
+[17:15:42]DEBUG <00002> TX_RESULTMSG : [170000|정상완료]
+[17:15:42]DEBUG <00002> TX_RESULTCODE : 00
+[17:15:42] INFO <00002> TRANSACTION COMPLETE 
+[17:15:42] INFO <00002> END cancel, [ TID:StdpayISP_INIpayTest20190818171453787450 ], 00|[170000|정상완료],  LapTime[0.572 sec. ] 
+[17:15:42] INFO --------------------------------------------------------------------------------
+[17:24:53] INFO <00003> START cancel (NV5531B20190213 cancel Windows 10 JSP pureJAVA  1.8.0_144)
+[17:24:53] INFO <00003> DEBUG PRINT : 
+[17:24:53] INFO <00003> TID        : StdpayISP_INIpayTest20190816170046653216
+[17:24:53]DEBUG <00003> CANCELMSG  : 
+[17:24:53]DEBUG <00003> INIPAYHOME   : /D:\study\work\src\main\webapp\INIpay50_JAVA
+[17:24:53]DEBUG <00003> MID          : INIpayTest
+[17:24:53]DEBUG <00003> ADMIN(KEYPW) : 1111
+[17:24:53]DEBUG <00003> CRYPTO       : execure
+[17:24:53] INFO <00003> EXTRUS CRYPTO USE!!
+[17:24:53]DEBUG <00003> TX_PGPUBSN : 30
+[17:24:53]DEBUG <00003> TX_MPUBSN : 0
+[17:24:53]DEBUG <00003> BodyLen : 1090
+[17:24:53] INFO <00003> 1차 PG : formpg.inicis.com
+[17:24:53] INFO <00003> NSLOOKUP OK (formpg.inicis.com) => IP : 39.115.212.10
+[17:24:53] INFO <00003> Connect to 39.115.212.10:34049
+[17:24:53]DEBUG <00003> PG ADDRESS(PORT) : 39.115.212.10(34049)
+[17:24:53]DEBUG <00003> IP ADDRESS(PORT) : 39.115.212.10(34049)
+[17:24:53]DEBUG <00003> Connect TimeOut  : 5 sec.
+[17:24:53] INFO <00003> SET TX_ENCODECHARSET:KSC5601, SYSTEM ENCODING:MS949
+[17:24:53] INFO <00003> SEND OK
+[17:24:53] INFO <00003> RECV OK
+[17:24:53]DEBUG <00003> 0108200175D SHA1                   0                                      300430INIpayTest                    StdpayISP_INIpayTest20190816170046653216<?xml version="1.0" encoding="UTF-8"?>
+<INIpay>
+  <CancelInfo>
+    <ResultCode>501626</ResultCode>
+    <ResultMsg urlencode="1">%B1%E2+%C3%EB%BC%D2+%B0%C5%B7%A1</ResultMsg>
+    <SessionKey>LqViln9cpRrB+5PHtW3YM9XLob8YlRVo+WdLAAPE05xl/UK0FJjjW4HHIRvQJJ4c
+F0NzhDxmjNWIeiqdJVZhjAM/c/Xl+Zryay19LTHdGhBU0kGQSH+nlovle8FnhDK7
+SwuUU2t1dq0bgCBreHpwXl5qUuQaRSNbb6p0/iqlVSFcaapn57tlRg==
+</SessionKey>
+    <Encrypted>MVZiGiFqSiygmZbaOOIf/e4Djzh7r5wWqym9FcWI6t4C1cZ0ozIS5FabNd3g0HMm
+GD77Tanq+kG6w4jsylQTtt3PEcCv0QtFaiKS3d1kXTU+l/mJlv/u+Es7yAdem9wb
+5ZfakwwsU/SzkhfsPNSYmGtJjUYdADA6/fqwxAIUd5b7ZPOY4lOEx0osPdXUQmhX
+89qvEKjpkMouJ+ozU4wYtbg9CxBsy2hpLcgstCb773ZjTCKhsaAHnq/P1FRwTO/1
+KQFdUSgYsZ9jQ0mKwNsRPbG7CeNHdIr8dP78mjEwXBi9d2FA/XK2Tg==
+</Encrypted>
+  </CancelInfo>
+  <ManageInfo/>
+  <ReservedInfo>
+    <MReserved1 urlencode="1"></MReserved1>
+    <MReserved2 urlencode="1"></MReserved2>
+    <MReserved3 urlencode="1"></MReserved3>
+    <PGReserved1 urlencode="1"></PGReserved1>
+    <PGReserved2 urlencode="1"></PGReserved2>
+    <PGReserved3 urlencode="1"></PGReserved3>
+  </ReservedInfo>
+</INIpay>
+OBxkLhtHYtukKUH1S219Slxr3pqm8WdEjwBBAk2HkrPhd3rDu9bNv7qDDqY/jX6j
+pmbL8cUHIfl7ukuEMTeYnHTZfKtKxhJVQN5rwcIYyLP+TY9IegjyVe8nGZosxkkR
+LFLu1DXf0OLLDUnMrz+W+37/EG3RI+wVpu1vRqsdpXo=
+
+[17:24:53] INFO <00003> SOCKET CONNECTION CLOSE
+[17:24:53] INFO <00003> Pay Connection  LapTime[0.126 sec. ] 
+[17:24:53]DEBUG <00003> RESULT_PARSE_DATA(NM|VL) : Encrypted|MVZiGiFqSiygmZbaOOIf/e4Djzh7r5wWqym9FcWI6t4C1cZ0ozIS5FabNd3g0HMm
+GD77Tanq+kG6w4jsylQTtt3PEcCv0QtFaiKS3d1kXTU+l/mJlv/u+Es7yAdem9wb
+5ZfakwwsU/SzkhfsPNSYmGtJjUYdADA6/fqwxAIUd5b7ZPOY4lOEx0osPdXUQmhX
+89qvEKjpkMouJ+ozU4wYtbg9CxBsy2hpLcgstCb773ZjTCKhsaAHnq/P1FRwTO/1
+KQFdUSgYsZ9jQ0mKwNsRPbG7CeNHdIr8dP78mjEwXBi9d2FA/XK2Tg==
+
+[17:24:53]DEBUG <00003> RESULT_PARSE_DATA(NM|VL) : SessionKey|LqViln9cpRrB+5PHtW3YM9XLob8YlRVo+WdLAAPE05xl/UK0FJjjW4HHIRvQJJ4c
+F0NzhDxmjNWIeiqdJVZhjAM/c/Xl+Zryay19LTHdGhBU0kGQSH+nlovle8FnhDK7
+SwuUU2t1dq0bgCBreHpwXl5qUuQaRSNbb6p0/iqlVSFcaapn57tlRg==
+
+[17:24:53]DEBUG <00003> RESULT_PARSE_DATA(NM|VL) : ResultMsg|기 취소 거래
+[17:24:53]DEBUG <00003> RESULT_PARSE_DATA(NM|VL) : ResultCode|501626
+[17:24:53]DEBUG <00003> TX_RESULTMSG : [501626|기 취소 거래]
+[17:24:53]DEBUG <00003> TX_RESULTCODE : 01
+[17:24:53]DEBUG <00003> signChecked=true
+[17:24:53] INFO <00003> SIGN CHECK OK
+[17:24:53] INFO <00003> DECRYPT OK
+[17:24:53]DEBUG <00003> <?xml version="1.0" encoding="UTF-8"?>
+<CancelInfo>
+  <CancelDate></CancelDate>
+  <CancelTime></CancelTime>
+  <ResultCode>501626</ResultCode>
+  <ResultMsg urlencode="1">%B1%E2+%C3%EB%BC%D2+%B0%C5%B7%A1</ResultMsg>
+</CancelInfo>
+
+[17:24:53]DEBUG <00003> RESULT_PARSE_DATA(NM|VL) : ResultMsg|기 취소 거래
+[17:24:53]DEBUG <00003> RESULT_PARSE_DATA(NM|VL) : ResultCode|501626
+[17:24:53]DEBUG <00003> TX_RESULTMSG : [501626|기 취소 거래]
+[17:24:53]DEBUG <00003> TX_RESULTCODE : 01
+[17:24:53] INFO <00003> TRANSACTION COMPLETE 
+[17:24:53] INFO <00003> END cancel, [ TID:StdpayISP_INIpayTest20190816170046653216 ], 01|[501626|기 취소 거래],  LapTime[0.145 sec. ] 
+[17:24:53] INFO --------------------------------------------------------------------------------
+[17:24:56] INFO <00004> START cancel (NV5531B20190213 cancel Windows 10 JSP pureJAVA  1.8.0_144)
+[17:24:56] INFO <00004> DEBUG PRINT : 
+[17:24:56] INFO <00004> TID        : StdpayISP_INIpayTest20190816170046653216
+[17:24:56]DEBUG <00004> CANCELMSG  : ㅇ
+[17:24:56]DEBUG <00004> INIPAYHOME   : /D:\study\work\src\main\webapp\INIpay50_JAVA
+[17:24:56]DEBUG <00004> MID          : INIpayTest
+[17:24:56]DEBUG <00004> ADMIN(KEYPW) : 1111
+[17:24:56]DEBUG <00004> CRYPTO       : execure
+[17:24:56] INFO <00004> EXTRUS CRYPTO USE!!
+[17:24:56]DEBUG <00004> TX_PGPUBSN : 30
+[17:24:56]DEBUG <00004> TX_MPUBSN : 0
+[17:24:56]DEBUG <00004> BodyLen : 1102
+[17:24:56] INFO <00004> 1차 PG : formpg.inicis.com
+[17:24:56] INFO <00004> NSLOOKUP OK (formpg.inicis.com) => IP : 39.115.212.10
+[17:24:56] INFO <00004> Connect to 39.115.212.10:34049
+[17:24:56]DEBUG <00004> PG ADDRESS(PORT) : 39.115.212.10(34049)
+[17:24:56]DEBUG <00004> IP ADDRESS(PORT) : 39.115.212.10(34049)
+[17:24:56]DEBUG <00004> Connect TimeOut  : 5 sec.
+[17:24:56] INFO <00004> SET TX_ENCODECHARSET:KSC5601, SYSTEM ENCODING:MS949
+[17:24:56] INFO <00004> SEND OK
+[17:24:56] INFO <00004> RECV OK
+[17:24:56]DEBUG <00004> 0108200175D SHA1                   0                                      300430INIpayTest                    StdpayISP_INIpayTest20190816170046653216<?xml version="1.0" encoding="UTF-8"?>
+<INIpay>
+  <CancelInfo>
+    <ResultCode>501626</ResultCode>
+    <ResultMsg urlencode="1">%B1%E2+%C3%EB%BC%D2+%B0%C5%B7%A1</ResultMsg>
+    <SessionKey>mTRzQr3XEq3BSra2uMAU9ZxPPMuwf+DgCTA74H7Z4zeQCYGm+kIw5wkjr6aJthQw
+GKXpgqtjQu2jtKXbjM27kuJYEA2l+j5VDcqzCFGTtVPO6Yhqes6wrrhb8Mmy8EtI
+DtS2uoXS2Sb+SBB/p9n9xlsklMpbppWWKOC+8DMIJr1NybEzroLWrw==
+</SessionKey>
+    <Encrypted>8wGZ+kAKIzqX50/Pczb6cug4DhQCv2fQw8cRoInZxZfGOuTTQ8Y/jE3zDiUxGa/f
+gif6mlr5fcEo9fzvj2tpSE1GNV6BB/Mc4UQ2aH4uI9Vzx6QJgaXph+KUKF1KXzvG
+UenUDIQy8FoCDb0OeOxVp9uoTFL5DmXkO55YJsTakKpQGw4Ss6aNDMxGWuzlwMN+
+rf8LI2KUEde2PSXZLnwLc35fU0F5/wX3p58Vy1luik3GRwTgzX/LSsnSPhyIqWtk
+CIpvM05KV7adaAkWHVC4LPy/35wqwaThfC1Esh45jQBWiW8vjEo57Q==
+</Encrypted>
+  </CancelInfo>
+  <ManageInfo/>
+  <ReservedInfo>
+    <MReserved1 urlencode="1"></MReserved1>
+    <MReserved2 urlencode="1"></MReserved2>
+    <MReserved3 urlencode="1"></MReserved3>
+    <PGReserved1 urlencode="1"></PGReserved1>
+    <PGReserved2 urlencode="1"></PGReserved2>
+    <PGReserved3 urlencode="1"></PGReserved3>
+  </ReservedInfo>
+</INIpay>
+Qg5XPRaRjXuAithw/jqxWbNoj+ctRQLac1VtZO0t6rNRqqcjg76r/fFAImTrtWL4
+Uyt7yC5+ghZeSggp4W34JzWSZXcfcwWSfCyV5tr739Ykwra21WeM932iJlfldgIK
+9BeGoZVf9JjbPrs5Nz7WJlyJS86dy9U6iLUkJ0GY7Kw=
+
+[17:24:56] INFO <00004> SOCKET CONNECTION CLOSE
+[17:24:56] INFO <00004> Pay Connection  LapTime[0.119 sec. ] 
+[17:24:56]DEBUG <00004> RESULT_PARSE_DATA(NM|VL) : Encrypted|8wGZ+kAKIzqX50/Pczb6cug4DhQCv2fQw8cRoInZxZfGOuTTQ8Y/jE3zDiUxGa/f
+gif6mlr5fcEo9fzvj2tpSE1GNV6BB/Mc4UQ2aH4uI9Vzx6QJgaXph+KUKF1KXzvG
+UenUDIQy8FoCDb0OeOxVp9uoTFL5DmXkO55YJsTakKpQGw4Ss6aNDMxGWuzlwMN+
+rf8LI2KUEde2PSXZLnwLc35fU0F5/wX3p58Vy1luik3GRwTgzX/LSsnSPhyIqWtk
+CIpvM05KV7adaAkWHVC4LPy/35wqwaThfC1Esh45jQBWiW8vjEo57Q==
+
+[17:24:56]DEBUG <00004> RESULT_PARSE_DATA(NM|VL) : SessionKey|mTRzQr3XEq3BSra2uMAU9ZxPPMuwf+DgCTA74H7Z4zeQCYGm+kIw5wkjr6aJthQw
+GKXpgqtjQu2jtKXbjM27kuJYEA2l+j5VDcqzCFGTtVPO6Yhqes6wrrhb8Mmy8EtI
+DtS2uoXS2Sb+SBB/p9n9xlsklMpbppWWKOC+8DMIJr1NybEzroLWrw==
+
+[17:24:56]DEBUG <00004> RESULT_PARSE_DATA(NM|VL) : ResultMsg|기 취소 거래
+[17:24:56]DEBUG <00004> RESULT_PARSE_DATA(NM|VL) : ResultCode|501626
+[17:24:56]DEBUG <00004> TX_RESULTMSG : [501626|기 취소 거래]
+[17:24:56]DEBUG <00004> TX_RESULTCODE : 01
+[17:24:56]DEBUG <00004> signChecked=true
+[17:24:56] INFO <00004> SIGN CHECK OK
+[17:24:56] INFO <00004> DECRYPT OK
+[17:24:56]DEBUG <00004> <?xml version="1.0" encoding="UTF-8"?>
+<CancelInfo>
+  <CancelDate></CancelDate>
+  <CancelTime></CancelTime>
+  <ResultCode>501626</ResultCode>
+  <ResultMsg urlencode="1">%B1%E2+%C3%EB%BC%D2+%B0%C5%B7%A1</ResultMsg>
+</CancelInfo>
+
+[17:24:56]DEBUG <00004> RESULT_PARSE_DATA(NM|VL) : ResultMsg|기 취소 거래
+[17:24:56]DEBUG <00004> RESULT_PARSE_DATA(NM|VL) : ResultCode|501626
+[17:24:56]DEBUG <00004> TX_RESULTMSG : [501626|기 취소 거래]
+[17:24:56]DEBUG <00004> TX_RESULTCODE : 01
+[17:24:56] INFO <00004> TRANSACTION COMPLETE 
+[17:24:56] INFO <00004> END cancel, [ TID:StdpayISP_INIpayTest20190816170046653216 ], 01|[501626|기 취소 거래],  LapTime[0.134 sec. ] 
+[17:24:56] INFO --------------------------------------------------------------------------------
+[21:27:43] INFO <00005> START cancel (NV5531B20190213 cancel Windows 10 JSP pureJAVA  1.8.0_144)
+[21:27:43] INFO <00005> DEBUG PRINT : 
+[21:27:43] INFO <00005> TID        : StdpayISP_INIpayTest20190816170046653216
+[21:27:43]DEBUG <00005> CANCELMSG  : ㅁㄴㅇ
+[21:27:43]DEBUG <00005> INIPAYHOME   : /D:\study\work\src\main\webapp\INIpay50_JAVA
+[21:27:43]DEBUG <00005> MID          : INIpayTest
+[21:27:43]DEBUG <00005> ADMIN(KEYPW) : 1111
+[21:27:43]DEBUG <00005> CRYPTO       : execure
+[21:27:43] INFO <00005> EXTRUS CRYPTO USE!!
+[21:27:43]DEBUG <00005> TX_PGPUBSN : 30
+[21:27:43]DEBUG <00005> TX_MPUBSN : 0
+[21:27:43]DEBUG <00005> BodyLen : 1124
+[21:27:43] INFO <00005> 1차 PG : formpg.inicis.com
+[21:27:43] INFO <00005> NSLOOKUP OK (formpg.inicis.com) => IP : 39.115.212.10
+[21:27:43] INFO <00005> Connect to 39.115.212.10:34049
+[21:27:43]DEBUG <00005> PG ADDRESS(PORT) : 39.115.212.10(34049)
+[21:27:43]DEBUG <00005> IP ADDRESS(PORT) : 39.115.212.10(34049)
+[21:27:43]DEBUG <00005> Connect TimeOut  : 5 sec.
+[21:27:43] INFO <00005> SET TX_ENCODECHARSET:KSC5601, SYSTEM ENCODING:MS949
+[21:27:43] INFO <00005> SEND OK
+[21:27:43] INFO <00005> RECV OK
+[21:27:43]DEBUG <00005> 0108200175D SHA1                   0                                      300430INIpayTest                    StdpayISP_INIpayTest20190816170046653216<?xml version="1.0" encoding="UTF-8"?>
+<INIpay>
+  <CancelInfo>
+    <ResultCode>501626</ResultCode>
+    <ResultMsg urlencode="1">%B1%E2+%C3%EB%BC%D2+%B0%C5%B7%A1</ResultMsg>
+    <SessionKey>Y0gKXYh5Ku/lZGbZrYVURckRTF30glr4KKt7gETlEiwAcoWPKpTf4HFcmK+UFoSu
+0z02oaOTkBPQxvSm+gl38U7I34PM/N8H2X2hwAMJsF4hlH7UTiSiF7KAmLVpfMYI
+htKIM2H7iKNKXAPB5VoUjkPKUBVmtaXa2yqiJD/iyu8CpBSsf7i8UQ==
+</SessionKey>
+    <Encrypted>IctuVNDgEu5xtg1Q42hsE94FngsTWvv7dAIVaGSsKQVeh/rVJ2MV2CuyPeIxjCmP
+p3E1sTrFukMJc7V+JfHOnOOy2Dq0AzImUssjeL18oMfJYPZ3ao5UJ19MSa1BpuPR
+DDnBhfQ6N4zL1WrEVW2pRnveU92YALv4p6wqv4UrXsbLMkKSp2siHRtvfbtcwCYu
+IusGDHzPojdNHJ/suXXxQCZGIiCheJzMyKabBjgC7RlUj0QsyyJeaxJxmb67IKZu
+PINkQhZjhnmDYQWK/jK8idZqQMRAnuxIgbxRo5u+hlOfPPEE6BecMg==
+</Encrypted>
+  </CancelInfo>
+  <ManageInfo/>
+  <ReservedInfo>
+    <MReserved1 urlencode="1"></MReserved1>
+    <MReserved2 urlencode="1"></MReserved2>
+    <MReserved3 urlencode="1"></MReserved3>
+    <PGReserved1 urlencode="1"></PGReserved1>
+    <PGReserved2 urlencode="1"></PGReserved2>
+    <PGReserved3 urlencode="1"></PGReserved3>
+  </ReservedInfo>
+</INIpay>
+QvECi0mWAqt+DEiL60QWVrTreI+vgOlhlq5kqZaa+PLAnVE12ZLKGWJ7k4OFEGp1
+IHKF6F6q4XbVx+YmVeXiBcA3LyBqtexeLnwBIqPUWLouplgtU7ZVelHa2Akk67zo
+3ievoYSaFn/ng5qzI07qy//vQzTAxsKRuwS8RDBPGrI=
+
+[21:27:43] INFO <00005> SOCKET CONNECTION CLOSE
+[21:27:43] INFO <00005> Pay Connection  LapTime[0.121 sec. ] 
+[21:27:43]DEBUG <00005> RESULT_PARSE_DATA(NM|VL) : Encrypted|IctuVNDgEu5xtg1Q42hsE94FngsTWvv7dAIVaGSsKQVeh/rVJ2MV2CuyPeIxjCmP
+p3E1sTrFukMJc7V+JfHOnOOy2Dq0AzImUssjeL18oMfJYPZ3ao5UJ19MSa1BpuPR
+DDnBhfQ6N4zL1WrEVW2pRnveU92YALv4p6wqv4UrXsbLMkKSp2siHRtvfbtcwCYu
+IusGDHzPojdNHJ/suXXxQCZGIiCheJzMyKabBjgC7RlUj0QsyyJeaxJxmb67IKZu
+PINkQhZjhnmDYQWK/jK8idZqQMRAnuxIgbxRo5u+hlOfPPEE6BecMg==
+
+[21:27:43]DEBUG <00005> RESULT_PARSE_DATA(NM|VL) : SessionKey|Y0gKXYh5Ku/lZGbZrYVURckRTF30glr4KKt7gETlEiwAcoWPKpTf4HFcmK+UFoSu
+0z02oaOTkBPQxvSm+gl38U7I34PM/N8H2X2hwAMJsF4hlH7UTiSiF7KAmLVpfMYI
+htKIM2H7iKNKXAPB5VoUjkPKUBVmtaXa2yqiJD/iyu8CpBSsf7i8UQ==
+
+[21:27:43]DEBUG <00005> RESULT_PARSE_DATA(NM|VL) : ResultMsg|기 취소 거래
+[21:27:43]DEBUG <00005> RESULT_PARSE_DATA(NM|VL) : ResultCode|501626
+[21:27:43]DEBUG <00005> TX_RESULTMSG : [501626|기 취소 거래]
+[21:27:43]DEBUG <00005> TX_RESULTCODE : 01
+[21:27:43]DEBUG <00005> signChecked=true
+[21:27:43] INFO <00005> SIGN CHECK OK
+[21:27:43] INFO <00005> DECRYPT OK
+[21:27:43]DEBUG <00005> <?xml version="1.0" encoding="UTF-8"?>
+<CancelInfo>
+  <CancelDate></CancelDate>
+  <CancelTime></CancelTime>
+  <ResultCode>501626</ResultCode>
+  <ResultMsg urlencode="1">%B1%E2+%C3%EB%BC%D2+%B0%C5%B7%A1</ResultMsg>
+</CancelInfo>
+
+[21:27:43]DEBUG <00005> RESULT_PARSE_DATA(NM|VL) : ResultMsg|기 취소 거래
+[21:27:43]DEBUG <00005> RESULT_PARSE_DATA(NM|VL) : ResultCode|501626
+[21:27:43]DEBUG <00005> TX_RESULTMSG : [501626|기 취소 거래]
+[21:27:43]DEBUG <00005> TX_RESULTCODE : 01
+[21:27:43] INFO <00005> TRANSACTION COMPLETE 
+[21:27:43] INFO <00005> END cancel, [ TID:StdpayISP_INIpayTest20190816170046653216 ], 01|[501626|기 취소 거래],  LapTime[0.172 sec. ] 
+[21:27:43] INFO --------------------------------------------------------------------------------

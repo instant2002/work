@@ -1,0 +1,388 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper   
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hp.customer.dao.CustomerMapper">
+	<insert id="secessionSubInfo" parameterType="MemberCommand"> 
+	<![CDATA[ 
+			INSERT INTO 
+			secession_list(
+				user_id,
+				user_name,
+				email,
+				phonenum1,
+				phonenum2,
+				secession_date,
+				secession,
+				secession_contents,
+				secession_num
+				)
+			VALUES (
+				#{user_id},
+				#{user_name},
+				#{email},
+				#{phonenum1},
+				#{phonenum2},
+				sysdate(),
+				#{secession},
+				#{secession_contents},
+				#{secession_num}
+			)
+			]]>
+	</insert>
+	
+	<select id="chkPassword" parameterType="map" resultType="int">
+		SELECT 
+			COUNT(*)
+		FROM 
+			member 
+		WHERE 
+			user_pwd = #{user_pwd} AND
+			user_id = #{user_id} 
+	</select>
+	
+	<update id="updateUser" parameterType="MemberCommand"> 
+	<![CDATA[ 
+			UPDATE 
+				member 
+					SET 
+						user_name = #{user_name },
+						]]>
+						<if test="user_pwd !=''">
+							user_pwd = #{user_pwd },
+						</if>
+						<![CDATA[
+						birth = #{birth },
+						gender = #{gender },
+						email = #{email },
+						phonenum1 = #{phonenum1 },
+						phonenum2 = #{phonenum2 },
+						postnum = #{postnum },
+						address1 = #{address1 },
+						address2 = #{address2 }
+					WHERE 
+					user_id = #{user_id }
+			]]>
+	</update>
+	
+	<select id="getBasketList" parameterType="String" resultType="BookCommand">
+		SELECT
+			a.quantity, 
+			b.*
+		FROM 
+			basket a
+		LEFT JOIN
+			book_info b
+		ON
+			a.product_no = b.product_no
+		WHERE 
+			a.user_id = #{user_id} AND 
+			b.is_sale != 'N'
+	</select>
+	
+	<insert id="insertBasket" parameterType="CustomerCommand"> 
+	<![CDATA[ 
+			INSERT INTO 
+			basket(
+				product_no,
+				user_id
+				)
+			VALUES (
+				#{product_no},
+				#{user_id}
+			)
+			ON DUPLICATE KEY
+			UPDATE
+			basket_date = CURRENT_TIMESTAMP
+			]]>
+	</insert>
+	
+	<delete id="basketDelete" parameterType="hashmap">
+		DELETE FROM
+			basket
+		WHERE
+			user_id = '${user_id}' AND
+			product_no IN
+		<foreach collection="product_arr" item="item" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</delete>
+	
+	<insert id="insertWish" parameterType="CustomerCommand"> 
+	<![CDATA[ 
+			INSERT INTO 
+			wishList(
+				product_no,
+				user_id
+				)
+			VALUES (
+				#{product_no},
+				#{user_id}
+			)
+			ON DUPLICATE KEY
+			UPDATE
+			wishing_date = CURRENT_TIMESTAMP
+			]]>
+	</insert>
+	
+	<select id="getWishList" parameterType="String" resultType="BookCommand">
+		SELECT
+			b.*
+		FROM 
+			wishList a
+		LEFT JOIN
+			book_info b
+		ON
+			a.product_no = b.product_no
+		WHERE 
+			a.user_id = #{user_id} AND
+			b.is_sale != 'N'
+	</select>
+	
+	<delete id="wishDelete" parameterType="hashmap">
+		DELETE FROM
+			wishList
+		WHERE
+			user_id = '${user_id}' AND
+			product_no IN
+		<foreach collection="product_arr" item="item" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</delete>
+	
+	<insert id="toBasket" parameterType="hashmap"> 
+			INSERT INTO 
+			basket(
+				product_no,
+				user_id
+				)
+			VALUES 
+			<foreach collection="product_arr" item="item" separator=",">
+			(
+				#{item},
+				#{user_id}
+			)
+			</foreach>
+			ON DUPLICATE KEY
+			UPDATE
+			basket_date = CURRENT_TIMESTAMP
+	</insert>
+	
+	<select id="getQnaList" parameterType="String" resultType="QnaCommand">
+		SELECT
+			*
+		FROM 
+			question 
+		WHERE 
+			user_id = #{user_id} 
+	</select>
+	
+	<delete id="qnaDelSub" parameterType="QnaCommand">
+		DELETE 
+			a, b
+		FROM 
+			question a
+		LEFT JOIN
+			answer b
+		ON 
+			a.idx = b.ansQuesIdx
+		WHERE 
+			a.idx = #{idx} AND
+			a.user_id = #{user_id}
+	</delete>
+	
+	<select id="getOrderListCount" parameterType="Criteria" resultType="Integer">
+		SELECT 
+			COUNT(DISTINCT order_code)
+		FROM 
+			order_books 
+		<where>
+			user_id = #{user_id}
+			AND refund_status = 'N'
+			<if test="delivery_status != null and !delivery_status.equals('')">
+				AND delivery_status = #{delivery_status}
+			</if>
+			<if test="isPayment != null and !isPayment.equals('')">
+				AND isPayment = #{isPayment}
+			</if>
+		</where> 
+	</select>
+	
+	<select id="getOrderList" parameterType="Criteria" resultType="PaymentCommand">
+		SELECT 
+			a.*, b.book_name, b.book_img_storedName, c.*, count(a.user_id) as group_count
+		FROM 
+			order_books a
+		LEFT JOIN 
+			book_info b
+		ON a.product_no = b.product_no
+		LEFT JOIN 
+			delivery c
+		ON a.order_code = c.order_code
+		<where>
+			a.user_id = #{user_id}
+			AND refund_status = 'N'
+			<if test="delivery_status != null and !delivery_status.equals('')">
+				AND a.delivery_status = #{delivery_status}
+			</if>
+			<if test="isPayment != null and !isPayment.equals('')">
+				AND a.isPayment = #{isPayment}
+			</if>
+		</where> 
+		GROUP BY a.order_code
+		LIMIT #{pageStart}, #{perPageNum}
+	</select>
+	
+	<select id="getOrderDetail" parameterType="map" resultType="PaymentCommand">
+	SELECT 
+			a.*, b.book_name, b.book_img_storedName, c.*
+		FROM 
+			order_books a
+		LEFT JOIN 
+			book_info b
+		ON a.product_no = b.product_no
+		LEFT JOIN 
+			delivery c
+		ON a.order_code = c.order_code
+		WHERE 
+			a.user_id = #{user_id} AND 
+			a.refund_status = 'N' AND 
+			a.order_code = #{order_code}
+	</select>
+	
+	<select id="cancelData" parameterType="CancelCommand" resultType="CancelCommand">
+	SELECT
+		*
+	FROM
+		order_books
+	WHERE
+		user_id = #{user_id} AND
+		order_code = #{order_code}
+	LIMIT 1
+	</select>
+	
+	<insert id="insertCancelReq" parameterType="CancelCommand"> 
+			INSERT INTO 
+				order_cancel(
+					order_code,
+					tid,
+					payment_status,
+					delivery_status,
+					refund_status,
+					user_id,
+					canceler_tel,
+					canceler_email,
+					cancel_msg,
+					isPayment
+				)
+			VALUES 
+			(
+				#{order_code},
+				#{tid},
+				#{payment_status},
+				#{delivery_status},
+				'F',
+				#{user_id},
+				#{canceler_tel},
+				#{canceler_email},
+				#{cancel_msg},
+				#{isPayment}
+			)
+	</insert>
+	
+	<select id="getCancelOrderListCount" parameterType="Criteria" resultType="Integer">
+		SELECT 
+			COUNT(DISTINCT order_code)
+		FROM 
+			order_cancel 
+		<where>
+			user_id = #{user_id}
+			AND refund_status != 'N'
+			<if test="refund_status != null and !refund_status.equals('')">
+				AND refund_status = #{refund_status}
+			</if>
+		</where> 
+	</select>
+	
+	<select id="getCancelOrderList" parameterType="Criteria" resultType="CancelCommand">
+		SELECT 
+			a.*, c.book_name, c.book_img_storedName, b.amount_payment, count(b.order_code) as group_count
+		FROM 
+			order_cancel a
+		LEFT JOIN 
+			order_books b
+		ON a.order_code = b.order_code
+		LEFT JOIN 
+			book_info c
+		ON b.product_no = c.product_no
+		<where>
+			a.user_id = #{user_id}
+			AND a.refund_status != 'N'
+			<if test="refund_status != null and !refund_status.equals('')">
+				AND a.refund_status = #{refund_status}
+			</if>
+		</where> 
+		GROUP BY b.order_code
+		LIMIT #{pageStart}, #{perPageNum}
+	</select>
+	
+	<select id="getOrderCancelDetail" parameterType="map" resultType="PaymentCommand">
+	SELECT 
+			a.cancel_msg, a.cancel_rquest_date, a.canceler_tel, a.canceler_email, b.*, c.book_name, c.book_img_storedName
+		FROM 
+			order_cancel a
+		LEFT JOIN 
+			order_books b
+		ON a.order_code = b.order_code
+		LEFT JOIN 
+			book_info c
+		ON b.product_no = c.product_no
+		WHERE 
+			a.user_id = #{user_id} AND 
+			a.refund_status != 'N' AND 
+			a.order_code = #{order_code}
+	</select>
+	
+	<select id="getMypageOrderList" parameterType="String" resultType="PaymentCommand">
+		SELECT
+			a.*, b.book_name, b.book_img_storedName, count(a.user_id) as group_count
+		FROM 
+			order_books a
+		LEFT JOIN 
+			book_info b
+		ON a.product_no = b.product_no
+		<where>
+			a.user_id = #{user_id}
+			AND refund_status = 'N'
+		</where> 
+		GROUP BY a.order_code
+		ORDER BY a.order_date DESC
+		LIMIT 5
+	</select>
+	
+	<select id="getMypageBasketList" parameterType="String" resultType="BookCommand">
+		SELECT
+			a.quantity, 
+			b.*
+		FROM 
+			basket a
+		LEFT JOIN
+			book_info b
+		ON
+			a.product_no = b.product_no
+		WHERE 
+			a.user_id = #{user_id} AND 
+			b.is_sale != 'N'
+		ORDER BY a.basket_date DESC
+		LIMIT 5
+	</select>
+	
+	<select id="getMypageCount" parameterType="String" resultType="hashmap">
+	SELECT 
+		(SELECT COUNT(DISTINCT order_code) FROM order_books WHERE user_id = #{user_id} AND delivery_status !='F' AND refund_status = 'N') order_count,
+	    (SELECT COUNT(*) FROM order_cancel WHERE user_id = #{user_id} AND refund_status != 'N') cancel_count,
+	    (SELECT COUNT(*) FROM basket a LEFT JOIN book_info b ON a.product_no = b.product_no WHERE a.user_id = #{user_id} AND b.is_sale !='N') basket_count,
+	    (SELECT COUNT(*) FROM wishList a LEFT JOIN book_info b ON a.product_no = b.product_no WHERE a.user_id = #{user_id} AND b.is_sale !='N') wish_count
+	FROM DUAL
+	</select>
+</mapper>
