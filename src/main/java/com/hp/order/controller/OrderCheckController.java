@@ -42,6 +42,7 @@ public class OrderCheckController {
 			Iterator<OrderCommand> it = orderCommand.getOrder_list().iterator();
 			while(it.hasNext()) {
 				OrderCommand str = it.next();
+				
 				product_no_list.add(str.getProduct_no());
 				quantity_list.add(str.getQuantity());
 			}
