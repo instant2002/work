@@ -108,7 +108,7 @@
 										<strong>전체 도서</strong>
 									</div>
 								</div>
-<!-- 							</a> -->
+							</a>
 						</div>
 					</div>
 				</div>

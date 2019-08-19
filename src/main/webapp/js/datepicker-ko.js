@@ -15,6 +15,7 @@ datepicker.regional.ko = {
 	closeText: "닫기",
 	prevText: "이전달",
 	nextText: "다음달",
+	yearRange: 'c-100:c+0',
 	changeMonth: true, 
     changeYear: true,
 	currentText: "오늘",
