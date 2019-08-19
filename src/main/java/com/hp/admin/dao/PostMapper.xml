@@ -69,6 +69,7 @@
 		WHERE
 			is_sale != 'N' AND
 			book_group LIKE CONCAT('%',#{group},'%')
+		GROUP BY book_order ASC
 	</select>
 	
 	<update id="postingBookEditSub" parameterType="PostCommand">
