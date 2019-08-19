@@ -272,14 +272,14 @@
 		<!-- tab pl-list -->
 	</div>
 
-	<c:if test="${pageMaker.endPage > 1 }">
+	<c:if test="${pageMaker.endPage > 0 }">
 		<div class="cat-pagination">
 			<div class="row">
 				<div class="col-sm-3"></div>
 				<div class="col-sm-6 text-center">
 					<ul class="pagination">
 						<c:if test="${pageMaker.prev }">
-							<li><a href='<c:url value="/book/bookList.do?page=${pageMaker.startPage-1 }"/>'><i class="fa fa-chevron-left"></i></a></li>
+							<li><a href='<c:url value="/book/bookList.do?page=${pageMaker.startPage-1}&keyword=${keyword}&sortby=${ordering.sortby}&perPageNum=${ordering.perPageNum}&book_group=${ordering.book_group}"/>'><i class="fa fa-chevron-left"></i></a></li>
 						</c:if>
 						<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="idx" varStatus="status">
 							<c:choose>
@@ -290,11 +290,11 @@
 									<li>
 								</c:otherwise>
 							</c:choose>
-							<a href='<c:url value="/book/bookList.do?page=${idx }"/>'>${idx }</a>
+							<a href='<c:url value="/book/bookList.do?page=${idx}&keyword=${keyword}&sortby=${ordering.sortby}&perPageNum=${ordering.perPageNum}&book_group=${ordering.book_group}"/>'>${idx}</a>
 							</li>
 						</c:forEach>
 						<c:if test="${pageMaker.next && pageMaker.endPage >0 }">
-							<li><a href='<c:url value="/book/bookList.do?page=${pageMaker.endPage+1 }"/>'><i class="fa fa-chevron-right"></i></a></li>
+							<li><a href='<c:url value="/book/bookList.do?page=${pageMaker.endPage+1}&keyword=${keyword}&sortby=${ordering.sortby}&perPageNum=${ordering.perPageNum}&book_group=${ordering.book_group}"/>'><i class="fa fa-chevron-right"></i></a></li>
 						</c:if>
 					</ul>
 				</div>
