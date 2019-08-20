@@ -12,7 +12,7 @@ function registSubFunc(){
 	}
 
 	if(!getCheck.test($("#userId").val())){
-      alert("아이디를 형식에 맞게 입력해주세요.");
+      alert("8~20자리 이내의 아이디를 입력해주세요.");
       $("#userId").val("");
       $("#userId").focus();
       return false;
@@ -30,8 +30,8 @@ function registSubFunc(){
 		$('#userPwd').focus();
 		return false;
 	}
-	if(!getCheck.test($("#userPwd").val())){
-	      alert("비밀번호를 형식에 맞게 입력해주세요.");
+	if($("#userPwd").val().length < 8){
+	      alert("비밀번호를 8자리 이상 입력하세요.");
 	      $("#userPwd").val("");
 	      $("#userPwdConf").val("");
 	      $("#userPwd").focus();
@@ -74,7 +74,7 @@ function registSubFunc(){
 		return false;
 	}
 	if($(':radio[name="gender"]:checked').length < 1){
-	    alert('성별을 선택해주세요');                        
+	    alert('성별을 선택하세요.');                        
 	    return false;
 	}
 	if($('#gender').val()==''){
