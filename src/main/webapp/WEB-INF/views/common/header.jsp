@@ -9,8 +9,7 @@
 					<div id="top-contacts">
 						<ul class="list-inline">
 							<li class="hidden-xs"><i class="icon-call-in"></i> <span>02-6953-0822</span></li>
-							<li class="hidden-xs"><a href="your@email.com"> <i class="icon-envelope"></i> <span class="hidden-xs">unionbooks@daum.net</span>
-							</a></li>
+							<li class="hidden-xs"><i class="icon-envelope"></i> <span class="hidden-xs">unionbooks@daum.net</span></li>
 						</ul>
 					</div>
 				</div>
