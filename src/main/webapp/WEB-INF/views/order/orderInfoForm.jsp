@@ -191,7 +191,7 @@
 </div>
 
 <!-- 상용 JS(가맹점 MID 변경 시 주석 해제, 테스트용 JS 주석 처리 필수!) -->
-<!--script language="javascript" type="text/javascript" src="https://stdpay.inicis.com/stdjs/INIStdPay.js" charset="UTF-8"></script-->
+
 <form id="SendPayForm" method="POST" action="https://stdpay.inicis.com/payMain/pay" accept-charset="UTF-8">
 <!-- 이니페이 테스트 -->
 	<input type="hidden" name="version" value="1.0">
@@ -208,9 +208,9 @@
 	<input type="hidden" name="returnUrl" value="http://localhost:8080/order/paymentResult.do">
 	<input type="hidden" name="closeUrl" value="http://localhost:8080/order/close.do">
 	<input type="hidden" name="popupUrl" value="http://localhost:8080/order/popup.do">
-	<!-- <input type="hidden" name="returnUrl" value="http://unionbooks.kr/order/paymentResult.do"> 변경!
-	<input type="hidden" name="closeUrl" value="http://unionbooks.kr/order/close.do">
-	<input type="hidden" name="popupUrl" value="http://unionbooks.kr/order/popup.do"> -->
+	<!-- <input type="hidden" name="returnUrl" value="http://${pageContext.request.serverName}/order/paymentResult.do"> 변경!
+	<input type="hidden" name="closeUrl" value="http://${pageContext.request.serverName}/order/close.do">
+	<input type="hidden" name="popupUrl" value="http://${pageContext.request.serverName}/order/popup.do"> -->
 	
 	<input type="hidden" name="buyername" id="buyername_form" value="">
 	<input type="hidden" name="buyeremail" id="buyeremail_form" value="">
@@ -218,7 +218,8 @@
 	<input type="hidden" name="merchantData" id="merchantData_form" value="">
 	
 </form>
-<script language="javascript" type="text/javascript" src="https://stgstdpay.inicis.com/stdjs/INIStdPay.js" charset="UTF-8"></script>
+<script language="javascript" type="text/javascript" src="https://stdpay.inicis.com/stdjs/INIStdPay.js" charset="UTF-8"></script>
+<!-- <script language="javascript" type="text/javascript" src="https://stgstdpay.inicis.com/stdjs/INIStdPay.js" charset="UTF-8"></script> -->
 
 <!-- /이니페이 테스트 -->
 <script type="text/javascript">
