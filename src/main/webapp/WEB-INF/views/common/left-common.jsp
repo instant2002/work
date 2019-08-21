@@ -26,7 +26,7 @@
 								</c:if>
 									<td>
 										<p class="ellipsis_5" style="margin: 0;">
-											<a href="/service/noticeView.do?num=${notice.num }">${notice.title }</a>
+											<a href="/service/noticeView.do?num=${notice.num }" style="font-size: 13px;">${notice.title }</a>
 										</p>
 									</td>
 								</tr>
