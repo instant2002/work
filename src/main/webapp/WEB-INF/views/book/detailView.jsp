@@ -185,7 +185,7 @@
                   <!-- Tab panes -->
                   <div class="tab-content">
                      <div id="tab-description" class="tab-pane active">
-                        <pre><p>${book.book_explanation }</p></pre>
+                        <pre style="white-space: pre-wrap;"><p>${book.book_explanation }</p></pre>
                      </div>
                   </div>
                </div>
