@@ -653,7 +653,7 @@ footer .title-type-2 {color: #909090;}
 
 #footer-3, #footer-4, #footer-5 { background: #111111; }
 
-#footer-3 .container { margin-top: 0; padding: 30px 15px; }
+#footer-3 .container { margin-top: 0; padding: 15px 0; }
 
 #footer-3 li { margin: 0 0 10px; font-size: 14px; }
 
@@ -672,7 +672,7 @@ footer .title-type-2 {color: #909090;}
 
 #footer-4 { border-top: 1px solid #1e1e1f; border-bottom: 1px solid #1e1e1f; }
 
-#footer-5 .container { margin-top: 0; padding: 20px 15px 20px 15px; color: #4c4c4c; }
+#footer-5 .container { margin-top: 0; color: #4c4c4c; }
 #footer-5 .container .copyright {color:#9198A1;}
 #footer-5 .copyright a {color:#fff;}
 

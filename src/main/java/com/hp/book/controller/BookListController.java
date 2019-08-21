@@ -34,8 +34,8 @@ public class BookListController {
 	public String form(Criteria criteria, HttpSession session, Model model) {
 		PageMaker pageMaker = new PageMaker();
 		
-		if(criteria.getPerPageNum() <= 9) {
-			criteria.setPerPageNum(9); //UI상 9개씩만 보이게 한다
+		if(criteria.getPerPageNum() <= 12) {
+			criteria.setPerPageNum(12); //UI상 9개씩만 보이게 한다
 		}
 		
 		HashMap<String, Object> ordering = new HashMap<String,Object>();

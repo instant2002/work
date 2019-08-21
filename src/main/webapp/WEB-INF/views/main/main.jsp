@@ -10,7 +10,7 @@
 			<div class="row relative">
 				<div class="news-container clearfix">
 					<c:forEach var="book_new" items="${book_new}">
-					<div class="col-md-4 col-sm-6 pl-item news-item">
+					<div class="col-md-3 col-sm-6 pl-item news-item">
 						<figure>
 							<a href="/book/detailView.do?product_no=${book_new.product_no }"> <img
 								src="${pageContext.request.contextPath}${book_new.book_img_storedName }"
@@ -55,7 +55,7 @@
 			<div class="row">
 				<div class="news-container clearfix">
 				<c:forEach var="book_commend" items="${book_commend}">
-					<div class="col-md-4 col-sm-6 pl-item news-item">
+					<div class="col-md-3 col-sm-6 pl-item news-item">
 						<figure>
 							<a href="/book/detailView.do?product_no=${book_commend.product_no }"> <img
 								src="${pageContext.request.contextPath}${book_commend.book_img_storedName }"

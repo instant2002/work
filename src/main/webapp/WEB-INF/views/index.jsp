@@ -45,10 +45,10 @@
 </head>
 
 <tiles:insertAttribute name="header"/>
-<div class="col-md-3 cat-sidebar" style="right: 0%;">
+<div class="col-md-2 cat-sidebar" style="right: 0%;">
 <tiles:insertAttribute name="left"/>
 </div>
-<div class="col-md-9 cat-content">
+<div class="col-md-10 cat-content">
 <tiles:insertAttribute name="body"/>
 </div>
 <tiles:insertAttribute name="footer"/>

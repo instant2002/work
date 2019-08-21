@@ -54,7 +54,7 @@
 			<tr>
 				<td class="delivery-head" style="vertical-align: middle;"><c:choose>
 						<c:when test="${cancel_view[0].refund_status == 'F' }">
-							<font style="color: #08a61c99;">주문이 성공적으로 취소되었습니다. <br>감사합니다.</font>
+							<font style="color: #08a61c99;">주문이 취소되었습니다. <br>감사합니다.</font>
 						</c:when>
 						<c:otherwise>
 							<font style="color: #a608a0c2;">주문을 취소 처리중입니다. <br>신속히 해결해 드리겠습니다.</font>

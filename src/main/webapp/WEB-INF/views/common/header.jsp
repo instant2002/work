@@ -69,7 +69,7 @@
 							<li class="btn-group hidden-xs "><a href="/service/noticeList.do" class="pm_item" title="adminPage"> <i class="fas fa-user"></i> <span class="hidden-sm hidden-xs">고객센터</span>
 							</a></li>
 							<c:if test="${sessionScope.user_id == 'admin'}">
-								<li class="btn-group hidden-xs "><a href="/admin/postingBookForm.do" class="pm_item" title="adminPage"> <i class="fas fa-user-cog"></i> <span class="hidden-sm hidden-xs">관리자</span>
+								<li class="btn-group hidden-xs "><a href="/admin/postingBookList.do" class="pm_item" title="adminPage"> <i class="fas fa-user-cog"></i> <span class="hidden-sm hidden-xs">관리자</span>
 								</a></li>
 							</c:if>
 						</ul>
@@ -82,11 +82,11 @@
 		<div id="header-bar">
 			<div class="container">
 				<div class="row">
-					<div id="header-logo" class="col-md-4 col-sm-12 header-logo">
-						<a href="/main.do"> <img src="${pageContext.request.contextPath}/images/unionbooks/unionbooks_logo2.jpg" class="logo hidden-xs" alt="Shop+ - Responsive HTML5 Multipurpose Ecommerce Template"> <img src="${pageContext.request.contextPath}/images/unionbooks_logo.png" class="logo visible-xs-inline" alt="Shop+ - Responsive HTML5 Multipurpose Ecommerce Template">
+					<div id="header-logo" class="col-md-3 col-sm-12 header-logo text-center">
+						<a href="/main.do"> <img src="${pageContext.request.contextPath}/images/unionbooks/unionbooks_logo3.jpg" class="logo hidden-xs" alt="Shop+ - Responsive HTML5 Multipurpose Ecommerce Template"> <img src="${pageContext.request.contextPath}/images/unionbooks_logo.png" class="logo visible-xs-inline" alt="Shop+ - Responsive HTML5 Multipurpose Ecommerce Template">
 						</a>
 					</div>
-					<div class="col-md-4 top-search-box" style="margin-top: 30px;">
+					<div class="col-md-5 top-search-box" style="margin-top: 30px;">
 						<form action="/book/bookList.do" method="get">
 							<div class="required">
 								<input type="text" name=keyword placeholder="도서 검색" class="placeholder-fix top-search" autocomplete="off" value="${keyword}" style="border: 4px solid #1a208d; font-style: unset; height: 50px;">
@@ -114,7 +114,7 @@
 			</div>
 		</div>
 		<!-- header bar end -->
-		<hr style="co">
+		<hr style="margin-top: 0;">
 		<!-- mobile menu begin -->
 		<div class="mobile-menu">
 			<nav>

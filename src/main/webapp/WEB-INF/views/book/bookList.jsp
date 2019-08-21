@@ -34,10 +34,10 @@
 				<div class="row no-gutter form-group">
 					<div class="col-md-12">
 						<select class="form-control cvo-control s-styled hasCustomSelect" name="perPageNum" style="cursor: pointer;">
-							<option value="9">9개씩보기</option>
-							<option value="18">18개씩보기</option>
-							<option value="27">27개씩보기</option>
+							<option value="12">12개씩보기</option>
+							<option value="20">20개씩보기</option>
 							<option value="36">36개씩보기</option>
+							<option value="60">60개씩보기</option>
 						</select>
 					</div>
 				</div>
@@ -94,7 +94,7 @@
 				</c:when>
 				<c:otherwise>
 				<c:forEach var="book_list" items="${book_list}">
-					<div class="col-md-4 col-sm-6 pl-item" style="margin-bottom: 50px;">
+					<div class="col-md-3 col-sm-6 pl-item" style="margin-bottom: 50px;">
 						<figure>
 							<a href="/book/detailView.do?product_no=${book_list.product_no }"> <img src="${pageContext.request.contextPath}${book_list.book_img_storedName }" width="200px">
 							</a>
