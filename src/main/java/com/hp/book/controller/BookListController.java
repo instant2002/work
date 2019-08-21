@@ -44,7 +44,7 @@ public class BookListController {
 		ordering.put("book_group", criteria.getBook_group());
 		
 	    pageMaker.setCri(criteria);
-	    pageMaker.setTotalCount(bookService.getBookListCount()); //전체 페이지 수
+	    pageMaker.setTotalCount(bookService.getBookListCount(criteria)); //전체 페이지 수
 	    
 		List<PostCommand> book_list = bookService.getBookList(criteria);
 		List<ServiceNoticeCommand> notice = servicesService.getNoticeSomeList();

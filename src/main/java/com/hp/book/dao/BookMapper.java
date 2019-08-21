@@ -17,6 +17,6 @@ public interface BookMapper {
 
 	public List<PostCommand> getBookList(Criteria criteria);
 
-	public int getBookListCount();
+	public int getBookListCount(Criteria criteria);
 
 }

@@ -28,7 +28,7 @@ public class BookServiceImpl implements BookService{
 	}
 
 	@Override
-	public int getBookListCount() {
-		return bookMapper.getBookListCount();
+	public int getBookListCount(Criteria criteria) {
+		return bookMapper.getBookListCount(criteria);
 	}
 }
