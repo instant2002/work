@@ -32,7 +32,7 @@
 								</c:otherwise>
 							</c:choose>
 							</p>
-							<a href="/book/detailView.do?product_no=${book_new.product_no }"><p class="pl-name">${book_new.book_name }</p></a>
+							<a href="/book/detailView.do?product_no=${book_new.product_no }"><p class="pl-name ellipsis_8">${book_new.book_name }</p></a>
 						</div>
 					</div>
 					</c:forEach>
@@ -77,7 +77,7 @@
 								</c:otherwise>
 							</c:choose>
 							</p>
-							<p class="pl-name">${book_commend.book_name }</p>
+							<a href="/book/detailView.do?product_no=${book_commend.product_no }"><p class="pl-name ellipsis_8">${book_commend.book_name }</p></a>
 						</div>
 					</div>
 					</c:forEach>

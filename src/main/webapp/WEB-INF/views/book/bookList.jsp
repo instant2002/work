@@ -124,7 +124,7 @@
 									</c:otherwise>
 								</c:choose>
 							</p>
-							<p class="pl-name">${book_list.book_name }</p>
+							<a href="/book/detailView.do?product_no=${book_list.product_no }"><p class="pl-name ellipsis_8">${book_list.book_name }</p></a>
 						</div>
 					</div>
 				</c:forEach>
