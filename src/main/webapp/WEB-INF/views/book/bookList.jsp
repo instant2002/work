@@ -1,372 +1,368 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<form action="/book/bookList.do" id="searchForm">
-	<input type="hidden" name="sortby" value="${ordering.sortby}"> <input type="hidden" name="perPageNum" value="${ordering.perPageNum}"> <input type="hidden" name="book_group" value="${ordering.book_group}">
-	<div class="input-group" style="margin-top: 20px;">
-		<input type="text" class="form-control" name="keyword" id="keyword" placeholder="도서명을 입력하세요!" style="box-shadow: 0 0 0 2px #a8a8a8 inset;"> <span class="input-group-btn">
-			<button class="btn btn-secondary" type="button" onclick="document.getElementById('searchForm').submit();">
-				<i class="fas fa-search"></i>
-			</button>
-		</span>
-	</div>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<div class="col-xs-12">
+<form action="/customer/basketDelete.do" method="POST" id="basketDelete">
 </form>
-
-<form action="/book/bookList.do" id="orderingForm">
-	<input type="hidden" name="keyword" value="${keyword}">
-	<div class="cat-view-options">
-		<div class="row">
-			<div class="col-md-4">
-				<div class="row no-gutter form-group">
-					<div class="col-md-12">
-						<select class="form-control cvo-control s-styled hasCustomSelect" name="sortby" style="cursor: pointer;">
-							<option value="">정렬 없음</option>
-							<option value="price">낮은 가격순</option>
-							<option value="release_date">최신 출판순</option>
-							<option value="name_asc">ㄱ-ㅎ순</option>
-							<option value="name_desc">ㅎ-ㄱ순</option>
-						</select>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-3 col-lg-2">
-				<div class="row no-gutter form-group">
-					<div class="col-md-12">
-						<select class="form-control cvo-control s-styled hasCustomSelect" name="perPageNum" style="cursor: pointer;">
-							<option value="9">9개씩보기</option>
-							<option value="18">18개씩보기</option>
-							<option value="27">27개씩보기</option>
-							<option value="36">36개씩보기</option>
-						</select>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-2 col-lg-2 cvo-availability-col">
-				<div class="form-group">
-					<select class="form-control cvo-control s-styled hasCustomSelect" name="book_group" style="cursor: pointer;">
-						<option value="">선택 없음</option>
-						<option value="1">인기 상품</option>
-						<option value="2">신간 상품</option>
-					</select>
-				</div>
-			</div>
-			<div class="col-md-2 text-left">
-				<button class="btn btn-yet-col" type="button" onclick="document.getElementById('orderingForm').submit();" style="font-size: 12px; padding: 2px 10px; font-family: -webkit-body;">적용</button>
-				<button class="btn btn-yet-col" type="button" onclick="location.href='/book/bookList.do?page=${pageMaker.page}&keyword=${keyword}'" style="font-size: 12px; padding: 2px 10px; font-family: -webkit-body;">초기화</button>
-			</div>
-			<div class="col-md-1 col-lg-2 text-right">
-				<div class="cvo-view-type" role="tablist">
-					<ul class="list-inline">
-						<li class="active"><a href="#pl-grid" role="tab" data-toggle="tab" class="cvo-grid"> <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="14px" height="14px" viewBox="0 0 50 50" xml:space="preserve">
-                                       <rect x="0" y="0" width="20" height="20" />
-                                       <rect x="30" y="0" width="20" height="20" />
-                                       <rect x="0" y="30" width="20" height="20" />
-                                       <rect x="30" y="30" width="20" height="20" />
-                                    </svg>
-						</a></li>
-						<li><a href="#pl-list" role="tab" data-toggle="tab" class="cvo-list"> <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="14px" height="14px" viewBox="0 0 30.263 25.6" xml:space="preserve">
-                                       <rect width="7.732" height="6.398" />
-                                       <rect y="9.6" width="7.732" height="6.4" />
-                                       <rect y="19.199" width="7.732" height="6.398" />
-                                       <rect x="10.933" y="9.602" width="19.33" height="6.4" />
-                                       <rect x="10.933" y="19.199" width="19.33" height="6.4" />
-                                       <rect x="10.933" width="19.33" height="6.4" />
-                                    </svg>
-						</a></li>
-					</ul>
-				</div>
-			</div>
-		</div>
+<form action="/order/orderingInfo.do" method="POST" id="orderInfoSubForm"/>
+	<div class="col-xs-12 text-center">
+		<h2><strong>장바구니</strong></h2>
 	</div>
-</form>
-<!-- cat-view-options -->
-
-<div class="tab-content tab-no-style">
-	<div class="tab-pane fade in active" id="pl-grid">
-		<div class="products-list">
-			<div class="row">
-			<c:choose>
-				<c:when test="${empty book_list}">
-					<div class="col-md-12 text-center" style="margin-bottom: 50px;">
-						등록되어 있는 상품이 없습니다!
-					</div>
-				</c:when>
-				<c:otherwise>
-				<c:forEach var="book_list" items="${book_list}">
-					<div class="col-md-4 col-sm-6 pl-item" style="margin-bottom: 50px;">
-						<figure>
-							<a href="/book/detailView.do?product_no=${book_list.product_no }"> <img src="${pageContext.request.contextPath}${book_list.book_img_storedName }" width="200px">
-							</a>
-							<c:choose>
-								<c:when test="${fn:contains (book_list.book_group, '2') && book_list.discounted == 'Y'}">
-									<label class="pl-badge">NEW | - <fmt:formatNumber value="${(book_list.dc_price / book_list.origin_price * 100)}" pattern="#" />%
-									</label>
-								</c:when>
-								<c:when test="${fn:contains (book_list.book_group, '2')}">
-									<label class="pl-badge">NEW</label>
-								</c:when>
-								<c:when test="${book_list.discounted == 'Y'}">
-									<label class="pl-badge">- <fmt:formatNumber value="${(book_list.dc_price / book_list.origin_price * 100)}" pattern="#" />%
-									</label>
-								</c:when>
-							</c:choose>
-						</figure>
-						<div class="pl-caption">
-							<p class="pl-price-block">
-								<c:choose>
-									<c:when test="${book_list.discounted == 'Y'}">
-										<span class="pl-price-old">&#8361; <fmt:formatNumber value="${book_list.origin_price}" groupingUsed="true" /></span>
-										<span class="pl-price"> &#8361; <fmt:formatNumber value="${book_list.origin_price-book_list.dc_price}" groupingUsed="true" /></span>
-									</c:when>
-									<c:otherwise>
-										<span class="pl-price">&#8361; <fmt:formatNumber value="${book_list.origin_price}" groupingUsed="true" /></span>
-									</c:otherwise>
-								</c:choose>
-							</p>
-							<p class="pl-name">${book_list.book_name }</p>
-						</div>
-					</div>
-				</c:forEach>
-				</c:otherwise>
-			</c:choose>
-			</div>
-		</div>
-	</div>
-	<!-- grid list -->
-	<div class="modal fade" id="basketModal">
-					<div class="modal-dialog">
-						<div class="modal-content">
-							<div class="modal-header">
-								<button type="button" class="close" data-dismiss="modal">×</button>
-								<h4 class="modal-title text-center">알림</h4>
-							</div>
-							<div class="modal-body text-center" style="margin-top: 20px;">
-							상품이 장바구니에 담겼습니다.<br>
-							<b>지금 확인하시겠습니까?</b>
-							<div class="col-md-12" style="margin-top: 10px;">
-								<button type="button" class="btn btn-secondary" onclick="location.href='/customer/basketList.do'">예</button>
-								<button type="button" class="btn btn-secondary" onclick="$('#basketModal').modal('hide');">아니오</button>
-							</div>
-							</div>
-							<div class="modal-footer">
-								<button type="button" class="btn btn-default"
-									data-dismiss="modal">닫기</button>
-							</div>
-						</div>
-					</div>
-				</div>
-				
-				<div class="modal fade" id="wishModal">
-					<div class="modal-dialog">
-						<div class="modal-content">
-							<div class="modal-header">
-								<button type="button" class="close" data-dismiss="modal">×</button>
-								<h4 class="modal-title text-center">알림</h4>
-							</div>
-							<div class="modal-body text-center" style="margin-top: 20px;">
-							상품이 위시리스트에 담겼습니다.<br>
-							<b>지금 확인하시겠습니까?</b>
-							<div class="col-md-12" style="margin-top: 10px;">
-								<button type="button" class="btn btn-secondary" onclick="location.href='/customer/wishList.do'">예</button>
-								<button type="button" class="btn btn-secondary" onclick="$('#wishModal').modal('hide');">아니오</button>
-							</div>
-							</div>
-							<div class="modal-footer">
-								<button type="button" class="btn btn-default"
-									data-dismiss="modal">닫기</button>
-							</div>
-						</div>
-					</div>
-				</div>
-	<div class="tab-pane fade" id="pl-list">
-		<div class="products-listview">
-
-
-<!-- 윤식아 여기 구매하기 form 만들다 말았다 파라미터를 스크립트로 던져야할 듯 -->
-	<form action="/order/orderCheckForm.do" method="POST" id="orderSubForm">
-	
-	</form>
-
-			<c:forEach var="book_list" items="${book_list}">
-				<div class="plv-item">
-					<div class="row no-gutter">
-						<div class="col-sm-4">
-							<figure>
-								<a href="/book/detailView.do?product_no=${book_list.product_no }" class="plv-w-backside"> <img src="${pageContext.request.contextPath}${book_list.book_img_storedName }"></a>
-							</figure>
-						</div>
-						<div class="col-sm-8">
-							<div class="plv-body">
-								<div class="plv-header">
-									<div class="row">
-										<div class="col-xs-6 plv-title">
-											<a href="#">${book_list.book_name }</a>
-										</div>
-										<div class="col-xs-6 plv-availability">
-											<span class="plva-label">재고:</span>
-											<c:if test="${book_list.stock == 'Y' }"> 
-												<i class="dot-green"></i> <span>있음</span>
-											</c:if>
-											<c:if test="${book_list.stock == 'N' }"> 
-												<i class="dot-red"></i> <span>없음</span>
-											</c:if>
-										</div>
-									</div>
-								</div>
-								<div class="pl-price-block">
-								<c:choose>
-									<c:when test="${book_list.discounted == 'Y'}">
-										<span class="pl-price-old">&#8361; <fmt:formatNumber value="${book_list.origin_price}" groupingUsed="true" /></span>
-										<span class="pl-price"> &#8361; <fmt:formatNumber value="${book_list.origin_price-book_list.dc_price}" groupingUsed="true" /></span>
-									</c:when>
-									<c:otherwise>
-										<span class="pl-price">&#8361; <fmt:formatNumber value="${book_list.origin_price}" groupingUsed="true" /></span>
-									</c:otherwise>
-								</c:choose>
-								</div>
-								<div class="plv-exerpt">
-									<table class="table table-borderless">
-										<tbody>
-										<colgroup>
-											<col style="width: 25%">
-											<col style="width: 75%">
-										</colgroup>
-										<tr>
-												<th>상품 번호</th>
-												<td>
-													<span>${book_list.product_no}</span>
-												</td>
-											</tr>
-											<tr>
-												<th>저자</th>
-												<td>
-													<span>${book_list.writer}</span>
-												</td>
-											</tr>
-											<tr>
-												<th>출판일</th>
-												<td>
-													<span>${book_list.release_date}</span>
-												</td>
-											</tr>
-										</tbody>
-									</table>
-								</div>
-								<div class="plv-buttons">
-									<c:if test="${book_list.stock == 'Y' }"> 
-										<a class="btn btn-sec-col" onclick="orderSubFunc(${book_list.product_no})"><i class="fas fa-book-open"></i>&nbsp;&nbsp;구매하기</a> 
-										<a class="btn btn-prim-col" onclick="insertBasket(${book_list.product_no});"><i class="icon-basket"></i>&nbsp;&nbsp;장바구니</a> 
-										<a class="btn btn-prim-col" onclick="insertWishList(${book_list.product_no});"><i class="icon-heart"></i>&nbsp;&nbsp;위시리스트</a>
-									</c:if>
-								</div>
-
-							</div>
-						</div>
-					</div>
-				</div>
-				<!-- plv-item -->
-			</c:forEach>
+	<table class="table">
+		<thead style="font-weight: bold; border: solid #ddd; border-width: 2px 0px; background: #f9f9f9;">
+			<tr>
+				<td style="width: 16px;"><input type="checkbox" id="basket_checkbox_all" checked="checked"></td>
+				<td style="width: 80px;"></td>
+				<td>상품 정보</td>
+				<td>수량</td>
+				<td>상품 금액</td>
+				<td>할인 금액</td>
+				<td>배송비</td>
+			</tr>
+		</thead>
+	<c:choose>
+		<c:when test="${empty basket}">
+			<td colspan="7" class="text-center">장바구니가 비어있습니다.</td>
+			</table>
+		</c:when>
+		<c:otherwise>
+		<tbody>
+		<c:forEach var="basket" items="${basket}" varStatus="status">
+		<input type="hidden" value="${basket.product_no }" id="product_no_${status.index}">
+			<tr>
+				<td style="vertical-align: middle;"><input type="checkbox" class="basket_checkbox" id="basket_checkbox_${status.index}" checked="checked" value="${status.index}"></td>
+				<td><img src="${pageContext.request.contextPath}${basket.book_img_storedName}" style="width: 80px;"></td>
+				<td style="vertical-align: middle;">
+					<a href="/book/detailView.do?product_no=${basket.product_no }">${basket.book_name}</a>
+				</td>
+				<td style="vertical-align: middle;"><input type="number" value="1" id="quantity_${status.index }" min="1" style="width: 50px;" onkeyup="this.value=this.value.replace(/[^0-9]/g,'');"></td>
+				<td id="origin_price_${status.index }" style="vertical-align: middle;"><fmt:formatNumber value="${basket.origin_price*basket.quantity}" groupingUsed="true"/>원</td>
+				<td id="dc_price_${status.index }" style="vertical-align: middle;"><fmt:formatNumber value="${basket.dc_price*basket.quantity}" groupingUsed="true"/>원</td>
+				<td style="vertical-align: middle;">기본 배송비</td>
+			</tr>
+			<c:set var="price_sum" value="${price_sum+(basket.origin_price*basket.quantity) }"/>
+			<c:set var="dc_price_sum" value="${dc_price_sum+(basket.dc_price*basket.quantity) }"/>
+			<c:set var="quantity_sum" value="${quantity_sum+basket.quantity }"/>
+			<c:set var="total_price" value="${total_price+((basket.origin_price-basket.dc_price)*basket.quantity) }"/>
 			
-		</div>
-		<!-- tab pl-list -->
-	</div>
-
-	<c:if test="${pageMaker.endPage > 0 }">
-		<div class="cat-pagination">
-			<div class="row">
-				<div class="col-sm-3"></div>
-				<div class="col-sm-6 text-center">
-					<ul class="pagination">
-						<c:if test="${pageMaker.prev }">
-							<li><a href='<c:url value="/book/bookList.do?page=${pageMaker.startPage-1}&keyword=${keyword}&sortby=${ordering.sortby}&perPageNum=${ordering.perPageNum}&book_group=${ordering.book_group}"/>'><i class="fa fa-chevron-left"></i></a></li>
-						</c:if>
-						<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="idx" varStatus="status">
-							<c:choose>
-								<c:when test="${pageMaker.page == status.index }">
-									<li class="active">
-								</c:when>
-								<c:otherwise>
-									<li>
-								</c:otherwise>
-							</c:choose>
-							<a href='<c:url value="/book/bookList.do?page=${idx}&keyword=${keyword}&sortby=${ordering.sortby}&perPageNum=${ordering.perPageNum}&book_group=${ordering.book_group}"/>'>${idx}</a>
-							</li>
-						</c:forEach>
-						<c:if test="${pageMaker.next && pageMaker.endPage >0 }">
-							<li><a href='<c:url value="/book/bookList.do?page=${pageMaker.endPage+1}&keyword=${keyword}&sortby=${ordering.sortby}&perPageNum=${ordering.perPageNum}&book_group=${ordering.book_group}"/>'><i class="fa fa-chevron-right"></i></a></li>
-						</c:if>
-					</ul>
-				</div>
-				<div class="col-sm-3"></div>
-			</div>
-		</div>
+		</c:forEach>
+			<tr style="background: #d7d9db;">
+			<td colspan="7" style="text-align: right;">(30,000원 이상 결제시 배송비 무료) 기본 배송비 : 3,000원</td>
+			</tr>
+		</tbody>
+	</table>
+	
+	<c:if test="${total_price < 30000 }">
+		<c:set var="shipping_fee" value="3000"/>
 	</c:if>
+	<c:if test="${total_price >= 30000 }">
+		<c:set var="shipping_fee" value="0"/>
+	</c:if>
+	
+	<div class="col-xs-12" style="margin-bottom: 20px; padding-right: 0;">
+	<div class="col-md-8"></div>
+		<div class="col-md-4" style="padding-right: 0;">
+			<button type="button" class="btn btn-yet-col btn-sm" onclick="deleteBasket('select')" style="float: right; margin-left: 10px;">
+				선택 삭제
+			</button>
+			<button type="button" class="btn btn-yet-col btn-sm" onclick="deleteBasket('all')" style="float: right;">
+				전체 삭제
+			</button>
+		</div>
+	</div>
+	
+	<table class="table total-table" style="margin-top: 50px;">
+	<tr>
+		<td colspan="4" class="total-head">Total</td>
+	</tr>
+	<tr>
+		<td>상품 금액 / <font id="total_num">${fn:length(basket)}종</font> <font id="total_quantity">(${quantity_sum }개)</font> </td>
+		<td>할인 금액</td>
+		<td>배송비</td>
+		<td>최종 금액</td>
+	</tr>
+	<tr>
+		<td id="price_sum"><fmt:formatNumber value="${price_sum}" groupingUsed="true"/>원</td>
+		<td id="dc_price_sum"><fmt:formatNumber value="${dc_price_sum}" groupingUsed="true"/>원</td>
+		<td id="shipping_fee"><fmt:formatNumber value="${shipping_fee}" groupingUsed="true"/>원</td>
+		<td id="total_price"><fmt:formatNumber value="${total_price+shipping_fee }" groupingUsed="true"/>원</td>
+	</tr>
+	</table>
+</form>
+</div>
+<div class="col-xs-12">
+<div class="col-md-5"></div>
+	<div class="col-md-2">
+		<button type="button" class="btn btn-buy-col pull-left add-cart" onclick="orderSubFunc();" style="width: 100%; margin-bottom: 100px;">
+			<i class="icon-bag"></i>&nbsp;&nbsp;주문하기
+		</button>
+	</div>
+	<div class="col-md-5"></div>
+</div>
+</c:otherwise>
+</c:choose>
+<script type="text/javascript">
+<c:forEach var="basket" items="${basket}" varStatus="status">
+var price_${status.index} = ${basket.origin_price};
+var dc_price_${status.index} = ${basket.dc_price};
+var quantity_${status.index} = ${basket.quantity};
 
-	<script type="text/javascript">
-		// 적용된 정렬값 select box에 적용
-		$("select[name=sortby]  option[value=${ ordering.sortby }]").attr("selected", "selected");
-		$("select[name=perPageNum]  option[value=${ ordering.perPageNum }]").attr("selected", "selected");
-		$("select[name=book_group]  option[value=${ ordering.book_group }]").attr("selected", "selected");
-		$("#keyword").val("${keyword}");
+var price_calc_${status.index} = ${basket.origin_price};
+var dc_price_calc_${status.index} = ${basket.dc_price};
+var quantity_calc_${status.index} = ${basket.quantity};
+</c:forEach>
+
+var total_price = 0;
+var total_quantity = 0;
+var total_dc_price = 0
+var total_quantity = 0;
+var shipping_fee = 0;
+var oldVal = ""
+
+function comma(str) {
+    str = String(str);
+    return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
+}
+
+function orderSubFunc(){
+	var checkedVal = new Array();
+	<c:forEach var="basket" items="${basket}" varStatus="status">
+		checkedVal[${status.index}] = $("#basket_checkbox_${status.index}:checked").val();
+	</c:forEach>
+	
+	if($(".basket_checkbox:checked").length == 0){
+		alert("선택된 제품이 없습니다.");
+		return false;
+	}
+	
+	if($("#total_price").html() == "3,000원"){
+		alert("주문하실 수량이 없습니다.");
+		return false;
+	}
+	
+	var price = $("#total_price").html().replace(/,/,"");
+	price = price.replace("원","");
+	var a = 0;
+	
+	for(var i=0;i<checkedVal.length;i++){
+		if(checkedVal[i] != undefined){
+			product_no_input = '<input type="hidden" name="order_list['+checkedVal[i]+'].product_no" value="'+$("#product_no_"+checkedVal[i]).val()+'"/>';
+			quantity_input = '<input type="hidden" name="order_list['+checkedVal[i]+'].quantity" value="'+$("#quantity_"+checkedVal[i]).val()+'"/>';
+			total_price = '<input type="hidden" name="total_price" value="'+(parseInt(price))+'"/>';
+			$("#orderInfoSubForm").append(product_no_input);
+			$("#orderInfoSubForm").append(quantity_input);
+			if(a==0)$("#orderInfoSubForm").append(total_price);
+			a++;
+		}
+	}
+	$("#orderInfoSubForm").submit();
+}
+
+//장바구니 제거
+function deleteBasket(action){
+	var checkedVal = new Array();
+	var allCheckBoxVal = new Array();
+	var product_arr = new Array();
+	
+	<c:forEach var="basket" items="${basket}" varStatus="status">
+	checkedVal[${status.index}] = $("#basket_checkbox_${status.index}:checked").val();
+	allCheckBoxVal[${status.index}] = $("#basket_checkbox_${status.index}").val();
+	</c:forEach>
+	
+	if(action == "all"){
+		for(var i=0;i<allCheckBoxVal.length;i++){
+			if(allCheckBoxVal[i] != undefined){
+				product_arr[i] = $("#product_no_"+allCheckBoxVal[i]).val();
+			}
+		}
+	}else{
+		if($(".basket_checkbox:checked").length == 0){
+			alert("선택된 제품이 없습니다.");
+			return false;
+		}
 		
-		function orderSubFunc(product_no){
-			$("#orderSubForm").append("<input type='hidden' name='order_list[0].product_no' value='"+product_no+"'>");
-			$("#orderSubForm").append("<input type='hidden' name='order_list[0].quantity' value='1'>");
-			$("#orderSubForm").submit();
+		for(var i=0;i<checkedVal.length;i++){
+			if(checkedVal[i] != undefined){
+				product_arr[i] = $("#product_no_"+checkedVal[i]).val();
+			}
 		}
+	}
+	
+	//배열 빈 요소 제거
+	product_arr = $.grep(product_arr,function(n){ return n == " " || n; });
+	
+	if(!confirm(product_arr.length+"개의 상품을 삭제하시겠습니까?")){
+		return false;
+	};
+	
+	$.ajax({
+		url:'/customer/basketDelete.do',
+		type:'post',
+		data:{
+			'product_arr':product_arr
+		},
+		dataType:'json',
+		async:true,
+		traditional:true,
+		cache:false,
+		timeout:30000,
+		success:function(data){
+			if(data){
+				window.location.reload();
+			}else{
+				alert("처리 중 오류가 발생하였습니다.\n지속적인 오류가 발생될 시 고객센터에 문의해 주시기 바랍니다.");
+			}
+		},
+		error:function(){
+			alert("처리 중 오류가 발생하였습니다.\n지속적인 오류가 발생될 시 고객센터에 문의해 주시기 바랍니다.");
+		}
+	});
+}
 
-		function insertBasket (product_no){
-	    	var isLogin = "${isLogin}";
-	    	if(isLogin != 'no'){
-			$.ajax({
-				url:'/customer/basketSub.do',
-				type:'get',
-				data:{product_no:product_no},
-				dataType:'json',
-				async: true,
-				cache:false,
-				timeout:30000,
-				success:function(data){
-					if(data){
-						$('#basketModal').modal();
-					}else{
-						alert("처리 중 오류가 발생하였습니다.\n지속적인 오류가 발생될 시 고객센터에 문의해 주시기 바랍니다.");
-					}
-				},
-				error:function(){
-					alert("처리 중 오류가 발생하였습니다.\n지속적인 오류가 발생될 시 고객센터에 문의해 주시기 바랍니다.");
-				}
-			});
-	    	}else{
-	    		alert("로그인이 필요한 서비스입니다.");
-	    	}
+$(document).ready(function(){
+	$("#basket_checkbox_all").click(function(){
+		var isChecked = $(this).is(":checked");
+		$(".basket_checkbox").prop("checked", isChecked);
+		
+		if(isChecked == false){
+			total_price = 0;
+			total_dc_price = 0;
+			total_quantity = 0;
+			shipping_fee = 0;
+			<c:forEach var="basket" items="${basket}" varStatus="status">
+			quantity_calc_${status.index} = 0;
+			</c:forEach>
+		}else{
+			<c:forEach var="basket" items="${basket}" varStatus="status">
+			total_price += price_${status.index}*Number($("#quantity_"+${status.index}).val());
+			total_dc_price += dc_price_${status.index}*Number($("#quantity_"+${status.index}).val());
+			total_quantity += Number($("#quantity_"+${status.index}).val());
+			quantity_calc_${status.index} = Number($("#quantity_"+${status.index}).val());
+			if(total_price-total_dc_price < 30000){
+				shipping_fee = 3000;
+			}else{
+				shipping_fee = 0;
+			}
+			</c:forEach>
 		}
-	    
-	    function insertWishList (product_no){
-	    	var isLogin = "${isLogin}";
-	    	if(isLogin != 'no'){
-			$.ajax({
-				url:'/customer/wishSub.do',
-				type:'get',
-				data:{product_no:product_no},
-				dataType:'json',
-				async: true,
-				cache:false,
-				timeout:30000,
-				success:function(data){
-					if(data){
-						$('#wishModal').modal();
-					}else{
-						alert("처리 중 오류가 발생하였습니다.\n지속적인 오류가 발생될 시 고객센터에 문의해 주시기 바랍니다.");
-					}
-				},
-				error:function(){
-					alert("처리 중 오류가 발생하였습니다.\n지속적인 오류가 발생될 시 고객센터에 문의해 주시기 바랍니다.");
-				}
-			});
-	    	}else{
-	    		alert("로그인이 필요한 서비스입니다.");
-	    	}
+		
+		$("#total_quantity").html("("+total_quantity+")개");
+		$("#total_num").html($(".basket_checkbox:checked").length +"종");
+		$("#price_sum").html(comma(total_price)+"원");
+		$("#dc_price_sum").html(comma(total_dc_price)+"원");
+		$("#total_price").html(comma(total_price-total_dc_price+shipping_fee)+"원");
+		$("#shipping_fee").html(comma(shipping_fee)+"원");
+		
+		total_price = 0;
+		total_dc_price = 0;
+		shipping_fee = 0;
+		total_quantity = 0;
+	});
+	
+	$(".basket_checkbox").click(function(){
+		var isChecked = $(this).is(":checked");
+		var cb_count = $(".basket_checkbox").length;
+		var cb_count_chk = $(".basket_checkbox:checked").length;
+		if(cb_count == cb_count_chk){
+			active = true;
+			isChecked = true;
+		}else{
+			active = false;
 		}
-	</script>
+		if($("#basket_checkbox_all").is(":checked") || active){
+			$("#basket_checkbox_all").prop("checked", isChecked);
+			}
+		$("#total_num").html($(".basket_checkbox:checked").length+"종");
+	
+		var checkbox_num = $(this).val();
+		
+		if(isChecked == false){
+			window["price_calc_"+checkbox_num] = 0;
+			window["dc_price_calc_"+checkbox_num] = 0;
+			window["quantity_calc_"+checkbox_num] = 0;
+		}else{
+			window["price_calc_"+checkbox_num] = window["price_"+checkbox_num];
+			window["dc_price_calc_"+checkbox_num] = window["dc_price_"+checkbox_num];
+			window["quantity_calc_"+checkbox_num] = Number($("#quantity_"+checkbox_num).val());
+		}
+		
+		<c:forEach var="basket" items="${basket}" varStatus="status">
+		total_price += (price_${status.index}) * quantity_calc_${status.index};
+		total_dc_price += (dc_price_${status.index} * quantity_calc_${status.index});
+		total_quantity += quantity_calc_${status.index};
+		</c:forEach>
+		
+		if(total_price-total_dc_price < 30000){
+			shipping_fee = 3000;
+		}else{
+			shipping_fee = 0;
+		}
+		if(total_price == 0) shipping_fee = 0;
+		 
+		$("#price_sum").html(comma(total_price)+"원");
+		$("#dc_price_sum").html(comma(total_dc_price)+"원");
+		$("#total_price").html(comma((total_price-total_dc_price)+shipping_fee)+"원");
+		$("#total_quantity").html("("+total_quantity+"개)");
+		$("#shipping_fee").html(comma(shipping_fee)+"원");
+		
+		total_price = 0;
+		total_dc_price = 0;
+		shipping_fee = 0;
+		total_quantity = 0;
+		shipping_fee = 0;
+		});
+	 
+	$("input[id^='quantity_']").on("propertychange change keyup paste input", function() {
+		var quantity_val = $(this).val();
+		var select_val = $(this).attr('id').substr($(this).attr('id').length-1);
+		var isChecked = $("#basket_checkbox_"+select_val).is(":checked");
+		
+		if(quantity_val == "") $('#quantity_'+select_val).val("1");
+	    if(quantity_val == oldVal) {
+	        return;
+	    }
+	    oldVal = quantity_val;
+		
+		window["price_calc_"+select_val] = window["price_"+select_val] * quantity_val;
+		window["dc_price_calc_"+select_val] = window["dc_price_"+select_val] * quantity_val;
+		window["quantity_calc_"+select_val] = Number(quantity_val);
+		
+		<c:forEach var="basket" items="${basket}" varStatus="status">
+		total_price += (price_${status.index}) * quantity_calc_${status.index};
+		total_dc_price += (dc_price_${status.index} * quantity_calc_${status.index});
+		total_quantity += quantity_calc_${status.index};
+		</c:forEach>
+		
+		if(total_price-total_dc_price < 30000){
+			shipping_fee = 3000;
+		}else{
+			shipping_fee = 0;
+		}
+		
+		if(isChecked){
+			$("#price_sum").html(comma(total_price)+"원");
+			$("#dc_price_sum").html(comma(total_dc_price)+"원");
+			$("#total_price").html(comma((total_price-total_dc_price)+shipping_fee)+"원");
+			$("#total_quantity").html("("+total_quantity+")개");
+			$("#shipping_fee").html(comma(shipping_fee)+"원");
+			
+			$("#origin_price_"+select_val).html(comma(window["price_calc_"+select_val])+"원");
+			$("#dc_price_"+select_val).html(comma(window["dc_price_calc_"+select_val])+"원");
+			
+		}else{
+			$("#origin_price_"+select_val).html(comma(window["price_calc_"+select_val])+"원");
+			$("#dc_price_"+select_val).html(comma(window["dc_price_calc_"+select_val])+"원");
+		}
+		
+		total_price = 0;
+		total_dc_price = 0;
+		shipping_fee = 0;
+		total_quantity = 0;
+		shipping_fee = 0;
+	});
+	});
+	
+
+</script>

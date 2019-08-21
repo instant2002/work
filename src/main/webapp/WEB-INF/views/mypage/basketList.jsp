@@ -37,7 +37,7 @@
 				<td style="vertical-align: middle;">
 					<a href="/book/detailView.do?product_no=${basket.product_no }">${basket.book_name}</a>
 				</td>
-				<td style="vertical-align: middle;"><input type="number" value="1" id="quantity_${status.index }" min="1" style="width: 50px;" onkeyup="this.value=this.value.replace(/[^0-9]/g,'');"></td>
+				<td style="vertical-align: middle;"><input type="number" value="${basket.quantity}" id="quantity_${status.index }" min="1" style="width: 50px;" onkeyup="this.value=this.value.replace(/[^0-9]/g,'');"></td>
 				<td id="origin_price_${status.index }" style="vertical-align: middle;"><fmt:formatNumber value="${basket.origin_price*basket.quantity}" groupingUsed="true"/>원</td>
 				<td id="dc_price_${status.index }" style="vertical-align: middle;"><fmt:formatNumber value="${basket.dc_price*basket.quantity}" groupingUsed="true"/>원</td>
 				<td style="vertical-align: middle;">기본 배송비</td>

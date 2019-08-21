@@ -240,7 +240,10 @@
 		$.ajax({
 			url:'/customer/basketSub.do',
 			type:'get',
-			data:{product_no:product_no},
+			data:{
+				product_no:product_no,
+				quantity:$("#book_quantity").val()
+				},
 			dataType:'json',
 			async: true,
 			cache:false,

@@ -85,15 +85,18 @@
 			INSERT INTO 
 			basket(
 				product_no,
+				quantity,
 				user_id
 				)
 			VALUES (
 				#{product_no},
+				#{quantity},
 				#{user_id}
 			)
 			ON DUPLICATE KEY
 			UPDATE
-			basket_date = CURRENT_TIMESTAMP
+			basket_date = CURRENT_TIMESTAMP,
+			quantity = #{quantity}
 			]]>
 	</insert>
 	
