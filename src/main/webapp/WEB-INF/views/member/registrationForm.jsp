@@ -11,7 +11,7 @@
 <div class="regist-form center-block" id="regist">
       <div class="required form-group">
          <p>회원 아이디</p>
-         <input type="text" name="user_id" id="userId" class="form-control validate[required]" placeholder="8~20자리 이상의 아이디를 입력해 주세요." data-prompt-position="topLeft" >
+         <input type="text" name="user_id" id="userId" class="form-control validate[required]" placeholder="8~20자리 이상의 아이디를 입력해 주세요." data-prompt-position="topLeft" maxlength="20">
       </div>
       <span id="message_id" class="help-block"></span>
       <img src="${pageContext.request.contextPath}/images/ajax-loader.gif" width="16" 
@@ -19,37 +19,37 @@
       
       <div class="required form-group">
          <p>비밀번호</p>
-         <input type="password" name="user_pwd" id="userPwd" class="form-control validate[required]" placeholder="비밀번호는 8~20자리까지 입력 가능합니다." data-prompt-position="topLeft">
+         <input type="password" name="user_pwd" id="userPwd" class="form-control validate[required]" placeholder="비밀번호는 8~20자리까지 입력 가능합니다." data-prompt-position="topLeft" maxlength="20">
       </div>
       
       <div class="required form-group">
          <p>비밀번호 확인</p>
-         <input type="password" id="userPwdConf" class="form-control validate[required]" placeholder="비밀번호를 다시 입력해 주세요." data-prompt-position="topLeft">
+         <input type="password" id="userPwdConf" class="form-control validate[required]" placeholder="비밀번호를 다시 입력해 주세요." data-prompt-position="topLeft" maxlength="20">
       </div>
       
       <div class="required form-group">
          <p>이름</p>
-         <input type="text" name="user_name" id="userName" class="form-control validate[required]" placeholder="" data-prompt-position="topLeft">
+         <input type="text" name="user_name" id="userName" class="form-control validate[required]" placeholder="" data-prompt-position="topLeft" maxlength="30">
       </div>
       
       <div class="required form-group">
  		  <p>생년월일</p>
-      	  <input type="text" id="birth" name="birth" class="input-small" readonly="readonly">
+      	  <input type="text" id="birth" name="birth" class="input-small" readonly="readonly" maxlength="20">
       </div>
       
       <div class="required form-group">
          <p>이메일</p>
-         <input type="text" name="email" id="email" class="form-control validate[required]" placeholder="" data-prompt-position="topLeft">
+         <input type="text" name="email" id="email" class="form-control validate[required]" placeholder="" data-prompt-position="topLeft" maxlength="60">
       </div>
       
       <div class="required form-group">
          <p>휴대폰 번호</p>
-         <input type="text" name="phonenum1" id="phoneNum1" class="form-control validate[required]" placeholder="" data-prompt-position="topLeft">
+         <input type="text" name="phonenum1" id="phoneNum1" class="form-control validate[required]" placeholder="" data-prompt-position="topLeft" maxlength="20">
       </div>
       
       <div class="required form-group">
          <p>전화번호</p>
-         <input type="text" name="phonenum2" id="phoneNum2" class="form-control validate[required]" placeholder="" data-prompt-position="topLeft">
+         <input type="text" name="phonenum2" id="phoneNum2" class="form-control validate[required]" placeholder="" data-prompt-position="topLeft" maxlength="20">
       </div>
       
       <div class="required form-group">
@@ -69,7 +69,7 @@
          <input type="text" name="postnum" id="postNum" class="form-control validate[required]" placeholder="우편 번호" readonly="readonly" data-prompt-position="topLeft" style="width: 120px; float: left;">
          <button type="button" class="btn btn-secondary" onclick="execPostCode();">검색</button>
          <input type="text" name="address1" id="address1" class="form-control validate[required]" placeholder="기본 주소" readonly="readonly" data-prompt-position="topLeft">
-         <input type="text" name="address2"id="address2" class="form-control validate[required]" placeholder="나머지 주소" data-prompt-position="topLeft">
+         <input type="text" name="address2"id="address2" class="form-control validate[required]" placeholder="나머지 주소" data-prompt-position="topLeft" maxlength="120">
       </div>
     
     <div class="control-group">

@@ -85,21 +85,20 @@ public class MemberLoginController {
 				check = true;
 			}
 			
+			Map<String, ?> flashMap = RequestContextUtils.getInputFlashMap(request);
+			FlashMap fm = new FlashMap();
+			
+			if(flashMap !=null) {
+				fm.put("product_no", flashMap.get("product_no"));
+				fm.put("quantity", flashMap.get("quantity"));
+				
+				if(log.isDebugEnabled()) log.debug("LoginSub flashMap : " + flashMap);
+				
+				FlashMapManager flashMapManager = RequestContextUtils.getFlashMapManager(request);
+				flashMapManager.saveOutputFlashMap(fm, request, response);
+			}
+			
 			if(check) {
-				Map<String, ?> flashMap = RequestContextUtils.getInputFlashMap(request);
-				FlashMap fm = new FlashMap();
-				
-				if(flashMap !=null) {
-					fm.put("product_no", flashMap.get("product_no"));
-					fm.put("quantity", flashMap.get("quantity"));
-					
-					if(log.isDebugEnabled()) log.debug("LoginSub flashMap : " + flashMap);
-					
-					FlashMapManager flashMapManager = RequestContextUtils.getFlashMapManager(request);
-				    flashMapManager.saveOutputFlashMap(fm, request, response);
-				}
-				
-				
 				if(log.isDebugEnabled()) log.debug("Login True memberCommand : " + memberCommand);
 				session.setAttribute("user_id", member.getUser_id());
 				model.addAttribute("user_id", member.getUser_id());

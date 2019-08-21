@@ -1,0 +1,399 @@
+[14:03:25] INFO <00001> START cancel (NV5531B20190213 cancel Windows 10 JSP pureJAVA  1.8.0_144)
+[14:03:25] INFO <00001> DEBUG PRINT : 
+[14:03:25] INFO <00001> TID        : StdpayISP_unionbooks20190821140252051642
+[14:03:25]DEBUG <00001> CANCELMSG  : 취소테스트
+
+[14:03:25]ERROR <00001> KEYPASSWORD(ADMIN) is NULL
+[14:03:25]ERROR TX9201
+com.inicis.util.etc.INIpayException: TX9201
+	at com.inicis.inipay.actions.INIcancelAction.parameterCheck(INIcancelAction.java:348)
+	at com.inicis.inipay.actions.INIAction.setParameter(INIAction.java:78)
+	at com.inicis.inipay.INIpay.startAction(INIpay.java:183)
+	at com.hp.customer.controller.OrderCancelController.orderCancelReqSub(OrderCancelController.java:77)
+	at com.hp.customer.controller.OrderCancelController$$FastClassByCGLIB$$92466629.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:204)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:698)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:150)
+	at org.springframework.aop.aspectj.MethodInvocationProceedingJoinPoint.proceed(MethodInvocationProceedingJoinPoint.java:80)
+	at com.hp.common.logger.LoggerAspect.logPrint(LoggerAspect.java:29)
+	at sun.reflect.GeneratedMethodAccessor43.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.springframework.aop.aspectj.AbstractAspectJAdvice.invokeAdviceMethodWithGivenArgs(AbstractAspectJAdvice.java:621)
+	at org.springframework.aop.aspectj.AbstractAspectJAdvice.invokeAdviceMethod(AbstractAspectJAdvice.java:610)
+	at org.springframework.aop.aspectj.AspectJAroundAdvice.invoke(AspectJAroundAdvice.java:65)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:172)
+	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:91)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:172)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:631)
+	at com.hp.customer.controller.OrderCancelController$$EnhancerByCGLIB$$ed0d1dbd.orderCancelReqSub(<generated>)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invoke(InvocableHandlerMethod.java:219)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:132)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:104)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandleMethod(RequestMappingHandlerAdapter.java:745)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:686)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:80)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:925)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:856)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:936)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:838)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:650)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:812)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:731)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:303)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:208)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:241)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:208)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:88)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:241)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:208)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:219)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:110)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:494)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:169)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:104)
+	at org.apache.catalina.valves.AccessLogValve.invoke(AccessLogValve.java:1025)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:116)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:445)
+	at org.apache.coyote.http11.AbstractHttp11Processor.process(AbstractHttp11Processor.java:1137)
+	at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:637)
+	at org.apache.tomcat.util.net.AprEndpoint$SocketProcessor.doRun(AprEndpoint.java:2575)
+	at org.apache.tomcat.util.net.AprEndpoint$SocketProcessor.run(AprEndpoint.java:2564)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Unknown Source)
+[14:03:25] INFO <00001>  ERROR_CODE : TX9201
+[14:03:25] INFO <00001>  ResultMsg  : 
+[14:03:25]ERROR <00001>  ResultMsg : [TX9201|필수항목 누락  - ADMIN(KEYPW)]
+[14:03:25]DEBUG <00001> RESULTMSG(inie) : [TX9201|필수항목 누락  - ADMIN(KEYPW)]
+[14:03:25] INFO <00001> TRANSACTION COMPLETE 
+[14:03:25] INFO <00001> END cancel, [ TID:StdpayISP_unionbooks20190821140252051642 ], 01|[TX9201|필수항목 누락  - ADMIN(KEYPW)],  LapTime[0.048 sec. ] 
+[14:03:25] INFO --------------------------------------------------------------------------------
+[14:34:42] INFO <00002> START cancel (NV5531B20190213 cancel Windows 10 JSP pureJAVA  1.8.0_144)
+[14:34:42] INFO <00002> DEBUG PRINT : 
+[14:34:42] INFO <00002> TID        : StdpayISP_unionbooks20190821140252051642
+[14:34:42]DEBUG <00002> CANCELMSG  : 
+[14:34:42]ERROR <00002> KEYPASSWORD(ADMIN) is NULL
+[14:34:42]ERROR TX9201
+com.inicis.util.etc.INIpayException: TX9201
+	at com.inicis.inipay.actions.INIcancelAction.parameterCheck(INIcancelAction.java:348)
+	at com.inicis.inipay.actions.INIAction.setParameter(INIAction.java:78)
+	at com.inicis.inipay.INIpay.startAction(INIpay.java:183)
+	at com.hp.customer.controller.OrderCancelController.orderCancelReqSub(OrderCancelController.java:77)
+	at com.hp.customer.controller.OrderCancelController$$FastClassByCGLIB$$92466629.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:204)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:698)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:150)
+	at org.springframework.aop.aspectj.MethodInvocationProceedingJoinPoint.proceed(MethodInvocationProceedingJoinPoint.java:80)
+	at com.hp.common.logger.LoggerAspect.logPrint(LoggerAspect.java:29)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.springframework.aop.aspectj.AbstractAspectJAdvice.invokeAdviceMethodWithGivenArgs(AbstractAspectJAdvice.java:621)
+	at org.springframework.aop.aspectj.AbstractAspectJAdvice.invokeAdviceMethod(AbstractAspectJAdvice.java:610)
+	at org.springframework.aop.aspectj.AspectJAroundAdvice.invoke(AspectJAroundAdvice.java:65)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:172)
+	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:91)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:172)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:631)
+	at com.hp.customer.controller.OrderCancelController$$EnhancerByCGLIB$$422bcd9e.orderCancelReqSub(<generated>)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invoke(InvocableHandlerMethod.java:219)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:132)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:104)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandleMethod(RequestMappingHandlerAdapter.java:745)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:686)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:80)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:925)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:856)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:936)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:838)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:650)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:812)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:731)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:303)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:208)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:241)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:208)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:88)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:241)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:208)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:219)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:110)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:494)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:169)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:104)
+	at org.apache.catalina.valves.AccessLogValve.invoke(AccessLogValve.java:1025)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:116)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:445)
+	at org.apache.coyote.http11.AbstractHttp11Processor.process(AbstractHttp11Processor.java:1137)
+	at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:637)
+	at org.apache.tomcat.util.net.AprEndpoint$SocketProcessor.doRun(AprEndpoint.java:2575)
+	at org.apache.tomcat.util.net.AprEndpoint$SocketProcessor.run(AprEndpoint.java:2564)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Unknown Source)
+[14:34:42] INFO <00002>  ERROR_CODE : TX9201
+[14:34:42] INFO <00002>  ResultMsg  : 
+[14:34:42]ERROR <00002>  ResultMsg : [TX9201|필수항목 누락  - ADMIN(KEYPW)]
+[14:34:42]DEBUG <00002> RESULTMSG(inie) : [TX9201|필수항목 누락  - ADMIN(KEYPW)]
+[14:34:42] INFO <00002> TRANSACTION COMPLETE 
+[14:34:42] INFO <00002> END cancel, [ TID:StdpayISP_unionbooks20190821140252051642 ], 01|[TX9201|필수항목 누락  - ADMIN(KEYPW)],  LapTime[0.024 sec. ] 
+[14:34:42] INFO --------------------------------------------------------------------------------
+[14:35:15] INFO <00003> START cancel (NV5531B20190213 cancel Windows 10 JSP pureJAVA  1.8.0_144)
+[14:35:15] INFO <00003> DEBUG PRINT : 
+[14:35:15] INFO <00003> TID        : StdpayISP_unionbooks20190821140252051642
+[14:35:15]DEBUG <00003> CANCELMSG  : 
+[14:35:15]ERROR <00003> KEYPASSWORD(ADMIN) is NULL
+[14:35:15]ERROR TX9201
+com.inicis.util.etc.INIpayException: TX9201
+	at com.inicis.inipay.actions.INIcancelAction.parameterCheck(INIcancelAction.java:348)
+	at com.inicis.inipay.actions.INIAction.setParameter(INIAction.java:78)
+	at com.inicis.inipay.INIpay.startAction(INIpay.java:183)
+	at com.hp.customer.controller.OrderCancelController.orderCancelReqSub(OrderCancelController.java:77)
+	at com.hp.customer.controller.OrderCancelController$$FastClassByCGLIB$$92466629.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:204)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:698)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:150)
+	at org.springframework.aop.aspectj.MethodInvocationProceedingJoinPoint.proceed(MethodInvocationProceedingJoinPoint.java:80)
+	at com.hp.common.logger.LoggerAspect.logPrint(LoggerAspect.java:29)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.springframework.aop.aspectj.AbstractAspectJAdvice.invokeAdviceMethodWithGivenArgs(AbstractAspectJAdvice.java:621)
+	at org.springframework.aop.aspectj.AbstractAspectJAdvice.invokeAdviceMethod(AbstractAspectJAdvice.java:610)
+	at org.springframework.aop.aspectj.AspectJAroundAdvice.invoke(AspectJAroundAdvice.java:65)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:172)
+	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:91)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:172)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:631)
+	at com.hp.customer.controller.OrderCancelController$$EnhancerByCGLIB$$422bcd9e.orderCancelReqSub(<generated>)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invoke(InvocableHandlerMethod.java:219)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:132)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:104)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandleMethod(RequestMappingHandlerAdapter.java:745)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:686)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:80)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:925)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:856)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:936)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:838)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:650)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:812)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:731)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:303)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:208)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:241)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:208)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:88)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:241)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:208)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:219)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:110)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:494)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:169)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:104)
+	at org.apache.catalina.valves.AccessLogValve.invoke(AccessLogValve.java:1025)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:116)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:445)
+	at org.apache.coyote.http11.AbstractHttp11Processor.process(AbstractHttp11Processor.java:1137)
+	at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:637)
+	at org.apache.tomcat.util.net.AprEndpoint$SocketProcessor.doRun(AprEndpoint.java:2575)
+	at org.apache.tomcat.util.net.AprEndpoint$SocketProcessor.run(AprEndpoint.java:2564)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Unknown Source)
+[14:35:15] INFO <00003>  ERROR_CODE : TX9201
+[14:35:15] INFO <00003>  ResultMsg  : 
+[14:35:15]ERROR <00003>  ResultMsg : [TX9201|필수항목 누락  - ADMIN(KEYPW)]
+[14:35:15]DEBUG <00003> RESULTMSG(inie) : [TX9201|필수항목 누락  - ADMIN(KEYPW)]
+[14:35:15] INFO <00003> TRANSACTION COMPLETE 
+[14:35:15] INFO <00003> END cancel, [ TID:StdpayISP_unionbooks20190821140252051642 ], 01|[TX9201|필수항목 누락  - ADMIN(KEYPW)],  LapTime[0.023 sec. ] 
+[14:35:15] INFO --------------------------------------------------------------------------------
+[14:36:20] INFO <00004> START cancel (NV5531B20190213 cancel Windows 10 JSP pureJAVA  1.8.0_144)
+[14:36:20] INFO <00004> DEBUG PRINT : 
+[14:36:20] INFO <00004> TID        : StdpayISP_unionbooks20190821140252051642
+[14:36:20]DEBUG <00004> CANCELMSG  : 
+[14:36:20]ERROR <00004> KEYPASSWORD(ADMIN) is NULL
+[14:36:20]ERROR TX9201
+com.inicis.util.etc.INIpayException: TX9201
+	at com.inicis.inipay.actions.INIcancelAction.parameterCheck(INIcancelAction.java:348)
+	at com.inicis.inipay.actions.INIAction.setParameter(INIAction.java:78)
+	at com.inicis.inipay.INIpay.startAction(INIpay.java:183)
+	at com.hp.customer.controller.OrderCancelController.orderCancelReqSub(OrderCancelController.java:77)
+	at com.hp.customer.controller.OrderCancelController$$FastClassByCGLIB$$92466629.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:204)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:698)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:150)
+	at org.springframework.aop.aspectj.MethodInvocationProceedingJoinPoint.proceed(MethodInvocationProceedingJoinPoint.java:80)
+	at com.hp.common.logger.LoggerAspect.logPrint(LoggerAspect.java:29)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.springframework.aop.aspectj.AbstractAspectJAdvice.invokeAdviceMethodWithGivenArgs(AbstractAspectJAdvice.java:621)
+	at org.springframework.aop.aspectj.AbstractAspectJAdvice.invokeAdviceMethod(AbstractAspectJAdvice.java:610)
+	at org.springframework.aop.aspectj.AspectJAroundAdvice.invoke(AspectJAroundAdvice.java:65)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:172)
+	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:91)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:172)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:631)
+	at com.hp.customer.controller.OrderCancelController$$EnhancerByCGLIB$$3ed119b.orderCancelReqSub(<generated>)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invoke(InvocableHandlerMethod.java:219)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:132)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:104)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandleMethod(RequestMappingHandlerAdapter.java:745)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:686)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:80)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:925)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:856)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:936)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:838)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:650)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:812)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:731)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:303)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:208)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:241)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:208)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:88)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:241)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:208)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:219)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:110)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:494)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:169)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:104)
+	at org.apache.catalina.valves.AccessLogValve.invoke(AccessLogValve.java:1025)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:116)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:445)
+	at org.apache.coyote.http11.AbstractHttp11Processor.process(AbstractHttp11Processor.java:1137)
+	at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:637)
+	at org.apache.tomcat.util.net.AprEndpoint$SocketProcessor.doRun(AprEndpoint.java:2575)
+	at org.apache.tomcat.util.net.AprEndpoint$SocketProcessor.run(AprEndpoint.java:2564)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Unknown Source)
+[14:36:20] INFO <00004>  ERROR_CODE : TX9201
+[14:36:20] INFO <00004>  ResultMsg  : 
+[14:36:20]ERROR <00004>  ResultMsg : [TX9201|필수항목 누락  - ADMIN(KEYPW)]
+[14:36:20]DEBUG <00004> RESULTMSG(inie) : [TX9201|필수항목 누락  - ADMIN(KEYPW)]
+[14:36:20] INFO <00004> TRANSACTION COMPLETE 
+[14:36:20] INFO <00004> END cancel, [ TID:StdpayISP_unionbooks20190821140252051642 ], 01|[TX9201|필수항목 누락  - ADMIN(KEYPW)],  LapTime[0.018 sec. ] 
+[14:36:20] INFO --------------------------------------------------------------------------------
+[14:39:05] INFO <00005> START cancel (NV5531B20190213 cancel Windows 10 JSP pureJAVA  1.8.0_144)
+[14:39:05] INFO <00005> DEBUG PRINT : 
+[14:39:05] INFO <00005> TID        : StdpayISP_unionbooks20190821140252051642
+[14:39:05]DEBUG <00005> CANCELMSG  : 
+[14:39:05]DEBUG <00005> INIPAYHOME   : /D:\study\work\src\main\webapp\INIpay50_JAVA
+[14:39:05]DEBUG <00005> MID          : unionbooks
+[14:39:05]DEBUG <00005> ADMIN(KEYPW) : 1111
+[14:39:05]DEBUG <00005> CRYPTO       : execure
+[14:39:05] INFO <00005> EXTRUS CRYPTO USE!!
+[14:39:05]DEBUG <00005> TX_PGPUBSN : 30
+[14:39:05]DEBUG <00005> TX_MPUBSN : 0
+[14:39:05]DEBUG <00005> BodyLen : 1090
+[14:39:05] INFO <00005> 1차 PG : formpg.inicis.com
+[14:39:05] INFO <00005> NSLOOKUP OK (formpg.inicis.com) => IP : 39.115.212.10
+[14:39:05] INFO <00005> Connect to 39.115.212.10:34049
+[14:39:05]DEBUG <00005> PG ADDRESS(PORT) : 39.115.212.10(34049)
+[14:39:05]DEBUG <00005> IP ADDRESS(PORT) : 39.115.212.10(34049)
+[14:39:05]DEBUG <00005> Connect TimeOut  : 5 sec.
+[14:39:05] INFO <00005> SET TX_ENCODECHARSET:KSC5601, SYSTEM ENCODING:MS949
+[14:39:05] INFO <00005> SEND OK
+[14:39:06] INFO <00005> RECV OK
+[14:39:06]DEBUG <00005> 0108200175D SHA1                   0                                      300430unionbooks                    StdpayISP_unionbooks20190821140252051642<?xml version="1.0" encoding="UTF-8"?>
+<INIpay>
+  <CancelInfo>
+    <ResultCode>170000</ResultCode>
+    <ResultMsg urlencode="1">%C1%A4%BB%F3%BF%CF%B7%E1</ResultMsg>
+    <SessionKey>AGWO+KisZWvfnhXk/uAFKsc08q+W0V8MWWXCEp6SpucmLEZk7J2pHvvL2IiSmMpg
+F11ifYMYBEmbN9hgwr6sMpUzrSlQZLppQ3cMiPRcqQ64reru+VAWqaKHVErBAUCu
+WzVKL5tx9tOL9BxDsEpDM1A1sItMgOinMAwxTTtvZwMzdWVvI623P5s=
+</SessionKey>
+    <Encrypted>/Pf4sW7bDLyGGdifS7wUY8Jk3H4RbXe9F3bDKUkbMVJCB9am7G0PBAM7COCG/IDs
+ShOmAbeYTDJopR3vySygRRfB+NNOEjBuslX1BiEVbB54fsH6caLPNnkB4GuNlVWf
+p3oeJU9XfOv6Mx15/GRYjyvQ6Mur3gsfF5bH7siliMgVXdJcyHBnTGO3a8+wKY//
+bK+w2faqE4VHkdZCxiY0Atq3NkGnD/F3FJsagHD6hCYL8lV4PPhvEQy/RGnbuqUr
+jvUZzVH10T4eGu/3LADZBHNx8A88EkNBonTJbpUQRwhOoq/UAdRrz1l6k6YS98or
+</Encrypted>
+  </CancelInfo>
+  <ManageInfo/>
+  <ReservedInfo>
+    <MReserved1 urlencode="1"></MReserved1>
+    <MReserved2 urlencode="1"></MReserved2>
+    <MReserved3 urlencode="1"></MReserved3>
+    <PGReserved1 urlencode="1"></PGReserved1>
+    <PGReserved2 urlencode="1"></PGReserved2>
+    <PGReserved3 urlencode="1"></PGReserved3>
+  </ReservedInfo>
+</INIpay>
+AYvbPpfjTKot3qiwBlclUdwqbDTxOOlbmpyavR0aun41ZorYvT7UBHezXMC+VpCb
+clhqI8cG4hA0zE34fO8w5My8tInuOOs2ZsddpAbdstUcFnCrsY7vnx5RqqaWNAWA
+7m537LFx+TIt117aWzfG0YtqNKcFMm+a/wEPw/MmGKs=
+
+[14:39:06] INFO <00005> SOCKET CONNECTION CLOSE
+[14:39:06] INFO <00005> Pay Connection  LapTime[0.648 sec. ] 
+[14:39:06]DEBUG <00005> RESULT_PARSE_DATA(NM|VL) : Encrypted|/Pf4sW7bDLyGGdifS7wUY8Jk3H4RbXe9F3bDKUkbMVJCB9am7G0PBAM7COCG/IDs
+ShOmAbeYTDJopR3vySygRRfB+NNOEjBuslX1BiEVbB54fsH6caLPNnkB4GuNlVWf
+p3oeJU9XfOv6Mx15/GRYjyvQ6Mur3gsfF5bH7siliMgVXdJcyHBnTGO3a8+wKY//
+bK+w2faqE4VHkdZCxiY0Atq3NkGnD/F3FJsagHD6hCYL8lV4PPhvEQy/RGnbuqUr
+jvUZzVH10T4eGu/3LADZBHNx8A88EkNBonTJbpUQRwhOoq/UAdRrz1l6k6YS98or
+
+[14:39:06]DEBUG <00005> RESULT_PARSE_DATA(NM|VL) : SessionKey|AGWO+KisZWvfnhXk/uAFKsc08q+W0V8MWWXCEp6SpucmLEZk7J2pHvvL2IiSmMpg
+F11ifYMYBEmbN9hgwr6sMpUzrSlQZLppQ3cMiPRcqQ64reru+VAWqaKHVErBAUCu
+WzVKL5tx9tOL9BxDsEpDM1A1sItMgOinMAwxTTtvZwMzdWVvI623P5s=
+
+[14:39:06]DEBUG <00005> RESULT_PARSE_DATA(NM|VL) : ResultMsg|정상완료
+[14:39:06]DEBUG <00005> RESULT_PARSE_DATA(NM|VL) : ResultCode|170000
+[14:39:06]DEBUG <00005> TX_RESULTMSG : [170000|정상완료]
+[14:39:06]DEBUG <00005> TX_RESULTCODE : 00
+[14:39:06]DEBUG <00005> signChecked=true
+[14:39:06] INFO <00005> SIGN CHECK OK
+[14:39:06] INFO <00005> DECRYPT OK
+[14:39:06]DEBUG <00005> <?xml version="1.0" encoding="UTF-8"?>
+<CancelInfo>
+  <CancelDate>20190821</CancelDate>
+  <CancelTime>143907</CancelTime>
+  <ResultCode>170000</ResultCode>
+  <ResultMsg urlencode="1">%C1%A4%BB%F3%BF%CF%B7%E1</ResultMsg>
+</CancelInfo>
+
+[14:39:06]DEBUG <00005> RESULT_PARSE_DATA(NM|VL) : ResultMsg|정상완료
+[14:39:06]DEBUG <00005> RESULT_PARSE_DATA(NM|VL) : ResultCode|170000
+[14:39:06]DEBUG <00005> RESULT_PARSE_DATA(NM|VL) : CancelTime|143907
+[14:39:06]DEBUG <00005> RESULT_PARSE_DATA(NM|VL) : CancelDate|20190821
+[14:39:06]DEBUG <00005> TX_RESULTMSG : [170000|정상완료]
+[14:39:06]DEBUG <00005> TX_RESULTCODE : 00
+[14:39:06] INFO <00005> TRANSACTION COMPLETE 
+[14:39:06] INFO <00005> END cancel, [ TID:StdpayISP_unionbooks20190821140252051642 ], 00|[170000|정상완료],  LapTime[1.084 sec. ] 
+[14:39:06] INFO --------------------------------------------------------------------------------

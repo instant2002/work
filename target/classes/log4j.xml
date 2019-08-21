@@ -29,7 +29,7 @@
 	<logger name="jdbc.resultsettable" additivity="false">
 		<level value="INFO" />
 		<appender-ref ref="console" />
-	</logger>
+	</logger> <!-- 변경! -->
 
 	<!-- 3rdparty Loggers -->
 	<logger name="org.springframework.core">

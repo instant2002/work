@@ -73,16 +73,12 @@ public class OrderingInfoController {
 		MemberCommand memberCommand = customerService.getUserInfo(user_id);
 		
 		//이니페이 키 생성 시작
-		String mid					= "INIpayTest";		// 가맹점 ID(가맹점 수정후 고정)					
-		String signKey			    = "SU5JTElURV9UUklQTEVERVNfS0VZU1RS";	// 가맹점에 제공된 웹 표준 사인키(가맹점 수정후 고정)
+		String mid					= "unionbooks";		// 가맹점 ID(가맹점 수정후 고정)					
+//		String signKey			    = "SU5JTElURV9UUklQTEVERVNfS0VZU1RS";	// 가맹점에 제공된 웹 표준 사인키(가맹점 수정후 고정)
+		String signKey			    = "MXNSWkF6a1gvcEZlVUF5N1NUN1lvdz09";	// 가맹점에 제공된 웹 표준 사인키(가맹점 수정후 고정)
 		String timestamp			= SignatureUtil.getTimestamp();			// util에 의해서 자동생성
 //		String oid					= mid+"_"+SignatureUtil.getTimestamp();	// 가맹점 주문번호(가맹점에서 직접 설정)
 		String oid = order_code;
-		if(user_id == "admin") {
-			total_price = "1000";
-		}
-		
-		System.out.println("total_price!!! " + total_price);
 		
 		Map<String, String> signParam = new HashMap<String, String>();
 		signParam.put("oid", oid); 					// 필수
@@ -91,7 +87,7 @@ public class OrderingInfoController {
 
 		String signature = SignatureUtil.makeSignature(signParam); //signature 데이터 생성 (모듈에서 자동으로 signParam을 알파벳 순으로 정렬후 NVP 방식으로 나열해 hash)
 		String mKey = SignatureUtil.hash(signKey, "SHA-256");
-		
+
 		Map<String, String> inipay = new HashMap<String, String>();
 		inipay.put("mid", mid);
 		inipay.put("signKey", signKey);
@@ -101,6 +97,12 @@ public class OrderingInfoController {
 		inipay.put("signature", signature);
 		inipay.put("mKey", mKey);
 		//이니페이 키 생성 끝
+		
+		System.out.println("product_no_list"+product_no_list);
+		System.out.println("quantity_list"+quantity_list);
+		System.out.println("oid"+oid);
+		System.out.println("signature"+signature);
+		System.out.println("mKey"+mKey);
 		
 		model.addAttribute("order", orderList);
 		model.addAttribute("quantity", quantity_list);

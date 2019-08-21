@@ -75,7 +75,7 @@
 		<td id="price_sum"><fmt:formatNumber value="${price_sum}" groupingUsed="true"/>원</td>
 		<td id="dc_price_sum"><fmt:formatNumber value="${dc_price_sum}" groupingUsed="true"/>원</td>
 		<td id="shipping_fee"><fmt:formatNumber value="${shipping_fee}" groupingUsed="true"/>원</td>
-		<td id="total_price"><fmt:formatNumber value="${total_price+3000 }" groupingUsed="true"/>원</td>
+		<td id="total_price"><fmt:formatNumber value="${total_price+shipping_fee}" groupingUsed="true"/>원</td>
 	</tr>
 	</table>
 </c:otherwise>
