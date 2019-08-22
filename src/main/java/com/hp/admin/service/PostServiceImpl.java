@@ -203,11 +203,20 @@ public class PostServiceImpl implements PostService {
 	}
 
 	@Override
-	public void uploadNotice(NoticeCommand noticeCommand, String save_img_path, MultipartHttpServletRequest mtfRequest, String save_file_path) {
+	public void uploadNotice(NoticeCommand noticeCommand, String save_img_path, MultipartHttpServletRequest mtfRequest, String save_file_path, MultipartHttpServletRequest mtfRequest2, String save_attachments_path) {
 		MultipartFile multipartFile = noticeCommand.getNotice_img_file();
 		List<MultipartFile> fileList = mtfRequest.getFiles("notice_file");
+		List<MultipartFile> attFileList = mtfRequest2.getFiles("notice_attFile");
 		
 		try {
+			// 파일 경로 없으면 생성
+			File fileImgPath = new File(save_img_path);
+			if (fileImgPath.exists() == false) fileImgPath.mkdirs();
+			File filePath = new File(save_file_path);
+			if (filePath.exists() == false) filePath.mkdirs();
+			File atfilePath = new File(save_attachments_path);
+			if (atfilePath.exists() == false) atfilePath.mkdirs();
+			
 			// 파일 정보
 			String notice_img_name = multipartFile.getOriginalFilename();
 			if (notice_img_name != null && notice_img_name != "") {
@@ -220,8 +229,6 @@ public class PostServiceImpl implements PostService {
 				noticeCommand.setNotice_img_name(notice_img_name);
 				noticeCommand.setNotice_img_storedName("/notice_img/" + notice_img_storedName);
 				
-				
-
 				if(log.isDebugEnabled()){
 					log.debug("notice_img_name : " + notice_img_name);
 					log.debug("extensionName : " + extName);
@@ -229,11 +236,6 @@ public class PostServiceImpl implements PostService {
 					log.debug("notice_img_storedName : " + notice_img_storedName);
 					
 				}
-				// 파일 경로 없으면 생성
-				File fileImgPath = new File(save_img_path);
-				if (fileImgPath.exists() == false) fileImgPath.mkdirs();
-				File filePath = new File(save_file_path);
-				if (filePath.exists() == false) filePath.mkdirs();
 
 				writeFile(multipartFile, notice_img_storedName, save_img_path);
 			}
@@ -246,19 +248,43 @@ public class PostServiceImpl implements PostService {
 				String originFileName = mf.getOriginalFilename(); // 원본 파일 명
 				String rand_name = Long.toString(System.currentTimeMillis())+(int)(Math.random()*50);
 				String notice_file_storedName = save_file_path +"\\"+ rand_name;
+				String FileExtName = originFileName.substring(originFileName.lastIndexOf("."), originFileName.length());
 				
 				if(log.isDebugEnabled()){
 					log.debug("notice_files origin: " + save_file_path +"\\"+ originFileName);
 					log.debug("notice_files rand : " + notice_file_storedName);
+					log.debug("extensionFileName : " + FileExtName);
 				}
 				
 				HashMap<String, Object> hm = new HashMap<String, Object>();
 				hm.put("notice_idx", notice_idx);
 				hm.put("notice_file_name", originFileName);
-				hm.put("notice_file_storedName", "/notice_file/"+rand_name);
+				hm.put("notice_file_storedName", "/notice_file/"+rand_name+FileExtName);
 				
-				mf.transferTo(new File(save_file_path +"/"+ rand_name));
+				mf.transferTo(new File(save_file_path +"/"+ rand_name+FileExtName));
 				postMapper.uploadNoticeFile(hm);
+			}
+			
+			for (MultipartFile attmf : attFileList) {//다중 첨부자료 업로드
+				
+				String originAttFileName = attmf.getOriginalFilename(); // 원본 파일 명
+				String rand_attName = Long.toString(System.currentTimeMillis())+(int)(Math.random()*50);
+				String notice_attFile_storedName = save_attachments_path +"\\"+ rand_attName;
+				String attFileExtName = originAttFileName.substring(originAttFileName.lastIndexOf("."), originAttFileName.length());
+				
+				if(log.isDebugEnabled()){
+					log.debug("notice_Attfiles origin: " + save_attachments_path +"\\"+ originAttFileName);
+					log.debug("notice_Attfiles rand : " + notice_attFile_storedName);
+					log.debug("extensionAttName : " + attFileExtName);
+				}
+				
+				HashMap<String, Object> atthm = new HashMap<String, Object>();
+				atthm.put("notice_idx", notice_idx);
+				atthm.put("notice_attFile_name", originAttFileName);
+				atthm.put("notice_attFile_storedName", "/attachments_file/"+rand_attName+attFileExtName);
+				
+				attmf.transferTo(new File(save_attachments_path +"/"+ rand_attName+attFileExtName));
+				postMapper.uploadNoticeAttFile(atthm);
 			}
 			 
 		} catch (IOException e) {

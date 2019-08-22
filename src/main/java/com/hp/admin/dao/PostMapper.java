@@ -44,6 +44,8 @@ public interface PostMapper {
 
 	public void uploadNoticeFile(HashMap<String, Object> hm);
 
+	public void uploadNoticeAttFile(HashMap<String, Object> atthm);
+	
 	public List<NoticeCommand> getNoticeFile(int num);
 
 	public List<QnaAdminCommand> getQnaList();

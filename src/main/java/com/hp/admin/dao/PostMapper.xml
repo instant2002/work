@@ -139,6 +139,22 @@
 			]]>
 	</insert>
 	
+	<insert id="uploadNoticeAttFile" parameterType="hashmap"> 
+	<![CDATA[ 
+			INSERT INTO 
+			notice_attachments_file(
+				notice_idx,
+				notice_attFile_name,
+				notice_attFile_storedName
+				)
+			VALUES (
+				#{notice_idx},
+				#{notice_attFile_name},
+				#{notice_attFile_storedName}
+			)
+			]]>
+	</insert>
+	
 	<select id="getNoticeList" parameterType="List" resultType="NoticeCommand">
 		SELECT
 			*

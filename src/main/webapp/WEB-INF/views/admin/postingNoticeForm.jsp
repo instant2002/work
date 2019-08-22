@@ -9,9 +9,7 @@
 
 <form class="form-horizontal" id="postingNotice_form" action="/admin/postingNoticeSub.do" enctype="multipart/form-data" method="post">
 <fieldset>
-
 <div class="text-center"><legend>공지사항 등록</legend></div>
-
 <div class="form-group">
   <label class="col-md-4 control-label" for="title">공지 타이틀</label>  
   <div class="col-md-4">
@@ -54,6 +52,15 @@
   <label class="col-md-4 control-label">파일</label>
   <div class="col-md-4" id="fileDiv">
   	<p><input type='file' multiple="multiple" name='notice_file'></p>
+  </div>
+</div>
+
+</div>
+<div class="form-group" id="attachments_area">
+<div id="file_inputs">
+  <label class="col-md-4 control-label">첨부 자료</label>
+  <div class="col-md-4" id="attachments">
+  	<p><input type='file' multiple="multiple" name='notice_attFile'></p>
   </div>
 </div>
 </div>

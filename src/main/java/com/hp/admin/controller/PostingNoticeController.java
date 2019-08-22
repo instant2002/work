@@ -1,11 +1,6 @@
 package com.hp.admin.controller;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.List;
-
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
@@ -13,8 +8,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.hp.admin.domain.NoticeCommand;
@@ -35,7 +28,7 @@ public class PostingNoticeController {
 	
 	@RequestMapping(value="/admin/postingNoticeSub.do", method=RequestMethod.POST)
 	public String postingNoticeSub (@ModelAttribute("noticeCommand") NoticeCommand noticeCommand, HttpSession session, 
-			MultipartHttpServletRequest mtf_request) throws Exception {
+			MultipartHttpServletRequest mtf_request, MultipartHttpServletRequest mtf_request2) throws Exception {
 		String user_id = (String) session.getAttribute("user_id");
 		
 		if(log.isDebugEnabled()){
@@ -45,8 +38,9 @@ public class PostingNoticeController {
 		noticeCommand.setUser_id(user_id);
 		String save_img_path = mtf_request.getSession().getServletContext().getRealPath("/notice_img");
 		String save_file_path = mtf_request.getSession().getServletContext().getRealPath("/notice_file");
+		String save_attachments_path = mtf_request2.getSession().getServletContext().getRealPath("/attachments_file");
 		
-		postService.uploadNotice(noticeCommand, save_img_path, mtf_request, save_file_path); 
+		postService.uploadNotice(noticeCommand, save_img_path, mtf_request, save_file_path, mtf_request2, save_attachments_path); 
 		
 		return "redirect:/admin/postingNoticeForm.do";
 	}

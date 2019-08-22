@@ -16,7 +16,7 @@
 				*
 			FROM
 				notice
-			Limit 5
+			Limit 4
 	</select>
 	
 	<select id="getNoticeFile" parameterType="Integer" resultType="NoticeFileCommand">

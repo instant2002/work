@@ -24,7 +24,7 @@ public interface PostService {
 
 	public List<PostCommand> getMainBooksInfo(String book_new_num);
 
-	public void uploadNotice(NoticeCommand noticeCommand, String save_img_path, MultipartHttpServletRequest mtf_request, String save_file_path) throws Exception;
+	public void uploadNotice(NoticeCommand noticeCommand, String save_img_path, MultipartHttpServletRequest mtf_request, String save_file_path, MultipartHttpServletRequest mtfRequest, String save_attachments_path) throws Exception;
 
 	public List<NoticeCommand> getNoticeList();
 
