@@ -17,22 +17,22 @@
 								alt="" style="width: 200px;">
 							</a>
 							<c:if test="${book_new.discounted == 'Y'}">
-							<label class="pl-badge">- <fmt:formatNumber value="${(book_new.dc_price / book_new.origin_price * 100)}" pattern="#"/>%</label>
+							<label class="pl-badge"><fmt:formatNumber value="${(book_new.dc_price / book_new.origin_price * 100)}" pattern="#"/>%↓</label>
 							</c:if>
 						</figure>
 						<div class="pl-caption">
 							<p class="pl-price-block">
+							<a href="/book/detailView.do?product_no=${book_new.product_no }"><span class="pl-name ellipsis_8">${book_new.book_name }</span></a><br>
 							<c:choose>
 								<c:when test="${book_new.discounted == 'Y'}">
-									<span class="pl-price-old">&#8361; <fmt:formatNumber value="${book_new.origin_price}" groupingUsed="true"/></span>
-									<span class="pl-price"> &#8361; <fmt:formatNumber value="${book_new.origin_price-book_new.dc_price}" groupingUsed="true"/></span>
+									<span class="pl-price-old"><fmt:formatNumber value="${book_new.origin_price}" groupingUsed="true"/>원</span>
+									<span class="pl-price"> <fmt:formatNumber value="${book_new.origin_price-book_new.dc_price}" groupingUsed="true"/>원</span>
 								</c:when>
 								<c:otherwise>
-									<span class="pl-price">&#8361; <fmt:formatNumber value="${book_new.origin_price}" groupingUsed="true"/></span>
+									<span class="pl-price"><fmt:formatNumber value="${book_new.origin_price}" groupingUsed="true"/>원</span>
 								</c:otherwise>
 							</c:choose>
 							</p>
-							<a href="/book/detailView.do?product_no=${book_new.product_no }"><p class="pl-name ellipsis_8">${book_new.book_name }</p></a>
 						</div>
 					</div>
 					</c:forEach>
@@ -62,22 +62,22 @@
 								alt="" style="width: 200px;">
 							</a>
 							<c:if test="${book_commend.discounted == 'Y'}">
-							<label class="pl-badge">- <fmt:formatNumber value="${(book_commend.dc_price / book_commend.origin_price * 100)}" pattern="#"/>%</label>
+							<label class="pl-badge"><fmt:formatNumber value="${(book_commend.dc_price / book_commend.origin_price * 100)}" pattern="#"/>%↓</label>
 							</c:if>
 						</figure>
 						<div class="pl-caption">
 							<p class="pl-price-block">
+							<a href="/book/detailView.do?product_no=${book_commend.product_no }"><span class="pl-name ellipsis_8">${book_commend.book_name }</span></a><br>
 							<c:choose>
 								<c:when test="${book_commend.discounted == 'Y'}">
-									<span class="pl-price-old">&#8361; <fmt:formatNumber value="${book_commend.origin_price}" groupingUsed="true"/></span>
-									<span class="pl-price"> &#8361; <fmt:formatNumber value="${book_commend.origin_price-book_commend.dc_price}" groupingUsed="true"/></span>
+									<span class="pl-price-old"><fmt:formatNumber value="${book_commend.origin_price}" groupingUsed="true"/>원</span>
+									<span class="pl-price"> <fmt:formatNumber value="${book_commend.origin_price-book_commend.dc_price}" groupingUsed="true"/>원</span>
 								</c:when>
 								<c:otherwise>
-									<span class="pl-price">&#8361; <fmt:formatNumber value="${book_commend.origin_price}" groupingUsed="true"/></span>
+									<span class="pl-price"><fmt:formatNumber value="${book_commend.origin_price}" groupingUsed="true"/>원</span>
 								</c:otherwise>
 							</c:choose>
 							</p>
-							<a href="/book/detailView.do?product_no=${book_commend.product_no }"><p class="pl-name ellipsis_8">${book_commend.book_name }</p></a>
 						</div>
 					</div>
 					</c:forEach>

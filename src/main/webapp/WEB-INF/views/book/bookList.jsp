@@ -100,24 +100,24 @@
 							</a>
 							<c:choose>
 								<c:when test="${book_list.discounted == 'Y'}">
-									<label class="pl-badge">- <fmt:formatNumber value="${(book_list.dc_price / book_list.origin_price * 100)}" pattern="#" />%
+									<label class="pl-badge"><fmt:formatNumber value="${(book_list.dc_price / book_list.origin_price * 100)}" pattern="#" />%↓
 									</label>
 								</c:when>
 							</c:choose>
 						</figure>
 						<div class="pl-caption">
 							<p class="pl-price-block">
+							<a href="/book/detailView.do?product_no=${book_list.product_no }"><span class="pl-name ellipsis_8">${book_list.book_name }</span></a><br>
 								<c:choose>
 									<c:when test="${book_list.discounted == 'Y'}">
-										<span class="pl-price-old">&#8361; <fmt:formatNumber value="${book_list.origin_price}" groupingUsed="true" /></span>
-										<span class="pl-price"> &#8361; <fmt:formatNumber value="${book_list.origin_price-book_list.dc_price}" groupingUsed="true" /></span>
+										<span class="pl-price-old"><fmt:formatNumber value="${book_list.origin_price}" groupingUsed="true" />원</span>
+										<span class="pl-price"><fmt:formatNumber value="${book_list.origin_price-book_list.dc_price}" groupingUsed="true" />원</span>
 									</c:when>
 									<c:otherwise>
-										<span class="pl-price">&#8361; <fmt:formatNumber value="${book_list.origin_price}" groupingUsed="true" /></span>
+										<span class="pl-price"><fmt:formatNumber value="${book_list.origin_price}" groupingUsed="true" />원</span>
 									</c:otherwise>
 								</c:choose>
 							</p>
-							<a href="/book/detailView.do?product_no=${book_list.product_no }"><p class="pl-name ellipsis_8">${book_list.book_name }</p></a>
 						</div>
 					</div>
 				</c:forEach>
@@ -175,8 +175,6 @@
 	<div class="tab-pane fade" id="pl-list">
 		<div class="products-listview">
 
-
-<!-- 윤식아 여기 구매하기 form 만들다 말았다 파라미터를 스크립트로 던져야할 듯 -->
 	<form action="/order/orderCheckForm.do" method="POST" id="orderSubForm">
 	
 	</form>
@@ -191,6 +189,7 @@
 						</div>
 						<div class="col-sm-8">
 							<div class="plv-body">
+								<div class="pl-price-block">
 								<div class="plv-header">
 									<div class="row">
 										<div class="col-xs-6 plv-title">
@@ -207,14 +206,13 @@
 										</div>
 									</div>
 								</div>
-								<div class="pl-price-block">
 								<c:choose>
 									<c:when test="${book_list.discounted == 'Y'}">
-										<span class="pl-price-old">&#8361; <fmt:formatNumber value="${book_list.origin_price}" groupingUsed="true" /></span>
-										<span class="pl-price"> &#8361; <fmt:formatNumber value="${book_list.origin_price-book_list.dc_price}" groupingUsed="true" /></span>
+										<span class="pl-price-old"><fmt:formatNumber value="${book_list.origin_price}" groupingUsed="true" />원</span>
+										<span class="pl-price"><fmt:formatNumber value="${book_list.origin_price-book_list.dc_price}" groupingUsed="true" />원</span>
 									</c:when>
 									<c:otherwise>
-										<span class="pl-price">&#8361; <fmt:formatNumber value="${book_list.origin_price}" groupingUsed="true" /></span>
+										<span class="pl-price"><fmt:formatNumber value="${book_list.origin_price}" groupingUsed="true" />원</span>
 									</c:otherwise>
 								</c:choose>
 								</div>
@@ -248,7 +246,7 @@
 								</div>
 								<div class="plv-buttons">
 									<c:if test="${book_list.stock == 'Y' }"> 
-										<a class="btn btn-sec-col" onclick="orderSubFunc(${book_list.product_no})"><i class="fas fa-book-open"></i>&nbsp;&nbsp;구매하기</a> 
+										<a class="btn btn-sec-col" onclick="orderSubFunc(${book_list.product_no})"><i class="fas fa-book-open"></i>&nbsp;&nbsp;주문하기</a> 
 										<a class="btn btn-prim-col" onclick="insertBasket(${book_list.product_no});"><i class="icon-basket"></i>&nbsp;&nbsp;장바구니</a> 
 										<a class="btn btn-prim-col" onclick="insertWishList(${book_list.product_no});"><i class="icon-heart"></i>&nbsp;&nbsp;위시리스트</a>
 									</c:if>

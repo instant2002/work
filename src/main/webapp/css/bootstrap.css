@@ -44,7 +44,7 @@ hr { -moz-box-sizing: content-box; box-sizing: content-box; height: 0; }
 
 pre { overflow: auto; }
 
-code, kbd, pre, samp { font-family: monospace, monospace; font-size: 1em; }
+code, kbd, pre, samp { font-family: NANUMBARUNGOTHIC; font-size: 1em; }
 
 button, input, optgroup, select, textarea { color: inherit; font: inherit; margin: 0; }
 
@@ -665,7 +665,7 @@ blockquote:before, blockquote:after { content: ""; }
 
 address { margin-bottom: 20px; font-style: normal; line-height: 1.42857; }
 
-code, kbd, pre, samp { font-family: Menlo, Monaco, Consolas, "Courier New", monospace; }
+code, kbd, pre, samp { font-family: NANUMBARUNGOTHIC; }
 
 code { padding: 2px 4px; font-size: 90%; color: #c7254e; background-color: #f9f2f4; border-radius: 0; }
 

@@ -90,7 +90,7 @@
 					<div class="col-md-5 top-search-box" style="margin-top: 30px;">
 						<form action="/book/bookList.do" method="get">
 							<div class="required">
-								<input type="text" name=keyword placeholder="도서 검색" class="placeholder-fix top-search" autocomplete="off" value="${keyword}" style="border: 4px solid #1a208d; font-style: unset; height: 50px;">
+								<input type="text" name=keyword placeholder="도서 검색" class="placeholder-fix top-search" autocomplete="off" value="${keyword}" style="border: 4px solid #27387b; font-style: unset; height: 50px;">
 								<button style="margin-right: 10px;">
 									<i class="icon_search field-icon"></i>
 								</button>
