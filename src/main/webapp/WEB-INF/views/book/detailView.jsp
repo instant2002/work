@@ -102,8 +102,6 @@
                </tr>
                </table>
                <div class="hr"></div>
-               <p>주문 문의 : 010-2872-2161 </p>
-               <div class="hr"></div>
                <form action="/order/orderCheckForm.do" method="POST" id="orderSubForm">
                <div class="cart_quantity_button clrfix product-count pull-left">
                   <a rel="nofollow" class="btn btn-default btn-minus" href="#" title="Subtract" onclick="edit_quantity_minus();">&ndash;</a>
@@ -128,7 +126,20 @@
                		<h5>감사합니다.</h5>
                	</div>
                </c:if>
-               
+               <div class="hr"></div>
+               <table class="table">
+	               <colgroup>
+						<col width="20%">
+						<col width="80%">
+					</colgroup>
+               		<tr>
+               			<th rowspan="2" style="vertical-align: middle; border: none;">주문 문의</th>
+               			<td style="padding: 0; border: none; vertical-align: middle;">02) 6953-0822</td>
+               		</tr>
+               		<tr>
+               			<td style="padding: 0; border: none; vertical-align: middle;">010) 2268-7499</td>
+               		</tr>
+               </table>
 				<div class="modal fade" id="basketModal">
 					<div class="modal-dialog">
 						<div class="modal-content">

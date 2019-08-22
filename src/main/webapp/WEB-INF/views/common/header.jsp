@@ -82,8 +82,9 @@
 		<div id="header-bar">
 			<div class="container">
 				<div class="row">
-					<div id="header-logo" class="col-md-3 col-sm-12 header-logo text-center">
-						<a href="/main.do"> <img src="${pageContext.request.contextPath}/images/unionbooks/unionbooks_logo3.jpg" class="logo hidden-xs" alt="Shop+ - Responsive HTML5 Multipurpose Ecommerce Template"> <img src="${pageContext.request.contextPath}/images/unionbooks_logo.png" class="logo visible-xs-inline" alt="Shop+ - Responsive HTML5 Multipurpose Ecommerce Template">
+					<div id="header-logo" class="col-md-3 col-sm-12 header-logo" >
+						<a href="/main.do"> <img src="${pageContext.request.contextPath}/images/unionbooks/unionbooks_logo3.jpg" class="logo hidden-xs" alt="Shop+ - Responsive HTML5 Multipurpose Ecommerce Template"> 
+						<img src="${pageContext.request.contextPath}/images/unionbooks_logo.png" class="logo visible-xs-inline" alt="Shop+ - Responsive HTML5 Multipurpose Ecommerce Template">
 						</a>
 					</div>
 					<div class="col-md-5 top-search-box" style="margin-top: 30px;">
