@@ -24,17 +24,19 @@ public interface PostService {
 
 	public List<PostCommand> getMainBooksInfo(String book_new_num);
 
-	public void uploadNotice(NoticeCommand noticeCommand, String save_img_path, MultipartHttpServletRequest mtf_request, String save_file_path, MultipartHttpServletRequest mtfRequest, String save_attachments_path) throws Exception;
+	public void uploadNotice(NoticeCommand noticeCommand, String save_img_path, MultipartHttpServletRequest mtf_request, String save_file_path, MultipartHttpServletRequest mtfRequest2, String save_attachments_path) throws Exception;
 
 	public List<NoticeCommand> getNoticeList();
 
 	public void postingNoticeEditSub(NoticeCommand noticeCommand, String save_path, HttpServletRequest request, String save_file_path);
 
-	public void postingNoticeDel(NoticeCommand noticeCommand, String save_path);
+	public void postingNoticeDel(NoticeCommand noticeCommand, String save_path, List<NoticeCommand> noticeFileCommand, String save_file_path, List<NoticeCommand> noticeAttFileCommand, String save_attachments_path);
 
 	public NoticeCommand getNoticeView(int num);
 
 	public List<NoticeCommand> getNoticeFile(int num);
+	
+	public List<NoticeCommand> getNoticeAttFile(int num);
 
 	public List<QnaAdminCommand> getQnaList();
 
@@ -45,6 +47,5 @@ public interface PostService {
 	public void updateQuestionIsanswer(int idx);
 
 	public QnaAdminCommand getQnaAnswer(QnaAdminCommand qnaAdminCommand);
-
 
 }

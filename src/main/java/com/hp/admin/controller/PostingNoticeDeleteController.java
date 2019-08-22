@@ -1,5 +1,7 @@
 package com.hp.admin.controller;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
@@ -23,6 +25,8 @@ private Logger log = Logger.getLogger(this.getClass());
 	public String postingBookDel(@RequestParam(value="num",required=false) int num, HttpServletRequest request) {
 		
 		String save_path = request.getSession().getServletContext().getRealPath("/notice_img");
+		String save_file_path = request.getSession().getServletContext().getRealPath("/notice_file");
+		String save_attachments_path = request.getSession().getServletContext().getRealPath("/attachments_file");
 		
 		if(log.isDebugEnabled()){
 			log.debug("num : " + num);
@@ -30,8 +34,10 @@ private Logger log = Logger.getLogger(this.getClass());
 		}
 		
 		NoticeCommand noticeCommand = postService.getNoticeView(num);
+		List<NoticeCommand> noticeFileCommand = postService.getNoticeFile(num);
+		List<NoticeCommand> noticeAttFileCommand = postService.getNoticeAttFile(num);
 		
-		postService.postingNoticeDel(noticeCommand,save_path);
+		postService.postingNoticeDel(noticeCommand, save_path, noticeFileCommand, save_file_path, noticeAttFileCommand, save_attachments_path);
 		
 		return "redirect:/admin/postingNoticeList.do";
 	}

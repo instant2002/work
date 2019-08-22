@@ -41,6 +41,12 @@ public interface PostMapper {
 
 	@Delete("DELETE FROM notice WHERE num = #{num}")
 	public void postingNoticeDel(int num);
+	
+	@Delete("DELETE FROM notice_file WHERE notice_idx = #{num}")
+	public void postingNoticeFileDel(int num);
+
+	@Delete("DELETE FROM notice_attachments_file WHERE notice_idx = #{num}")
+	public void postingNoticeAttFileDel(int num);
 
 	public void uploadNoticeFile(HashMap<String, Object> hm);
 
@@ -48,6 +54,8 @@ public interface PostMapper {
 	
 	public List<NoticeCommand> getNoticeFile(int num);
 
+	public List<NoticeCommand> getNoticeAttFile(int num);
+	
 	public List<QnaAdminCommand> getQnaList();
 
 	@Select("SELECT * FROM question WHERE idx = #{idx}")

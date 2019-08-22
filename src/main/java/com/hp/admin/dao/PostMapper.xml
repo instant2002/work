@@ -171,6 +171,15 @@
 			notice_idx = #{num}
 	</select>
 	
+	<select id="getNoticeAttFile" parameterType="Integer" resultType="NoticeCommand">
+		SELECT
+			*
+		FROM
+			notice_attachments_file
+		WHERE
+			notice_idx = #{num}
+	</select>
+	
 	<update id="postingNoticeEditSub" parameterType="PostCommand">
 		UPDATE 
 			notice

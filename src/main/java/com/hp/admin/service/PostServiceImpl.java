@@ -368,22 +368,61 @@ public class PostServiceImpl implements PostService {
 	}
 
 	@Override
-	public void postingNoticeDel(NoticeCommand noticeCommand, String save_path) {
-		String del_file_db = noticeCommand.getNotice_img_storedName();
-		if(del_file_db != null) {
-			String del_file_name = del_file_db.substring(del_file_db.lastIndexOf("/") + 1);
-			String del_file = save_path + "\\" + del_file_name;
+	public void postingNoticeDel(NoticeCommand noticeCommand, String save_path, List<NoticeCommand> noticeFileCommand, String save_file_path, List<NoticeCommand> noticeAttFileCommand, String save_attachments_path) {
+		if(log.isDebugEnabled()) log.debug("NoticeCommand : " + noticeCommand);
+		if(log.isDebugEnabled()) log.debug("NoticeFileCommand List : " + noticeFileCommand);
+		if(log.isDebugEnabled()) log.debug("NoticeAttFileCommand List : " + noticeAttFileCommand);
+		
+		String del_Img_file_db = noticeCommand.getNotice_img_storedName();
+		
+		int num = noticeCommand.getNum();
+		
+		//이미지 지우기
+		if(del_Img_file_db != null) {
+			String del_img_file_name = del_Img_file_db.substring(del_Img_file_db.lastIndexOf("/") + 1);
+			String del_img_file = save_path + "\\" + del_img_file_name;
 			
-			File file = new File(del_file);
-			if (file.exists()) {
-				file.delete();
-				if(log.isDebugEnabled()){
-					log.debug("삭제된 파일 : " + del_file_name);
-				}
+			File img_file = new File(del_img_file);
+			if (img_file.exists()) {
+				img_file.delete();
+				if(log.isDebugEnabled()) log.debug("삭제된 이미지 : " + del_img_file_name);
 			}
 		}
 		
-		int num = noticeCommand.getNum();
+		//첨부파일 지우기
+		if(noticeFileCommand.size() > 0) {
+			for (NoticeCommand file_list : noticeFileCommand) {
+				String del_file_db = file_list.getNotice_file_storedName();
+				
+				String del_file_name = del_file_db.substring(del_file_db.lastIndexOf("/") + 1);
+				String del_file = save_file_path + "\\" + del_file_name;
+				
+				File file = new File(del_file);
+				if (file.exists()) {
+					file.delete();
+					if(log.isDebugEnabled()) log.debug("삭제된 첨부파일 : " + del_file_name);
+				}
+			}
+			postMapper.postingNoticeFileDel(num);
+		}
+		
+		//첨부자료 지우기
+		if(noticeAttFileCommand.size() > 0) {
+			for (NoticeCommand attFile_list : noticeAttFileCommand) {
+				String del_attFile_db = attFile_list.getNotice_attFile_storedName();
+				
+				String del_attFile_name = del_attFile_db.substring(del_attFile_db.lastIndexOf("/") + 1);
+				String del_attFile = save_attachments_path + "\\" + del_attFile_name;
+				
+				File attFile = new File(del_attFile);
+				if (attFile.exists()) {
+					attFile.delete();
+					if(log.isDebugEnabled()) log.debug("삭제된 첨부자료 : " + del_attFile_name);
+				}
+			}
+			postMapper.postingNoticeAttFileDel(num);
+		}
+		
 		postMapper.postingNoticeDel(num);
 	}
 
@@ -395,6 +434,11 @@ public class PostServiceImpl implements PostService {
 	@Override
 	public List<NoticeCommand> getNoticeFile(int num) {
 		return postMapper.getNoticeFile(num);
+	}
+	
+	@Override
+	public List<NoticeCommand> getNoticeAttFile(int num) {
+		return postMapper.getNoticeAttFile(num);
 	}
 
 	@Override
@@ -421,4 +465,5 @@ public class PostServiceImpl implements PostService {
 	public QnaAdminCommand getQnaAnswer(QnaAdminCommand qnaAdminCommand) {
 		return postMapper.getQnaAnswer(qnaAdminCommand);
 	}
+
 }
