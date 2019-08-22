@@ -5,7 +5,7 @@
 <!-- container -->
 </div>
 <!-- pg-body -->
-<footer style="color: #ffffff;">
+<footer style="color: #94979c;">
 <div id="footer-4">
             <div class="container">
                <div class="row">

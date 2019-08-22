@@ -99,6 +99,13 @@
 							<a href="/book/detailView.do?product_no=${book_list.product_no }"> <img src="${pageContext.request.contextPath}${book_list.book_img_storedName }" width="200px">
 							</a>
 							<c:choose>
+								<c:when test="${fn:contains (book_list.book_group, '2') && book_list.discounted == 'Y'}">
+									<label class="pl-badge">NEW | - <fmt:formatNumber value="${(book_list.dc_price / book_list.origin_price * 100)}" pattern="#" />%
+									</label>
+								</c:when>
+								<c:when test="${fn:contains (book_list.book_group, '2')}">
+									<label class="pl-badge">NEW</label>
+								</c:when>
 								<c:when test="${book_list.discounted == 'Y'}">
 									<label class="pl-badge">- <fmt:formatNumber value="${(book_list.dc_price / book_list.origin_price * 100)}" pattern="#" />%
 									</label>
