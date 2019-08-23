@@ -42,6 +42,11 @@ public class LoginRedirectPaging extends HandlerInterceptorAdapter {
     		Object redirectPage;
     		
     		redirectPage = destination != null ? destination : referrer;
+    		
+    		if((redirectPage.toString()).indexOf("/member/loginForm.do") > -1) {
+    			if(log.isDebugEnabled()) log.debug("referrer = /member/loginForm.do... set Null");
+    			redirectPage = null;
+    		}
 
     		if(log.isDebugEnabled()) {
     			log.debug("referrer : " + referrer);

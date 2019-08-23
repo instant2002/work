@@ -6,7 +6,7 @@
 <tiles-definitions>
 	
 	<definition name="service.index" template="/WEB-INF/views/index.jsp">
-		<put-attribute name="title" value="마이페이지 인덱스"/>
+		<put-attribute name="title" value="고객센터 인덱스"/>
     	<put-attribute name="header" value="/WEB-INF/views/common/header.jsp"/>
     	<put-attribute name="body" value=""/>
     	<put-attribute name="left" value="/WEB-INF/views/common/left-service.jsp"/>
@@ -31,6 +31,12 @@
 	<definition name="faqList" extends="service.index">
     	<put-attribute name="title" value="FAQ 게시판"/>
     	<put-attribute name="body" value="/WEB-INF/views/service/faqList.jsp"/>
+    </definition>
+    
+	<definition name="showAttfile" template="/WEB-INF/views/index_shownAttFile.jsp">
+    	<put-attribute name="title" value="첨부 자료 보여주기"/>
+    	<put-attribute name="body" value="/WEB-INF/views/service/shownAttFile.jsp"/>
+    	<put-attribute name="footer" value="/WEB-INF/views/common/footer.jsp"/>
     </definition>
     
 </tiles-definitions>

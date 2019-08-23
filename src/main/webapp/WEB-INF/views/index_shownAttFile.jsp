@@ -44,13 +44,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/all.css">
 </head>
 
-<tiles:insertAttribute name="header"/>
-<div class="col-md-2 cat-sidebar hide_mobile" style="right: 0%;">
-<tiles:insertAttribute name="left"/>
-</div>
-<div class="col-md-10 col-xs-12 cat-content">
 <tiles:insertAttribute name="body"/>
-</div>
 <tiles:insertAttribute name="footer"/>
    
 </body>

@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -58,9 +59,23 @@ public class NoticeViewController {
         }
         ServiceNoticeCommand noticeCommand = servicesService.noticeView(num);
         List<NoticeFileCommand> file_list = servicesService.getNoticeFile(num);
+        List<NoticeFileCommand> attFile_list = servicesService.getNoticeAttFile(num);
         model.addAttribute("notice", noticeCommand);
         model.addAttribute("file_list", file_list);
+        model.addAttribute("attFile_list", attFile_list);
 		
 		return "noticeView";
 	}
+	
+	@RequestMapping(value="/service/showSample.do", method=RequestMethod.POST)
+	public String showAttfile(@ModelAttribute("NoticeFileCommand") NoticeFileCommand noticeFileCommand,	Model model) {
+		if(log.isDebugEnabled())log.debug("NoticeFileCommand : " + noticeFileCommand);
+		
+		String notice_attFile_storedName = servicesService.showAttfile(noticeFileCommand);
+		
+		model.addAttribute("storedName", notice_attFile_storedName);
+		
+		return "showAttfile";
+	}
+	
 }

@@ -27,4 +27,8 @@ public interface ServicesMapper {
 
 	public List<ServiceNoticeCommand> getNoticeSomeList();
 
+	public List<NoticeFileCommand> getNoticeAttFile(int num);
+
+	public String showAttfile(NoticeFileCommand noticeFileCommand);
+
 }

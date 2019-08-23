@@ -48,4 +48,14 @@ public class ServicesServiceImpl implements ServicesService{
 	public List<ServiceNoticeCommand> getNoticeSomeList() {
 		return servicesMapper.getNoticeSomeList();
 	}
+
+	@Override
+	public List<NoticeFileCommand> getNoticeAttFile(int num) {
+		return servicesMapper.getNoticeAttFile(num);
+	}
+
+	@Override
+	public String showAttfile(NoticeFileCommand noticeFileCommand) {
+		return servicesMapper.showAttfile(noticeFileCommand);
+	}
 }

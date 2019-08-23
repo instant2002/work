@@ -2,8 +2,8 @@ jQuery(function($) {
 "use strict";
 
 
- $(document).ready(function() {
 /* disallow click in dropdown content */
+$(document).ready(function() {
 $('.dd-wrapper, .dropdown-head').on('click', function(e) {
    e.stopPropagation();
 });

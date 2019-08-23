@@ -49,4 +49,23 @@
 			)
 			]]>
 	</insert>
+	
+	<select id="getNoticeAttFile" parameterType="Integer" resultType="NoticeFileCommand">
+		SELECT
+			*
+		FROM
+			notice_attachments_file
+		WHERE
+			notice_idx = #{num}
+	</select>
+	
+	<select id="showAttfile" parameterType="NoticeFileCommand" resultType="String">
+		SELECT
+			notice_attFile_storedName
+		FROM
+			notice_attachments_file
+		WHERE
+			notice_idx = #{notice_idx} AND
+			notice_attFile_name = #{notice_attFile_name}
+	</select>
 </mapper>
