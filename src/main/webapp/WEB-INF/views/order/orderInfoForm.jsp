@@ -18,9 +18,18 @@
 		<h2><strong>주문/결제</strong></h2>
 	</div>
 	<table class="table table-striped">
-		<thead style="font-weight: bold; border: solid #ddd; border-width: 2px 0px;">
+		<colgroup>
+			<col width="15%" class="hidden-xs">
+			<col width="30%" class="hidden-sm hidden-md hidden-lg" >
+			<col width="45%">
+			<col width="10%">
+			<col width="10%">
+			<col width="10%">
+			<col width="10%">
+		</colgroup>
+		<thead class="hidden-xs" style="font-weight: bold; border: solid #ddd; border-width: 2px 0px;">
 			<tr>
-				<td style="width: 80px;"></td>
+				<td></td>
 				<td>상품 정보</td>
 				<td>수량</td>
 				<td>상품 금액</td>
@@ -35,15 +44,19 @@
 			<input type="hidden" name="payment_list[${status.index}].quantity" value="${quantity[status.index]}">
 			<input type="hidden" name="payment_list[${status.index}].origin_price" value="${order.origin_price }">
 			<input type="hidden" name="payment_list[${status.index}].dc_price" value="${order.dc_price }">
-			
-				<td><img src="${pageContext.request.contextPath}${order.book_img_storedName}" style="width: 80px;"></td>
+				<td style="vertical-align: middle;"><img src="${pageContext.request.contextPath}${order.book_img_storedName}"></td>
 				<td style="vertical-align: middle;">
-					<a href="/book/detailView.do?product_no=${order.product_no }">${order.book_name}</a>
+					<font class="mobile_product_text"><b><a href="/book/detailView.do?product_no=${order.product_no }">${order.book_name}</a></b></font><br>
+					<div class="hidden-sm hidden-md hidden-lg">
+						<font class="mobile_price_text">상품 금액 : </font>&nbsp;<font class="origin_price_${status.index } mobile_price_text" ><fmt:formatNumber value="${order.origin_price*quantity[status.index]}" groupingUsed="true"/>원</font>
+						<br><font class="mobile_price_text">할인 금액 : </font>&nbsp;<font class="dc_price_${status.index } mobile_price_text" ><fmt:formatNumber value="${order.dc_price*quantity[status.index]}" groupingUsed="true"/>원</font>
+						<br><font class="mobile_price_text">${quantity[status.index]}개 / 기본 배송비</font>
+					</div>
 				</td>
-				<td style="vertical-align: middle;">${quantity[status.index]}</td>
-				<td id="origin_price_${status.index }" style="vertical-align: middle;"><fmt:formatNumber value="${order.origin_price*quantity[status.index]}" groupingUsed="true"/>원</td>
-				<td id="dc_price_${status.index }" style="vertical-align: middle;"><fmt:formatNumber value="${order.dc_price*quantity[status.index]}" groupingUsed="true"/>원</td>
-				<td style="vertical-align: middle;">기본 배송비</td>
+				<td class="hidden-xs" style="vertical-align: middle;">${quantity[status.index]}개</td>
+				<td class="hidden-xs" id="origin_price_${status.index }" style="vertical-align: middle;"><fmt:formatNumber value="${order.origin_price*quantity[status.index]}" groupingUsed="true"/>원</td>
+				<td class="hidden-xs" id="dc_price_${status.index }" style="vertical-align: middle;"><fmt:formatNumber value="${order.dc_price*quantity[status.index]}" groupingUsed="true"/>원</td>
+				<td class="hidden-xs" style="vertical-align: middle;">기본 배송비</td>
 			</tr>
 			<c:set var="price_sum" value="${price_sum+(order.origin_price*quantity[status.index]) }"/>
 			<c:set var="dc_price_sum" value="${dc_price_sum+(order.dc_price*quantity[status.index]) }"/>
@@ -52,7 +65,8 @@
 			<c:set var="goodsname" value="${goodsname}${order.book_name}${status.first ? '' : ','}"/> 
 		</c:forEach>
 			<tr style="background: #d7d9db;">
-			<td colspan="7" style="text-align: right;">(30,000원 이상 결제시 배송비 무료) 기본 배송비 : 3,000원</td>
+			<td class="hidden-xs" colspan="7" style="text-align: right; background: #d7d9db;">(30,000원 이상 결제시 배송비 무료) 기본 배송비 : 3,000원</td>
+			<td class="hidden-sm hidden-md hidden-lg" colspan="2" style="text-align: right; background: #d7d9db;">기본 배송비 : 3,000원<br>(30,000원 이상 결제시 배송비 무료)</td>
 			</tr>
 		</tbody>
 	</table>
@@ -107,16 +121,18 @@
 <div class="col-md-6 cat-content">
 <fieldset>
 <div><legend>배송 정보</legend></div>
-
+<div class="col-md-4 hidden-sm hidden-md hidden-lg" style="height: 40px; padding-top: 6px;">
+	<input id="same_info_chkbox_m" type="checkbox" name="checkbox" value="2" class="stl hidden-sm hidden-md hidden-lg same_info_chkbox">
+	<label for="same_info_chkbox_m" class="stl hidden-sm hidden-md hidden-lg" style="margin-left: 15px;"><span></span><b>주문자 정보와 동일</b></label>
+  </div>
 <div class="form-group_height">
   <label class="col-md-3 control-label" for="textinput">받는분</label>  
   <div class="col-md-4">
   <input id="recipientname" name="recipientname" type="text" class="form-control input-md" value=""  maxlength="40">
   </div> 
-  <div class="col-md-4" style="height: 40px; padding-top: 6px;">
-  <label class="checkbox-inline">
- 	 <input type="checkbox" id="same_info_chkbox"> <font>주문자 정보와 동일</font>
-  </label>
+  <div class="col-md-4 hidden-xs" style="height: 40px; padding-top: 6px;">
+ 	<input id="same_info_chkbox_pc" type="checkbox" name="checkbox" value="2" class="stl same_info_chkbox">
+	<label for="same_info_chkbox_pc" class="stl hidden-xs" style="margin-left: 15px;"><span></span><b>주문자 정보와 동일</b></label>
   </div>
 </div>
 
@@ -161,24 +177,43 @@
 </div>
 </form>
 </div>
-
-<table class="table total-table" style="margin-top: 50px;">
+<div class="col-xs-12">
+<table class="table total-table">
 	<tr>
-		<td colspan="4" class="total-head">Total</td>
+		<td colspan="4" class="total-head hidden-xs">Total</td>
+		<td colspan="2" class="total-head hidden-sm hidden-md hidden-lg">Total</td>
 	</tr>
-	<tr>
-		<td>상품 금액 / <font id="total_num">${fn:length(order)}종</font> <font id="total_quantity">(${quantity_sum }개)</font> </td>
+	<tr class="hidden-xs">
+		<td>상품 금액 / <font id="total_num">${fn:length(order)}종</font> <font id="total_quantity">(${quantity_sum}개)</font> </td>
 		<td>할인 금액</td>
 		<td>배송비</td>
 		<td>최종 금액</td>
 	</tr>
-	<tr>
+	<tr class="hidden-xs">
 		<td id="price_sum"><fmt:formatNumber value="${price_sum}" groupingUsed="true"/>원</td>
 		<td id="dc_price_sum"><fmt:formatNumber value="${dc_price_sum}" groupingUsed="true"/>원</td>
 		<td id="shipping_fee"><fmt:formatNumber value="${shipping_fee}" groupingUsed="true"/>원</td>
 		<td id="total_price"><fmt:formatNumber value="${total_price+shipping_fee }" groupingUsed="true"/>원</td>
 	</tr>
+	<tr class="hidden-sm hidden-md hidden-lg">
+		<td>상품 금액 / <font class="total_num">${fn:length(order)}종</font> <font class="total_quantity">(${quantity_sum }개)</font></td>
+		</td>
+		<td class="price_sum"><fmt:formatNumber value="${price_sum}" groupingUsed="true"/>원</td>
+	</tr>	
+	<tr class="hidden-sm hidden-md hidden-lg">
+		<td>할인 금액</td>
+		<td class="dc_price_sum"><fmt:formatNumber value="${dc_price_sum}" groupingUsed="true"/>원</td>
+	</tr>	
+	<tr class="hidden-sm hidden-md hidden-lg">
+		<td>배송비</td>
+		<td class="shipping_fee"><fmt:formatNumber value="${shipping_fee}" groupingUsed="true"/>원</td>
+	</tr>	
+	<tr class="hidden-sm hidden-md hidden-lg">
+		<td><b>합계 금액</b></td>
+		<td class="sum_price"><b><fmt:formatNumber value="${total_price+shipping_fee }" groupingUsed="true"/>원</b></td>
+	</tr>	
 </table>
+</div>
 <div class="col-xs-12">
 <div class="col-md-5"></div>
 	<div class="col-md-2">
@@ -190,7 +225,6 @@
 	<div class="col-md-5"></div>
 </div>
 
-<!-- 상용 JS(가맹점 MID 변경 시 주석 해제, 테스트용 JS 주석 처리 필수!) -->
 
 <form id="SendPayForm" method="POST" action="https://stdpay.inicis.com/payMain/pay" accept-charset="UTF-8">
 <!-- 이니페이 테스트 -->
@@ -216,7 +250,24 @@
 	<input type="hidden" name="buyeremail" id="buyeremail_form" value="">
 	<input type="hidden" name="buyertel" id="buyertel_form" value="">
 	<input type="hidden" name="merchantData" id="merchantData_form" value="">
-	
+</form>
+
+<form id="SendMobilePayForm" method="POST" action="https://mobile.inicis.com/smart/wcard/" target="BTPG_WALLET" accept-charset="EUC-KR">
+	<%-- <input type="hidden" name="P_MID" value="${inipay.mid }"> --%>
+	<input type="hidden" name="P_MID" value="INIpayTest">
+	<input type="hidden" name="P_OID" value="${order_code }">
+	<input type="hidden" name="P_AMT" value="1000"/>
+	<input type="hidden" name="P_UNAME" id="P_UNAME" value="">
+	<input type="hidden" name="P_GOODS" id="P_GOODS" value="${goodsname}">
+	<%-- <input type="hidden" name="P_NEXT_URL" value="http://${pageContext.request.serverName}/order/paymentMobileResult.do"> 변경!
+	<input type="hidden" name="P_NOTI_URL" value="http://${pageContext.request.serverName}/payment/mobileNoti.do"> --%>
+	<input type="hidden" name="P_NEXT_URL" value="http://192.168.0.100:8080/order/paymentMobileResult.do">
+	<input type="hidden" name="P_NOTI_URL" value="http://192.168.0.100:8080/payment/mobileNoti.do">
+	<input type="hidden" name="P_RESERVED" value="twotrs_isp=Y&block_isp=Y&twotrs_isp_noti=N&ismart_use_sign=Y&vbank_receipt=Y&bank_receipt=N&apprun_check=Y">
+	<input type="hidden" name="P_HPP_METHOD" value="1">
+	<input type="hidden" name="P_EMAIL" id="P_EMAIL" value="">
+	<input type="hidden" name="P_MOBILE" id="P_MOBILE" value="">
+	<input type="hidden" name="P_NOTI" id="P_NOTI" value="">
 </form>
 <script language="javascript" type="text/javascript" src="https://stdpay.inicis.com/stdjs/INIStdPay.js" charset="UTF-8"></script>
 <!-- <script language="javascript" type="text/javascript" src="https://stgstdpay.inicis.com/stdjs/INIStdPay.js" charset="UTF-8"></script> -->
@@ -228,9 +279,34 @@ function callInipay(){
 	$("#buyername_form").val($("#buyername").val());
 	$("#buyeremail_form").val($("#buyeremail").val());
 	$("#buyertel_form").val($("#buyertel").val());
-	$("#merchantData_form").val($("#orderInfo").serialize());
+	$("#P_NOTI").val($("#orderInfo").serialize());
 	
 	INIStdPay.pay('SendPayForm');
+}
+
+function mobile_callInipay(){
+	$("#P_UNAME").val($("#buyername").val());
+	$("#P_EMAIL").val($("#buyeremail").val());
+	$("#P_MOBILE").val($("#buyertel").val());
+	$("#P_NOTI").val($("#orderInfo").serialize().replace(/&/gi,",,"));
+	
+	
+	var width = 330;
+	var height = 480;
+	var xpos = (screen.width - width) / 2;
+	var ypos = (screen.width - height) / 2;
+	var position = "top=" + ypos + ",left=" + xpos;
+	var features = position + ", width=320, height=440";
+	var wallet = window.open("", "BTPG_WALLET", features);
+	
+	if (wallet == null){
+		if((webbrowser.indexOf("Windows NT 5.1")!=-1) && (webbrowser.indexOf("SV1")!=-1)){    // Windows XP Service Pack 2
+			alert("팝업이 차단되었습니다. 브라우저의 상단 노란색 [알림 표시줄]을 클릭하신 후 팝업창 허용을 선택하여 주세요.");
+		}else{
+			alert("팝업이 차단되었습니다.");
+		}return false;
+	}
+	$("#SendMobilePayForm").submit();
 }
 
 //다음 우편번호 검색 함수
@@ -320,7 +396,7 @@ function callInipay(){
 		return str;
 	}
 	
-	 $("#same_info_chkbox").click(function(){
+	 $(".same_info_chkbox").click(function(){
 		var isChecked = $(this).is(":checked");
 		if(isChecked){
 		$("#recipientname").val($("#buyername").val());

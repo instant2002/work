@@ -55,7 +55,12 @@
 			</div>
 			<div class="col-md-6 col-lg-5 col-xs-12 product-info">
 				<div id="zoom-window-container" style="position: relative;"></div>
-				<div class="product-reviews">
+				<div class="product-reviews hidden-sm hidden-md hidden-lg">
+					<h6>
+						<strong>${book.book_name }</strong>
+					</h6>
+				</div>
+				<div class="product-reviews hidden-xs">
 					<h3>
 						<strong>${book.book_name }</strong>
 					</h3>
@@ -64,52 +69,84 @@
 				<c:choose>
 					<c:when test="${book.discounted == 'Y'}">
 						<c:set value="${book.origin_price-book.dc_price}" var="book_price" />
-						<div class="price" style="line-height: 37px;">
-							<font class="book-detail_1">정가</font>&nbsp;&nbsp;&nbsp;&nbsp;<span class="old-price"><fmt:formatNumber value="${book.origin_price}" groupingUsed="true" />원</span> <label style="color: #f89412; font-size: 23px; font-weight: bold;"><fmt:formatNumber value="${(book.dc_price / book.origin_price * 100)}" pattern="#" />%↓</label> <br> <font class="book-detail_1">판매가</font>&nbsp;&nbsp;<font style="color: #26387C"><fmt:formatNumber value="${book.origin_price-book.dc_price}" groupingUsed="true" />원</font>
-						</div>
+						<table class="table table-borderless price product_detail">
+							<colgroup>
+								<col width="30%">
+								<col width="50%">
+								<col width="20%">
+							</colgroup>
+							<tr>
+								<td><font class="book-detail_1">정가</font></td>
+								<td>
+									<span class="old-price book-detail_1" style="font-weight: normal;"><fmt:formatNumber value="${book.origin_price}" groupingUsed="true" />원</span>
+									<label class="detail_dc"><fmt:formatNumber value="${(book.dc_price / book.origin_price * 100)}" pattern="#" />%↓</label>
+								</td>
+								<td>
+									<p class="availability col-sm-pull-right col-xs-pull-left hidden-xs" style="float: right;">
+										재고 : <span> <c:if test="${book.stock == 'Y' }">
+												<span class="in-stock"> </span>있음</span>
+										</c:if>
+										<c:if test="${book.stock != 'Y' }">
+											<span class="out-stock"> </span>없음</span>
+										</c:if>
+									</p>
+								</td>
+							</tr>
+							<tr>
+								<td><font class="book-detail_1">판매가</font></td>
+								<td><font class="detail_price"><fmt:formatNumber value="${book.origin_price-book.dc_price}" groupingUsed="true" />원</font></td>
+								<td></td>
+							</tr>
+						</table>
 					</c:when>
 					<c:otherwise>
 						<c:set value="${book.origin_price}" var="book_price" />
-						<div class="price">
-							<font class="book-detail_1">판매가</font>&nbsp;&nbsp;<font style="color: #26387C"><fmt:formatNumber value="${book.origin_price}" groupingUsed="true" />원</font>
-						</div>
+						<table class="table table-borderless price product_detail">
+							<colgroup>
+								<col width="20%">
+								<col width="60%">
+								<col width="20%">
+							</colgroup>
+							<tr>
+								<td><font class="book-detail_1">판매가</font></td>
+								<td><font class="detail_price"><fmt:formatNumber value="${book.origin_price}" groupingUsed="true" />원</font></td>
+								<td></td>
+							</tr>
+						</table>
 					</c:otherwise>
 				</c:choose>
-				<p class="availability col-sm-pull-right col-xs-pull-left">
-					재고 : <span> <c:if test="${book.stock == 'Y' }">
-							<span class="in-stock"> </span>있음</span>
-					</c:if>
-					<c:if test="${book.stock != 'Y' }">
-						<span class="out-stock"> </span>없음</span>
-					</c:if>
-				</p>
 				<div class="hr"></div>
-				<table class="table table-borderless">
+				<table class="table table-borderless price product_detail">
+					<colgroup>
+						<col width="30%">
+						<col width="70%">
+					</colgroup>
 					<tr>
-						<th>상품 번호</th>
-						<td><span>${book.product_no}</span></td>
+						<td><font class="book-detail_1">상품 번호</font></td>
+						<td><span class="book-detail_1">${book.product_no}</span></td>
 					</tr>
 					<tr>
-						<th>저자</th>
-						<td><span>${book.writer}</span></td>
+						<td><font class="book-detail_1">저자</font></td>
+						<td><span class="book-detail_1">${book.writer}</span></td>
 					</tr>
 					<tr>
-						<th>출판일</th>
-						<td><span>${book.release_date}</span></td>
+						<td><font class="book-detail_1">출판일</font></td>
+						<td><span class="book-detail_1">${book.release_date}</span></td>
 					</tr>
 				</table>
 				<div class="hr"></div>
-				<table class="table table-borderless book-detail_table">
+				
+				<table class="table table-borderless price product_detail">
 					<colgroup>
-						<col width="40%">
-						<col width="60%">
+						<col width="30%">
+						<col width="70%">
 					</colgroup>
 					<tr>
 						<td><font class="book-detail_1">주문 수량</font></td>
 						<td>
 							<form action="/order/orderCheckForm.do" method="POST" id="orderSubForm">
 								<div class="cart_quantity_button clrfix product-count pull-left">
-									<a rel="nofollow" class="btn btn-default btn-minus" href="#" title="Subtract" onclick="edit_quantity_minus();">&ndash;</a> <input type="text" size="2" autocomplete="off" class="cart_quantity_input form-control grey count" id="book_quantity" value="1" name="order_list[0].quantity" style="width: 80px;" onkeyup="this.value=this.value.replace(/[^0-9]/g,'');"> <a rel="nofollow" class="btn btn-default btn-plus" href="#" title="Add" onclick="edit_quantity_plus();">+</a>
+									<a rel="nofollow" class="btn btn-default btn-minus" href="#" title="Subtract" onclick="edit_quantity_minus();">&ndash;</a> <input type="text" size="2" autocomplete="off" class="cart_quantity_input form-control grey count" id="book_quantity" value="1" name="order_list[0].quantity" style="width: 80px; font-size: 16px;" onkeyup="this.value=this.value.replace(/[^0-9]/g,'');"> <a rel="nofollow" class="btn btn-default btn-plus" href="#" title="Add" onclick="edit_quantity_plus();">+</a>
 								</div>
 								<input type="hidden" name="order_list[0].product_no" value="${book.product_no}">
 							</form>
@@ -117,31 +154,31 @@
 					</tr>
 					<tr>
 						<td><font class="book-detail_1">배송비</font></td>
-						<td><font class="book-detail_2">3,000원<br>(30,000원 이상 구매시 무료 배송)
-						</font></td>
+						<td><font class="book-detail_1">3,000원<br></font><font class="book-detail_2">(30,000원 이상 구매 시 무료 배송)</font></td>
 					</tr>
 					<tr>
-						<td><font class="book-detail_1">총 상품 금액</font>
-						</div></td>
+						<td><font class="book-detail_1">총 상품 금액</font></td>
 						<td>
-							<div class="total_price" id="total_price">
-								<font style="color: #26387C"><fmt:formatNumber value="${book_price}" groupingUsed="true" /> 원</font>
+							<div class="total_price detail_price" id="total_price">
+								<font class="detail_price"><fmt:formatNumber value="${book_price}" groupingUsed="true" />원</font>
 							</div>
 						</td>
 					</tr>
 				</table>
 				<div class="hr"></div>
+				
 				<c:if test="${book.stock == 'Y' }">
-					<button class="btn btn-buy-col pull-left add-cart" onclick="document.getElementById('orderSubForm').submit();">
+					<button class="btn btn-buy-col pull-left add-cart detail_btn_mobile" onclick="document.getElementById('orderSubForm').submit();">
 						<i class="fas fa-book-open"></i>&nbsp;&nbsp;주문하기
 					</button>
-					<button class="btn btn-cart-col pull-left add-cart" onclick="insertBasket(${book.product_no});">
+					<button class="btn btn-cart-col pull-left add-cart detail_btn_mobile" onclick="insertBasket(${book.product_no});">
 						<i class="icon-basket"></i>&nbsp;&nbsp;장바구니
 					</button>
-					<button class="btn btn-wish-col pull-left add-cart" onclick="insertWishList(${book.product_no});">
+					<button class="btn btn-wish-col pull-left add-cart detail_btn_mobile" onclick="insertWishList(${book.product_no});">
 						<i class="icon-heart"></i>&nbsp;&nbsp;위시리스트
 					</button>
 				</c:if>
+				
 				<c:if test="${book.stock == 'N' }">
 					<div class="col-xd=12 text-center">
 						<h5>현재 상품이 매진되었습니다.</h5>
@@ -150,17 +187,17 @@
 					</div>
 				</c:if>
 				<div class="hr"></div>
-				<table class="table table-borderless" style="margin-bottom: 6px;">
+				<table class="table table-borderless price product_detail" style="margin-bottom: 6px;">
 					<colgroup>
-						<col width="20%">
-						<col width="80%">
+						<col width="30%">
+						<col width="70%">
 					</colgroup>
 					<tr>
-						<th rowspan="2">주문 문의</th>
-						<td style="padding: 0;">02) 6953-0822</td>
+						<td rowspan="2"><font class="book-detail_1">주문 문의</font></td>
+						<td>02) 6953-0822</td>
 					</tr>
 					<tr>
-						<td style="padding: 0;">010) 2268-7499</td>
+						<td>010) 2268-7499</td>
 					</tr>
 				</table>
 				<div class="modal fade" id="basketModal">
@@ -238,7 +275,7 @@
 	   var currentVal = currentVal + 1; 
 	   var price = <c:out value="${book_price}"/>;
 	   var total_price = numberWithCommas(price * currentVal);
-	   $("#total_price").html(total_price+" 원");
+	   $("#total_price").html("<font class='detail_price'>"+total_price+"원</font>");
    }
    
    function edit_quantity_minus() {
@@ -250,7 +287,7 @@
 		   if(!isNaN(total_price)){
 			   total_price = 0;
 		   }
-		   $("#total_price").html(total_price+" 원");
+		   $("#total_price").html("<font class='detail_price'>"+total_price+"원</font>");
    		}
    }
 
@@ -263,7 +300,7 @@
 	    oldVal = currentVal;
 	    var price = <c:out value="${book_price}"/>;
 	    var total_price = numberWithCommas(price * currentVal);
-	    $("#total_price").html(total_price+" 원");
+	    $("#total_price").html("<font class='detail_price'>"+total_price+"원</font>");
 	    
 	});
    

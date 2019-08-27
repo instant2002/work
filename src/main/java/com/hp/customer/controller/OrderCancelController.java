@@ -59,8 +59,8 @@ public class OrderCancelController {
 					INIpay50 inipay = new INIpay50();
 					String mid = "unionbooks"; // 가맹점 ID(가맹점 수정후 고정)
 					
-					inipay.SetField("inipayhome", "/unionbooks2019/tomcat/webapps/ROOT/INIpay50_JAVA");		// INIpay50 절대경로 (key / log 디렉토리) 변경!
-//					inipay.SetField("inipayhome", "/D:\\study\\work\\src\\main\\webapp\\INIpay50_JAVA");		// INIpay50 절대경로 (key / log 디렉토리)
+//					inipay.SetField("inipayhome", "/unionbooks2019/tomcat/webapps/ROOT/INIpay50_JAVA");		// INIpay50 절대경로 (key / log 디렉토리) 변경!
+					inipay.SetField("inipayhome", "/D:\\study\\work\\src\\main\\webapp\\INIpay50_JAVA");		// INIpay50 절대경로 (key / log 디렉토리)
 					inipay.SetField("debug", "true");								// 로그모드  (true / false)
 					inipay.SetField("type", "cancel");								// type (고정)
 					inipay.SetField("crypto", "execure");						    // 암복호화모듈 (고정)

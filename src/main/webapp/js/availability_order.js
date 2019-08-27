@@ -1,5 +1,14 @@
+function isMobile(){
+		var UserAgent = navigator.userAgent;
+		if (UserAgent.match(/iPhone|iPod|Android|Windows CE|BlackBerry|Symbian|Windows Phone|webOS|Opera Mini|Opera Mobi|POLARIS|IEMobile|lgtelecom|nokia|SonyEricsson/i) != null || UserAgent.match(/LG|SAMSUNG|Samsung/) != null)
+		{
+			return true;
+		}else{
+			return false;
+		}
+	}
+
 function orderSubFunc(){
-	
 	if($('#buyername').val()==''){
 		alert('주문자 정보를 입력하세요.');
 		$('#buyername').focus();
@@ -50,6 +59,11 @@ function orderSubFunc(){
 		$('#recipient_address2').focus();
 		return false;
 	}
-	callInipay();
+
+	if(isMobile()){
+		mobile_callInipay();
+	}else{
+		callInipay();
+	}
 }
 

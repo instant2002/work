@@ -55,7 +55,7 @@
 				<button class="btn btn-yet-col" type="button" onclick="document.getElementById('orderingForm').submit();" style="font-size: 12px; padding: 2px 10px; font-family: -webkit-body;">적용</button>
 				<button class="btn btn-yet-col" type="button" onclick="location.href='/book/bookList.do?page=${pageMaker.page}&keyword=${keyword}'" style="font-size: 12px; padding: 2px 10px; font-family: -webkit-body;">초기화</button>
 			</div>
-			<div class="col-md-1 col-lg-2 text-right">
+			<div class="col-md-1 col-lg-2 text-right hide_mobile">
 				<div class="cvo-view-type" role="tablist">
 					<ul class="list-inline">
 						<li class="active"><a href="#pl-grid" role="tab" data-toggle="tab" class="cvo-grid"> <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="14px" height="14px" viewBox="0 0 50 50" xml:space="preserve">
@@ -94,20 +94,20 @@
 				</c:when>
 				<c:otherwise>
 				<c:forEach var="book_list" items="${book_list}">
-					<div class="col-md-3 col-sm-6 pl-item" style="margin-bottom: 50px;">
+					<div class="col-md-3 col-xs-4 pl-item">
 						<figure>
 							<a href="/book/detailView.do?product_no=${book_list.product_no }"> <img src="${pageContext.request.contextPath}${book_list.book_img_storedName }" width="200px">
 							</a>
 							<c:choose>
 								<c:when test="${book_list.discounted == 'Y'}">
-									<label class="pl-badge"><fmt:formatNumber value="${(book_list.dc_price / book_list.origin_price * 100)}" pattern="#" />%↓
+									<label class="pl-badge hide_mobile"><fmt:formatNumber value="${(book_list.dc_price / book_list.origin_price * 100)}" pattern="#" />%↓
 									</label>
 								</c:when>
 							</c:choose>
 						</figure>
 						<div class="pl-caption">
 							<p class="pl-price-block">
-							<a href="/book/detailView.do?product_no=${book_list.product_no }"><span class="pl-name ellipsis_8">${book_list.book_name }</span></a><br>
+							<a href="/book/detailView.do?product_no=${book_list.product_no }"><span class="pl-name ellipsis_8 mobile_book_name">${book_list.book_name }</span></a><br>
 								<c:choose>
 									<c:when test="${book_list.discounted == 'Y'}">
 										<span class="pl-price-old"><fmt:formatNumber value="${book_list.origin_price}" groupingUsed="true" />원</span>

@@ -10,11 +10,25 @@
 	<div class="col-xs-12 text-center">
 		<h2><strong>위시리스트</strong></h2>
 	</div>
+	<input id="wish_checkbox_all_pc" type="checkbox" name="checkbox" class="stl" checked="checked">
+	<label for="wish_checkbox_all_pc" class="stl wish_checkbox_all" style="margin-left: 15px;"><span></span></label>
 	<table class="table">
-		<thead style="font-weight: bold; border: solid #ddd; border-width: 2px 0px; background: #f9f9f9;">
+		<colgroup>
+			<col width="1%">
+			<col width="14%" class="hidden-xs">
+			<col width="30%" class="hidden-sm hidden-md hidden-lg" >
+			<col width="40%">
+			<col width="15%" class="hidden-xs">
+			<col width="15%" class="hidden-xs">
+			<col width="15%" class="hidden-xs">
+		</colgroup>
+		<thead class="hidden-xs" style="font-weight: bold; border: solid #ddd; border-width: 2px 0px; background: #f9f9f9;">
 			<tr>
-				<td style="width: 16px;"><input type="checkbox" id="wish_checkbox_all" checked="checked"></td>
-				<td style="width: 80px;"></td>
+				<td>
+					<input id="wish_checkbox_all_pc" type="checkbox" name="checkbox" class="stl" checked="checked">
+					<label for="wish_checkbox_all_pc" class="stl wish_checkbox_all"><span></span></label>
+				</td>
+				<td ></td>
 				<td>상품 정보</td>
 				<td>상품 금액</td>
 				<td>할인 금액</td>
@@ -27,34 +41,43 @@
 		</table>
 	</c:when>
 	<c:otherwise>
-	
 		<tbody>
 		<c:forEach var="wish" items="${wish}" varStatus="status">
 		<input type="hidden" value="${wish.product_no }" id="product_no_${status.index}">
 			<tr>
-				<td style="vertical-align: middle;"><input type="checkbox" class="wish_checkbox" id="wish_checkbox_${status.index}" checked="checked" value="${status.index}"></td>
-				<td><img src="${pageContext.request.contextPath}${wish.book_img_storedName}" style="width: 80px;"></td>
 				<td style="vertical-align: middle;">
-					<a href="/book/detailView.do?product_no=${wish.product_no }">${wish.book_name}</a>
+					<input id="wish_checkbox_${status.index}" type="checkbox" name="checkbox" value="${status.index}" class="stl hidden-sm hidden-md hidden-lg" checked="checked">
+					<label for="wish_checkbox_${status.index}" class="stl wish_checkbox_all"><span></span></label>
 				</td>
-				<td id="origin_price_${status.index }" style="vertical-align: middle;"><fmt:formatNumber value="${wish.origin_price}" groupingUsed="true"/>원</td>
-				<td id="dc_price_${status.index }" style="vertical-align: middle;"><fmt:formatNumber value="${wish.dc_price}" groupingUsed="true"/>원</td>
-				<td style="vertical-align: middle;">기본 배송비</td>
+				<td style="vertical-align: middle;"><img src="${pageContext.request.contextPath}${wish.book_img_storedName}"></td>
+				<td style="vertical-align: middle;">
+					<font class="mobile_product_text"><b><a href="/book/detailView.do?product_no=${wish.product_no }">${wish.book_name}</a></b></font><br>
+					<div class="hidden-sm hidden-md hidden-lg">
+						<font class="mobile_price_text">상품 금액 : </font>&nbsp;<font class="origin_price_${status.index } mobile_price_text" ><fmt:formatNumber value="${wish.origin_price}" groupingUsed="true"/>원</font>
+						<br><font class="mobile_price_text">할인 금액 : </font>&nbsp;<font class="dc_price_${status.index } mobile_price_text" ><fmt:formatNumber value="${wish.dc_price}" groupingUsed="true"/>원</font>
+						<br><font class="mobile_price_text">기본 배송비</font>
+						<br><br>
+					</div>
+				</td>
+				<td class="hidden-xs" id="origin_price_${status.index }" style="vertical-align: middle;"><fmt:formatNumber value="${wish.origin_price}" groupingUsed="true"/>원</td>
+				<td class="hidden-xs" id="dc_price_${status.index }" style="vertical-align: middle;"><fmt:formatNumber value="${wish.dc_price}" groupingUsed="true"/>원</td>
+				<td class="hidden-xs" style="vertical-align: middle;">기본 배송비</td>
 			</tr>
 			
 		</c:forEach>
 			<tr style="background: #d7d9db;">
-			<td colspan="7" style="text-align: right;">기본 배송비 : 2,500원</td>
+			<td class="hidden-xs" colspan="7" style="text-align: right;">기본 배송비 : 3,000원<br>(30,000원 이상 결제시 배송비 무료)</td>
+			<td class="hidden-sm hidden-md hidden-lg" colspan="3" style="text-align: right;">기본 배송비 : 3,000원<br>(30,000원 이상 결제시 배송비 무료)</td>
 			</tr>
 		</tbody>
 	</table>
 	
 	<div class="col-xs-12" style="margin-bottom: 20px; padding-right: 0; padding-left: 0;">
 	<div class="col-md-6" style="padding-left: 0;">
-		<button type="button" class="btn btn-yet-col btn-sm" onclick="toBasket('select')" style="border: 1px solid #acc;">
+		<button type="button" class="btn btn-yet-col btn-sm union_border_btn" onclick="toBasket('select')">
 			선택 장바구니에 담기
 		</button>
-		<button type="button" class="btn btn-yet-col btn-sm" onclick="toBasket('all')" style="margin-left: 10px; border: 1px solid #acc;">
+		<button type="button" class="btn btn-yet-col btn-sm union_border_btn" onclick="toBasket('all')" style="margin-left: 10px;">
 			전체 장바구니에 담기
 		</button>
 	</div>
@@ -92,7 +115,7 @@ function deletewish(action){
 		}
 	}else{
 		if($(".wish_checkbox:checked").length == 0){
-			alert("선택된 제품이 없습니다.");
+			alert("선택된 상품이 없습니다.");
 			return false;
 		}
 		
@@ -152,7 +175,7 @@ function toBasket(action){
 		}
 	}else{
 		if($(".wish_checkbox:checked").length == 0){
-			alert("선택된 제품이 없습니다.");
+			alert("선택된 상품이 없습니다.");
 			return false;
 		}
 		
@@ -195,7 +218,7 @@ function toBasket(action){
 }
 
 $(document).ready(function(){
-	$("#wish_checkbox_all").click(function(){
+	$(".wish_checkbox_all").click(function(){
 		var isChecked = $(this).is(":checked");
 		$(".wish_checkbox").prop("checked", isChecked);
 	});
@@ -210,7 +233,7 @@ $(document).ready(function(){
 		}else{
 			active = false;
 		}
-		if($("#wish_checkbox_all").is(":checked") || active){
+		if($(".wish_checkbox_all").is(":checked") || active){
 			$("#wish_checkbox_all").prop("checked", isChecked);
 			}
 		});

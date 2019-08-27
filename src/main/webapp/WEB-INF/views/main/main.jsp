@@ -8,7 +8,7 @@
 				<h2 class="news-title">신간 도서</h2>
 			</div>
 			<div class="row relative">
-				<div class="news-container clearfix">
+				<div class="news-container clearfix" style="border-bottom: 10px solid #f8f8f8;">
 					<c:forEach var="book_new" items="${book_new}">
 					<div class="col-md-3 col-xs-4 pl-item news-item">
 						<figure>

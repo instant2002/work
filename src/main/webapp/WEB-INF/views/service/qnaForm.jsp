@@ -9,11 +9,12 @@
 
 <form class="form-horizontal" id="qnaSub" action="/service/qnaSub.do" method="post">
 <fieldset>
-<div><h2><b>1:1 문의하기(Q&A)</b></h2></div>
+<div class="hidden-xs"><h2><b>1:1 문의하기(Q&A)</b></h2></div>
+<div class="hidden-sm hidden-md hidden-lg text-center"><h2><b>1:1 문의하기(Q&A)</b></h2></div>
 <table class="table qna_table">
 	<colgroup>
-		<col style="width: 15%">
-		<col style="width: 85%">
+		<col style="width: 25%">
+		<col style="width: 75%">
 	</colgroup>
 	<tbody style="border-bottom: 1px solid #ddd;">
 			<tr>
@@ -22,19 +23,21 @@
 			</tr>
 			<tr> 
 				<th class="text-center"><b>휴대폰</b></th>
-				<td><div class="col-md-3"><input id="phone" name="phone" type="text" class="form-control" value="${member.phonenum1}"></div></td>
+				<td><div class="col-md-3"><input id="phone" name="phone" type="text" class="form-control" value="${member.phonenum1}" maxlength="30"></div></td>
 			</tr>
 			<tr> 
 				<th class="text-center"><b>이메일</b></th>
-				<td><div class="col-md-5"><input id="email" name="email" type="text" class="form-control" value="${member.email}"></div></td>
+				<td><div class="col-md-5"><input id="email" name="email" type="text" class="form-control" value="${member.email}" maxlength="60"></div></td>
 			</tr>
 			<tr> 
 				<th class="text-center"><b>제목</b></th>
-				<td><div class="col-md-6"><input id="title" name="title" type="text" class="form-control"></div></td>
+				<td><div class="col-md-6"><input id="title" name="title" type="text" class="form-control" maxlength="90"></div></td>
 			</tr>
 			<tr> 
-				<th class="text-center"><b>내용</b></th>
-				<td><div class="col-md-6"><textarea class="form-control" id="contents" name="contents" rows="10"></textarea></div></td>
+				<th class="text-center" colspan="2" style="background: #fff; border-bottom: none; line-height: 25px;"><b>내용</b></th>
+			</tr>
+			<tr>
+				<td colspan="2" style="border-top: none;"><textarea class="form-control" id="contents" name="contents" rows="10"></textarea></td>
 			</tr>
 		</tbody>
 </table>
