@@ -43,10 +43,8 @@
 </table>
 </fieldset>
 
-<div class="control-group" style="margin-top: 20px;">
-      <div class="controls">
-        <button type="button" class="btn btn-success center-block" onclick="qnaSubFunc(); return false;">등록하기</button>
-      </div>
+<div class="control-group text-center" style="margin: 20px 0 40px 0;">
+       <button type="button" class="btn btn-buy-col" onclick="qnaSubFunc(); return false;">등록하기</button>
 </div>
 </form>
 

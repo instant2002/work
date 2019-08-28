@@ -10,8 +10,8 @@
 	<div class="col-xs-12 text-center">
 		<h2><strong>위시리스트</strong></h2>
 	</div>
-	<input id="wish_checkbox_all_pc" type="checkbox" name="checkbox" class="stl" checked="checked">
-	<label for="wish_checkbox_all_pc" class="stl wish_checkbox_all" style="margin-left: 15px;"><span></span></label>
+	<input id="wish_checkbox_all_m" type="checkbox" name="checkbox" class="stl wish_checkbox_all" checked="checked">
+	<label for="wish_checkbox_all_m" class="stl hidden-sm hidden-md hidden-lg" style="margin-left: 15px;"><span></span></label>
 	<table class="table">
 		<colgroup>
 			<col width="1%">
@@ -25,8 +25,8 @@
 		<thead class="hidden-xs" style="font-weight: bold; border: solid #ddd; border-width: 2px 0px; background: #f9f9f9;">
 			<tr>
 				<td>
-					<input id="wish_checkbox_all_pc" type="checkbox" name="checkbox" class="stl" checked="checked">
-					<label for="wish_checkbox_all_pc" class="stl wish_checkbox_all"><span></span></label>
+					<input id="wish_checkbox_all_pc" type="checkbox" name="checkbox" class="stl wish_checkbox_all" checked="checked">
+					<label for="wish_checkbox_all_pc" class="stl"><span></span></label>
 				</td>
 				<td ></td>
 				<td>상품 정보</td>
@@ -46,8 +46,8 @@
 		<input type="hidden" value="${wish.product_no }" id="product_no_${status.index}">
 			<tr>
 				<td style="vertical-align: middle;">
-					<input id="wish_checkbox_${status.index}" type="checkbox" name="checkbox" value="${status.index}" class="stl hidden-sm hidden-md hidden-lg" checked="checked">
-					<label for="wish_checkbox_${status.index}" class="stl wish_checkbox_all"><span></span></label>
+					<input id="wish_checkbox_${status.index}" type="checkbox" name="checkbox" value="${status.index}" class="stl wish_checkbox hidden-sm hidden-md hidden-lg" checked="checked">
+					<label for="wish_checkbox_${status.index}" class="stl"><span></span></label>
 				</td>
 				<td style="vertical-align: middle;"><img src="${pageContext.request.contextPath}${wish.book_img_storedName}"></td>
 				<td style="vertical-align: middle;">
@@ -71,18 +71,16 @@
 			</tr>
 		</tbody>
 	</table>
-	
-	<div class="col-xs-12" style="margin-bottom: 20px; padding-right: 0; padding-left: 0;">
-	<div class="col-md-6" style="padding-left: 0;">
-		<button type="button" class="btn btn-yet-col btn-sm union_border_btn" onclick="toBasket('select')">
-			선택 장바구니에 담기
-		</button>
-		<button type="button" class="btn btn-yet-col btn-sm union_border_btn" onclick="toBasket('all')" style="margin-left: 10px;">
-			전체 장바구니에 담기
-		</button>
-	</div>
-	<div class="col-md-2"></div>
-		<div class="col-md-4" style="padding-right: 0;">
+	<div class="hidden-xs" style="margin-bottom: 30px;">
+		<div class="col-md-6" style="padding: 0;">
+			<button type="button" class="btn btn-yet-col btn-sm union_border_btn" onclick="toBasket('select')">
+				선택 장바구니에 담기
+			</button>
+			<button type="button" class="btn btn-yet-col btn-sm union_border_btn" onclick="toBasket('all')" style="margin-left: 10px;">
+				전체 장바구니에 담기
+			</button>
+		</div>
+		<div class="col-md-6" style="padding: 0;">
 			<button type="button" class="btn btn-yet-col btn-sm" onclick="deletewish('select')" style="float: right; margin-left: 10px;">
 				선택 삭제
 			</button>
@@ -91,6 +89,17 @@
 			</button>
 		</div>
 	</div>
+	<div class="hidden-sm hidden-md hidden-lg" style="margin-bottom: 30px;">
+	<div style="margin: 0 auto; display: table;">
+		<button type="button" class="btn btn-yet-col btn-sm union_border_btn" onclick="deletewish('select')">
+			선택 삭제
+		</button>
+		<button type="button" class="btn btn-yet-col btn-sm union_border_btn" onclick="toBasket('select')" style="margin-left: 10px;">
+			선택 장바구니에 담기 
+		</button>
+	</div>
+	</div>
+	
 </form>
 </c:otherwise>
 </c:choose>
@@ -234,7 +243,7 @@ $(document).ready(function(){
 			active = false;
 		}
 		if($(".wish_checkbox_all").is(":checked") || active){
-			$("#wish_checkbox_all").prop("checked", isChecked);
+			$(".wish_checkbox_all").prop("checked", isChecked);
 			}
 		});
 	 

@@ -12,6 +12,8 @@
 					<h5><strong>공지 관련</strong></h5>
 					<li><a href="/admin/postingNoticeForm.do">공지 등록</a></li>
 					<li><a href="/admin/postingNoticeList.do">공지 목록</a></li>
+					<li><a href="/admin/postingSampleImg.do">샘플 이미지 생성</a></li>
+					<li><a href="/admin/postingSampleImgList.do">샘플 이미지 목록</a></li>
 					<h5><strong>커뮤니티</strong></h5>
 					<li><a href="/admin/qnaList.do">QnA 목록</a></li>
 					<h5><strong>주문 관련</strong></h5>

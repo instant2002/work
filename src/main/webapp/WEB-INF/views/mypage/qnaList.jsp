@@ -4,14 +4,14 @@
 	<div class="col-xs-12 text-center">
 		<h2><strong>1:1 문의 목록(Q&A)</strong></h2>
 	</div>
-	<table class="table">
-		<colgroup>
-			<col style="width: 5%">
-			<col style="width: 60%">
-			<col style="width: 25%">
-			<col style="width: 15%">
+	<table class="table table-hover">
+		<colgroup class="hidden-xs">
+			<col width="5%">
+			<col width="60%">
+			<col width="25%">
+			<col width="15%">
 		</colgroup>
-		<thead style="font-weight: bold; border: solid #ddd; border-width: 2px 0px; background: #f9f9f9;">
+		<thead class="hidden-xs" style="font-weight: bold; border: solid #ddd; border-width: 2px 0px; background: #f9f9f9;">
 			<tr>
 				<td>번호</td>
 				<td>제목</td>
@@ -29,17 +29,25 @@
 	<c:otherwise>
 		<c:forEach var="qna_list" items="${qna_list}" varStatus="status">
 			<tr>
-				<td>${qna_list.idx }</td>
-				<td><a href="/customer/qnaView.do?idx=${qna_list.idx }">${qna_list.title }</a></td>
-				<td>${qna_list.question_upload_date }</td>
+				<td class="hidden-xs">${qna_list.idx }</td>
+				<td class="hidden-xs"><a href="/customer/qnaView.do?idx=${qna_list.idx }">${qna_list.title }</a></td>
+				<td class="hidden-xs">${qna_list.question_upload_date }</td>
 				<c:if test="${qna_list.isAnswer == 'Y' }">
-					<c:set value="O" var="aswer_status"/>
+					<c:set value="준비중" var="aswer_status"/>
 				</c:if>
 				<c:if test="${qna_list.isAnswer == 'N' }">
-					<c:set value="X" var="aswer_status"/>
+					<c:set value="답변 완료" var="aswer_status"/>
 				</c:if>
-				
-				<td class="text-center"><c:out value="${aswer_status}"/></td>
+				<td class="text-center hidden-xs"><c:out value="${aswer_status}"/></td>
+				<td class="hidden-sm hidden-md hidden-lg">
+					<a href="/customer/qnaView.do?idx=${qna_list.idx }">
+					<div>
+						<font class="notice_mobile_font1">${qna_list.title }</font><br>
+						<font class="notice_mobile_font2">${qna_list.question_upload_date }<br>
+						답변 상태 : <c:out value="${aswer_status}"/></font>
+					</div>
+					</a>
+				</td>
 			</tr>
 		</c:forEach>
 </c:otherwise>
@@ -47,12 +55,8 @@
 		</tbody>
 	</table>
 	<hr style="width: 100%; margin-bottom: 30px;">
-<div class="col-xs-12" style="margin-bottom: 100px;">
-<div class="col-md-5"></div>
-	<div class="col-md-2">
-		<button class="btn btn-buy-col pull-left add-cart" onclick="location.href='/service/qnaForm.do'">
-			문의 등록
-		</button>
-	</div>
-	<div class="col-md-5"></div>
+<div class="col-xs-12 text-center" style="margin-bottom: 100px;">
+	<button class="btn btn-buy-col" onclick="location.href='/service/qnaForm.do'">
+		문의 등록
+	</button>
 </div>

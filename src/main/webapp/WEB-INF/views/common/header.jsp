@@ -169,7 +169,7 @@
 					<i class="fas fa-truck"></i>	
 				</div>
 				<div class="col-xs-12 side_quickMenu_font">
-					주문배송
+					주문내역
 				</div>
 			</div>
 		</div>

@@ -32,7 +32,7 @@ public class PostingNoticeController {
 		String user_id = (String) session.getAttribute("user_id");
 		
 		if(log.isDebugEnabled()){
-			log.debug("noticeCommand : " + noticeCommand);
+			log.debug("NoticeCommand : " + noticeCommand);
 		}
 		
 		noticeCommand.setUser_id(user_id);

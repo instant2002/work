@@ -95,10 +95,10 @@
 	<div class="col-xs-12" style="margin-bottom: 20px; padding-right: 0;">
 	<div class="col-md-8"></div>
 		<div class="col-md-4" style="padding-right: 0;">
-			<button type="button" class="btn btn-yet-col btn-sm" onclick="deleteBasket('select')" style="float: right; margin-left: 10px;">
+			<button type="button" class="btn btn-yet-col btn-sm union_border_btn" onclick="deleteBasket('select')" style="float: right; margin-left: 10px;">
 				선택 삭제
 			</button>
-			<button type="button" class="btn btn-yet-col btn-sm" onclick="deleteBasket('all')" style="float: right;">
+			<button type="button" class="btn btn-yet-col btn-sm union_border_btn" onclick="deleteBasket('all')" style="float: right;">
 				전체 삭제
 			</button>
 		</div>

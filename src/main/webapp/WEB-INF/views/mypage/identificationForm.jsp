@@ -18,8 +18,8 @@
 	  </div>
 	</div>
 
-<div class="col-xs-12 text-center" style="margin-top: 15px;">
-	<button type="button" id="identChkBtn" class="btn">확인</button>
+<div class="col-xs-12 text-center" style="margin: 20px 0px;">
+	<button type="button" id="identChkBtn" class="btn btn-buy-col">확인</button>
 </div>
 </form>
 

@@ -7,7 +7,7 @@
 		<div class="row">
 			<div class="container">
 				<div class="col-xs-12 product-top-line">
-					<a href="/book/bookList.do" class="btn btn-yet-col2 col-xs-2 back-catalog pull-left"><b>전체 도서 보기</b></a>
+					<a href="/book/bookList.do" class="btn btn-yet-col2 col-xs-2 back-catalog pull-left"><b style="font-size: 13px;">전체 도서 보기</b></a>
 				</div>
 			</div>
 		</div>

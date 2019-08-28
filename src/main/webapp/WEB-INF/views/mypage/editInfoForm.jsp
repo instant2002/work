@@ -53,14 +53,10 @@
 <div class="form-group">
 <label class="col-md-4 control-label" for="radios">성별</label>
 <div class="col-md-4"> 
-  <label class="radio-inline" for="radios-0">
-    <input type="radio" name="gender" id="radios-0" value="M">
-    남성
-  </label> 
-  <label class="radio-inline" for="radios-1">
-    <input type="radio" name="gender" id="radios-1" value="F">
-    여성
-  </label> 
+	<input id="male" type="radio" name="gender" class="stl" value="M">
+	<label for="male" class="stl" style="margin-right: 10px;"><span><span></span></span>남성</label>
+	<input id="female" type="radio" name="gender" class="stl" value="F">
+	<label for="female" class="stl"><span><span></span></span>여성</label>
 </div>
 </div>
 
@@ -97,10 +93,8 @@
 
 </fieldset>
 
-<div class="control-group">
-      <div class="controls">
-        <button class="btn btn-success center-block" onclick="modifySubFunc(); return false;">수정하기</button>
-      </div>
+<div class="control-group text-center" style="margin: 10px 0 25px 0;">
+        <button class="btn btn-buy-col" onclick="modifySubFunc(); return false;">수정하기</button>
     </div>
 </form>
 
