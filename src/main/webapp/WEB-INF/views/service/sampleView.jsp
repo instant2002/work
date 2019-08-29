@@ -10,11 +10,11 @@
 				<a href="/main.do"><img src="/images/unionbooks/unionbooks_logo4.jpg" style="width: 140px;"></a>
 			</div>
 			<div class="col-lg-6 col-lg-offset-3">
-				<div class="col-xs-12 hidden-xs" style="border: solid #ddd; border-width: 2px 0px 1px 0px; background: #f9f9f9; padding: 10px 15px;">
-					<span style="font-size: 20px;"><strong>aa</strong></span>
+				<div class="col-xs-12 hidden-xs text-center" style="border: solid #ddd; border-width: 2px 0px 1px 0px; background: #f9f9f9; padding: 10px 15px;">
+					<span style="font-size: 20px;"><strong>${img_list[0].sample_img_title }</strong></span>
 				</div>
-				<div class="col-xs-12 hidden-sm hidden-md hidden-lg" style="border: solid #ddd; border-width: 2px 0px 1px 0px; background: #f9f9f9;">
-					<span style="font-size: 16px;"><strong>aa</strong></span>
+				<div class="col-xs-12 hidden-sm hidden-md hidden-lg text-center" style="border: solid #ddd; border-width: 2px 0px 1px 0px; background: #f9f9f9;">
+					<span style="font-size: 16px;"><strong>${img_list[0].sample_img_title }</strong></span>
 				</div>
 			</div>
 			<div class="col-lg-6 col-lg-offset-3">

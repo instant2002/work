@@ -42,7 +42,8 @@
 								<td style="vertical-align: middle;">
 									<font class="mobile_product_text"><b><a href="/book/detailView.do?product_no=${order.product_no }">${order.book_name}</a></b></font><br>
 									<div class="hidden-sm hidden-md hidden-lg">
-										<font class="mobile_price_text">상품 금액 : </font>&nbsp;<font class="origin_price_${status.index } mobile_price_text"><fmt:formatNumber value="${order.origin_price*quantity[status.index]}" groupingUsed="true" />원</font> <br> <font class="mobile_price_text">할인 금액 : </font>&nbsp;<font class="dc_price_${status.index } mobile_price_text"><fmt:formatNumber value="${order.dc_price*quantity[status.index]}" groupingUsed="true" />원</font> 
+										<font class="mobile_price_text">상품 금액 : </font>&nbsp;<font class="origin_price_${status.index } mobile_price_text"><fmt:formatNumber value="${order.origin_price}" groupingUsed="true" />원</font> 
+										<br> <font class="mobile_price_text">할인 금액 : </font>&nbsp;<font class="dc_price_${status.index } mobile_price_text"><fmt:formatNumber value="${order.dc_price}" groupingUsed="true" />원</font> 
 										<br><font class="mobile_price_text">기본 배송비</font> <br> <br>
 										<div class="cart_quantity_button clrfix product-count pull-left">
 											<a rel="nofollow" class="btn btn-default btn-minus" href="#" title="Subtract" onclick="edit_quantity_minus();">–</a> <input type="text" size="2" autocomplete="off" class="cart_quantity_input form-control grey count" id="book_quantity" name="order_list[0].quantity" value="${quantity[status.index]}" style="width: 50px; font-size: 16px;" onkeyup="this.value=this.value.replace(/[^0-9]/g,'');"> <a rel="nofollow" class="btn btn-default btn-plus" href="#" title="Add" onclick="edit_quantity_plus();">+</a>

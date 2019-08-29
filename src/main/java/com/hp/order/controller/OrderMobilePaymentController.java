@@ -1,17 +1,22 @@
 package com.hp.order.controller;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.DataInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.net.ConnectException;
 import java.net.HttpURLConnection;
+import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.URL;
 import java.net.URLConnection;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Enumeration;
@@ -53,23 +58,27 @@ public class OrderMobilePaymentController {
 	private CustomerService customerService;
 	
 	@RequestMapping(value="/order/paymentMobileResult.do")
-	public String form(@ModelAttribute("paymentMobileCommand") PaymentMobileCommand paymentMobileCommand, HttpSession session, HttpServletRequest request, Model model) throws Exception {
+	public String form(@ModelAttribute("paymentMobileCommand") PaymentMobileCommand paymentMobileCommand, HttpSession session, HttpServletRequest request, Model model) throws Exception, UnknownHostException {
 		if(log.isDebugEnabled())log.debug("paymentMobileCommand : " + paymentMobileCommand);
 		
 		String P_REQ_URL = paymentMobileCommand.getP_REQ_URL();
 		String param = "?P_MID=INIpayTest&P_TID="+paymentMobileCommand.getP_TID();
-		try {
-			
-		Socket socket = new Socket(P_REQ_URL+param,443);
-		InputStream in = socket.getInputStream();
-		DataInputStream dis = new DataInputStream(in);
-		
-		System.out.println("받았다 : " + dis.readUTF());
 
-		} catch (ConnectException  ce) {
-			ce.printStackTrace();
-		}catch (IOException ie) {
-			ie.printStackTrace();
+        try {
+        	String serverIp = P_REQ_URL;
+            Socket socket = new Socket(serverIp, 443);
+                
+                // 입력스트림 
+                InputStream in = socket.getInputStream();
+                DataInputStream dis = new DataInputStream(in);
+                
+                // 데이터 출력 
+                System.out.println("message : " + dis.readUTF());
+                
+                dis.close();
+
+		}catch (UnknownHostException uhe) {
+			uhe.printStackTrace();
 		}catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -13,7 +13,7 @@
 <title>Unionbooks - 유니온북스</title>
 <meta name="description" content="">
 <meta name="keywords" content="">
-<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">
 <meta property="og:title" content="${img_list[0].sample_img_title }">
 <meta property="og:image" content="http://unionbooks.kr${img_list[0].sample_img_storedName }">
 <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->

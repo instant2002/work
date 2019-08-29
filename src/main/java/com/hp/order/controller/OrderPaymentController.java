@@ -63,7 +63,7 @@ public class OrderPaymentController {
 			paramMap.put(temp, request.getParameter(temp));
 		}
 		
-		if("0000".equals(paramMap.get("resultCode"))){ //인증 성공인 경우
+		if("0000".equals(paramMap.get("resultCode")) && paymentCommand.getMerchantData() != ""){ //인증 성공인 경우
 		
 		String mid 		= paramMap.get("mid");						// 가맹점 ID 수신 받은 데이터로 설정
 		String timestamp= SignatureUtil.getTimestamp();				// util에 의해서 자동생성
@@ -102,7 +102,7 @@ public class OrderPaymentController {
 		
 		String secureSignature = SignatureUtil.makeSignatureAuth(secureMap);
 		
-		if("0000".equals(resultMap.get("resultCode")) && secureSignature.equals(resultMap.get("authSignature")) ){//결제 보안
+		if("0000".equals(resultMap.get("resultCode")) && secureSignature.equals(resultMap.get("authSignature")) && paymentCommand.getMerchantData() != ""){//결제 보안
 			System.out.println("성공인데...");
 			String[] merchatData = paymentCommand.getMerchantData().split("&");
 					for(String data : merchatData) {

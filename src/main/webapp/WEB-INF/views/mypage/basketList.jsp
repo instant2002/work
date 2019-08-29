@@ -17,7 +17,8 @@
 			<col width="1%">
 			<col width="14%" class="hidden-xs">
 			<col width="30%" class="hidden-sm hidden-md hidden-lg" >
-			<col width="45%">
+			<col width="35%">
+			<col width="10%" class="hidden-xs">
 			<col width="10%" class="hidden-xs">
 			<col width="10%" class="hidden-xs">
 			<col width="10%" class="hidden-xs">
@@ -34,12 +35,13 @@
 				<td>수량</td>
 				<td>상품 금액</td>
 				<td>할인 금액</td>
+				<td>합계 금액</td>
 				<td>배송비</td>
 			</tr>
 		</thead>
 	<c:choose>
 		<c:when test="${empty basket}">
-			<td colspan="7" class="text-center">장바구니가 비어있습니다.</td>
+			<td colspan="8" class="text-center">장바구니가 비어있습니다.</td>
 			</table>
 		</c:when>
 		<c:otherwise>
@@ -54,8 +56,9 @@
 				<td style="vertical-align: middle;">
 					<font class="mobile_product_text"><b><a href="/book/detailView.do?product_no=${basket.product_no }">${basket.book_name}</a></b></font><br>
 					<div class="hidden-sm hidden-md hidden-lg">
-						<font class="mobile_price_text">상품 금액 : </font>&nbsp;<font class="origin_price_${status.index } mobile_price_text" ><fmt:formatNumber value="${basket.origin_price*basket.quantity}" groupingUsed="true"/>원</font>
-						<br><font class="mobile_price_text">할인 금액 : </font>&nbsp;<font class="dc_price_${status.index } mobile_price_text" ><fmt:formatNumber value="${basket.dc_price*basket.quantity}" groupingUsed="true"/>원</font>
+						<font class="mobile_price_text">상품 금액 : </font>&nbsp;<font class="origin_price_${status.index } mobile_price_text" ><fmt:formatNumber value="${basket.origin_price}" groupingUsed="true"/>원</font>
+						<br><font class="mobile_price_text">할인 금액 : </font>&nbsp;<font class="dc_price_${status.index } mobile_price_text" ><fmt:formatNumber value="${basket.dc_price}" groupingUsed="true"/>원</font>
+						<br><font class="mobile_total_price_text">합계 금액 : </font>&nbsp;<font class="total_price_${status.index } mobile_total_price_text" ><fmt:formatNumber value="${(basket.origin_price*basket.quantity)-(basket.dc_price*basket.quantity)}" groupingUsed="true"/>원</font>
 						<br><font class="mobile_price_text">기본 배송비</font>
 						<br><br>
 						<div class="cart_quantity_button clrfix product-count pull-left">
@@ -70,6 +73,7 @@
 				</td>
 				<td class="hidden-xs origin_price_${status.index }" style="vertical-align: middle;"><fmt:formatNumber value="${basket.origin_price*basket.quantity}" groupingUsed="true"/>원</td>
 				<td class="hidden-xs dc_price_${status.index }" style="vertical-align: middle;"><fmt:formatNumber value="${basket.dc_price*basket.quantity}" groupingUsed="true"/>원</td>
+				<td class="hidden-xs total_price_${status.index }" style="vertical-align: middle;"><fmt:formatNumber value="${(basket.origin_price*basket.quantity)-(basket.dc_price*basket.quantity)}" groupingUsed="true"/>원</td>
 				<td class="hidden-xs" style="vertical-align: middle;">기본 배송비</td>
 			</tr>
 			<c:set var="price_sum" value="${price_sum+(basket.origin_price*basket.quantity) }"/>
@@ -79,8 +83,8 @@
 			
 		</c:forEach>
 			<tr style="background: #d7d9db;">
-				<td class="hidden-xs" colspan="7" style="text-align: right;">기본 배송비 : 3,000원<br>(30,000원 이상 결제시 배송비 무료)</td>
-			<td class="hidden-sm hidden-md hidden-lg" colspan="3" style="text-align: right;">기본 배송비 : 3,000원<br>(30,000원 이상 결제시 배송비 무료)</td>
+				<td class="hidden-xs" colspan="8" style="text-align: right;">기본 배송비 : 3,000원<br>(30,000원 이상 결제시 배송비 무료)</td>
+				<td class="hidden-sm hidden-md hidden-lg" colspan="3" style="text-align: right;">기본 배송비 : 3,000원<br>(30,000원 이상 결제시 배송비 무료)</td>
 			</tr>
 		</tbody>
 	</table>
@@ -397,12 +401,10 @@ $(document).ready(function(){
 			$(".total_quantity").html("("+total_quantity+")개");
 			$(".shipping_fee").html(comma(shipping_fee)+"원");
 			
-			$(".origin_price_"+select_val).html(comma(window["price_calc_"+select_val])+"원");
-			$(".dc_price_"+select_val).html(comma(window["dc_price_calc_"+select_val])+"원");
+			$(".total_price_"+select_val).html(comma(window["price_calc_"+select_val] - window["dc_price_calc_"+select_val])+"원");
 			
 		}else{
-			$(".origin_price_"+select_val).html(comma(window["price_calc_"+select_val])+"원");
-			$(".dc_price_"+select_val).html(comma(window["dc_price_calc_"+select_val])+"원");
+			$(".total_price_"+select_val).html(comma(window["price_calc_"+select_val] - window["dc_price_calc_"+select_val])+"원");
 		}
 		$(".quantity_"+select_val).val(quantity_val);
 		total_price = 0;
@@ -444,8 +446,6 @@ $(document).ready(function(){
 		   
 		   var total_price_ea = numberWithCommas(origin_price * currentVal);
 		   var total_dc_price_ea = numberWithCommas(dc_price * currentVal);
-		   $(".origin_price_"+num).html(total_price_ea+"원");
-		   $(".dc_price_"+num).html(total_dc_price_ea+"원");
 		   
 		   if(isChecked){
 				$(".price_sum").html(comma(total_price)+"원");
@@ -454,12 +454,11 @@ $(document).ready(function(){
 				$(".total_quantity").html("("+total_quantity+")개");
 				$(".shipping_fee").html(comma(shipping_fee)+"원");
 				
-				$(".origin_price_"+num).html(comma(window["price_calc_"+num])+"원");
-				$(".dc_price_"+num).html(comma(window["dc_price_calc_"+num])+"원");
+				$(".total_price_"+num).html(comma(window["price_calc_"+num] - window["dc_price_calc_"+num])+"원");
+				
 				
 			}else{
-				$(".origin_price_"+num).html(comma(window["price_calc_"+num])+"원");
-				$(".dc_price_"+num).html(comma(window["dc_price_calc_"+num])+"원");
+				$(".total_price_"+num).html(comma(window["price_calc_"+num] - window["dc_price_calc_"+num])+"원");
 			}
 			total_price = 0;
 			total_dc_price = 0;
@@ -501,15 +500,11 @@ $(document).ready(function(){
 		   
 		   var total_price_ea = numberWithCommas(origin_price * currentVal);
 		   var total_dc_price_ea = numberWithCommas(dc_price * currentVal);
-		   $(".origin_price_"+num).html(total_price_ea+"원");
-		   $(".dc_price_"+num).html(total_dc_price_ea+"원");
 		   
 		   if(currentVal >= 0){
 			   var total_price_ea = numberWithCommas(origin_price * currentVal);
 			   var total_dc_price_ea = numberWithCommas(dc_price * currentVal);
 
-			   $(".origin_price_"+num).html(total_price_ea+"원");
-			   $(".dc_price_"+num).html(total_dc_price_ea+"원");
 			}
 		   
 		   if(isChecked){
@@ -519,12 +514,9 @@ $(document).ready(function(){
 				$(".total_quantity").html("("+total_quantity+")개");
 				$(".shipping_fee").html(comma(shipping_fee)+"원");
 				
-				$(".origin_price_"+num).html(comma(window["price_calc_"+num])+"원");
-				$(".dc_price_"+num).html(comma(window["dc_price_calc_"+num])+"원");
-				
+				$(".total_price_"+num).html(comma(window["price_calc_"+num] - window["dc_price_calc_"+num])+"원");				
 			}else{
-				$(".origin_price_"+num).html(comma(window["price_calc_"+num])+"원");
-				$(".dc_price_"+num).html(comma(window["dc_price_calc_"+num])+"원");
+				$(".total_price_"+num).html(comma(window["price_calc_"+num] - window["dc_price_calc_"+num])+"원");
 			}
 		   
 		   total_price = 0;

@@ -11,7 +11,7 @@
 <div class="col-xs-12">
 <c:choose>
 	<c:when test="${empty order}">
-		<div class="text-center">결제할 상품이 없습니다. </div>
+		<div class="text-center">결제할 상품이 없습니다.</div>
 	</c:when>
 	<c:otherwise>
 	<div class="col-xs-12 text-center">
@@ -21,7 +21,8 @@
 		<colgroup>
 			<col width="15%" class="hidden-xs">
 			<col width="30%" class="hidden-sm hidden-md hidden-lg" >
-			<col width="45%">
+			<col width="35%">
+			<col width="10%">
 			<col width="10%">
 			<col width="10%">
 			<col width="10%">
@@ -34,6 +35,7 @@
 				<td>수량</td>
 				<td>상품 금액</td>
 				<td>할인 금액</td>
+				<td>합계 금액</td>
 				<td>배송비</td>
 			</tr>
 		</thead>
@@ -48,14 +50,16 @@
 				<td style="vertical-align: middle;">
 					<font class="mobile_product_text"><b><a href="/book/detailView.do?product_no=${order.product_no }">${order.book_name}</a></b></font><br>
 					<div class="hidden-sm hidden-md hidden-lg">
-						<font class="mobile_price_text">상품 금액 : </font>&nbsp;<font class="origin_price_${status.index } mobile_price_text" ><fmt:formatNumber value="${order.origin_price*quantity[status.index]}" groupingUsed="true"/>원</font>
-						<br><font class="mobile_price_text">할인 금액 : </font>&nbsp;<font class="dc_price_${status.index } mobile_price_text" ><fmt:formatNumber value="${order.dc_price*quantity[status.index]}" groupingUsed="true"/>원</font>
+						<font class="mobile_price_text">상품 금액 : </font>&nbsp;<font class="origin_price_${status.index } mobile_price_text" ><fmt:formatNumber value="${order.origin_price}" groupingUsed="true"/>원</font>
+						<br><font class="mobile_price_text">할인 금액 : </font>&nbsp;<font class="dc_price_${status.index } mobile_price_text" ><fmt:formatNumber value="${order.dc_price}" groupingUsed="true"/>원</font>
+						<br><font class="mobile_total_price_text">합계 금액 : </font>&nbsp;<font class="total_price_${status.index } mobile_total_price_text" ><fmt:formatNumber value="${(order.origin_price*quantity[status.index])-(order.dc_price*quantity[status.index])}" groupingUsed="true"/>원</font>
 						<br><font class="mobile_price_text">${quantity[status.index]}개 / 기본 배송비</font>
 					</div>
 				</td>
 				<td class="hidden-xs" style="vertical-align: middle;">${quantity[status.index]}개</td>
-				<td class="hidden-xs" id="origin_price_${status.index }" style="vertical-align: middle;"><fmt:formatNumber value="${order.origin_price*quantity[status.index]}" groupingUsed="true"/>원</td>
-				<td class="hidden-xs" id="dc_price_${status.index }" style="vertical-align: middle;"><fmt:formatNumber value="${order.dc_price*quantity[status.index]}" groupingUsed="true"/>원</td>
+				<td class="hidden-xs" id="origin_price_${status.index }" style="vertical-align: middle;"><fmt:formatNumber value="${order.origin_price}" groupingUsed="true"/>원</td>
+				<td class="hidden-xs" id="dc_price_${status.index }" style="vertical-align: middle;"><fmt:formatNumber value="${order.dc_price}" groupingUsed="true"/>원</td>
+				<td class="hidden-xs" id="dc_price_${status.index }" style="vertical-align: middle;"><fmt:formatNumber value="${(order.origin_price*quantity[status.index])-(order.dc_price*quantity[status.index])}" groupingUsed="true"/>원</td>
 				<td class="hidden-xs" style="vertical-align: middle;">기본 배송비</td>
 			</tr>
 			<c:set var="price_sum" value="${price_sum+(order.origin_price*quantity[status.index]) }"/>
@@ -65,7 +69,7 @@
 			<c:set var="goodsname" value="${goodsname}${order.book_name}${status.first ? '' : ','}"/> 
 		</c:forEach>
 			<tr style="background: #d7d9db;">
-			<td class="hidden-xs" colspan="7" style="text-align: right; background: #d7d9db;">(30,000원 이상 결제시 배송비 무료) 기본 배송비 : 3,000원</td>
+			<td class="hidden-xs" colspan="8" style="text-align: right; background: #d7d9db;">(30,000원 이상 결제시 배송비 무료) 기본 배송비 : 3,000원</td>
 			<td class="hidden-sm hidden-md hidden-lg" colspan="2" style="text-align: right; background: #d7d9db;">기본 배송비 : 3,000원<br>(30,000원 이상 결제시 배송비 무료)</td>
 			</tr>
 		</tbody>
