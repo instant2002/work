@@ -33,9 +33,15 @@
     	<put-attribute name="body" value="/WEB-INF/views/service/faqList.jsp"/>
     </definition>
     
-	<definition name="showAttfile" template="/WEB-INF/views/index_shownAttFile.jsp">
+	<definition name="showAttfile" template="/WEB-INF/views/index_shownSample.jsp">
     	<put-attribute name="title" value="첨부 자료 보여주기"/>
     	<put-attribute name="body" value="/WEB-INF/views/service/shownAttFile.jsp"/>
+    	<put-attribute name="footer" value="/WEB-INF/views/common/footer.jsp"/>
+    </definition>
+    
+	<definition name="sampleView" template="/WEB-INF/views/index_shownSample.jsp">
+    	<put-attribute name="title" value="샘플 보여주기"/>
+    	<put-attribute name="body" value="/WEB-INF/views/service/sampleView.jsp"/>
     	<put-attribute name="footer" value="/WEB-INF/views/common/footer.jsp"/>
     </definition>
     

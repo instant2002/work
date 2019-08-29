@@ -81,8 +81,8 @@ public class OrderMobileNotiController {
 
 //**********************************************************************************
 //이부분에 로그파일 경로를 수정해주세요.	
-String file_path = "/D:\\study\\work\\src\\main\\webapp\\mobile_log";  //로그를 기록할 디렉터리
-//String file_path = "/unionbooks2019/tomcat/webapps/ROOT/mobile_log";  //로그를 기록할 디렉터리 변경!
+//String file_path = "/D:\\study\\work\\src\\main\\webapp\\mobile_log";  //로그를 기록할 디렉터리
+String file_path = "/unionbooks2019/tomcat/webapps/ROOT/mobile_log";  //로그를 기록할 디렉터리 변경!
 //**********************************************************************************
 String addr = request.getRemoteAddr().toString();
 

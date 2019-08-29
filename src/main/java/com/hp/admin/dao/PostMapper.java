@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 import com.hp.admin.domain.NoticeCommand;
 import com.hp.admin.domain.PostCommand;
 import com.hp.admin.domain.QnaAdminCommand;
+import com.hp.admin.domain.SampleCommand;
 
 @Repository
 public interface PostMapper {
@@ -69,5 +70,14 @@ public interface PostMapper {
 	
 	@Select("SELECT * FROM answer WHERE ansQuesIdx = #{idx}")
 	public QnaAdminCommand getQnaAnswer(QnaAdminCommand qnaAdminCommand);
+
+	public void uploadSample(HashMap<String, Object> hm);
+
+	public List<SampleCommand> getSampleList();
+
+	@Delete("DELETE FROM sample_img WHERE sample_calling_name = #{sample_calling_name}")
+	public void postingSampleDel(String sample_calling_name);
+
+	public List<SampleCommand> getSampleImg(String sample_calling_name);
 
 }

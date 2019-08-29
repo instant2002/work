@@ -9,6 +9,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.hp.admin.domain.NoticeCommand;
 import com.hp.admin.domain.PostCommand;
 import com.hp.admin.domain.QnaAdminCommand;
+import com.hp.admin.domain.SampleCommand;
 
 public interface PostService {
 
@@ -47,5 +48,15 @@ public interface PostService {
 	public void updateQuestionIsanswer(int idx);
 
 	public QnaAdminCommand getQnaAnswer(QnaAdminCommand qnaAdminCommand);
+
+	public void uploadSample(SampleCommand sampleCommand, String save_img_path,	MultipartHttpServletRequest mtf_request);
+
+	public List<SampleCommand> getSampleList();
+
+	public void postingSampleDel(List<SampleCommand> del_list, String sample_calling_name, String save_img_path);
+
+	public List<SampleCommand> getSampleImg(String sample_calling_name);
+
+
 
 }

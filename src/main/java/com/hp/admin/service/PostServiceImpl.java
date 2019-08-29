@@ -20,6 +20,7 @@ import com.hp.admin.dao.PostMapper;
 import com.hp.admin.domain.NoticeCommand;
 import com.hp.admin.domain.PostCommand;
 import com.hp.admin.domain.QnaAdminCommand;
+import com.hp.admin.domain.SampleCommand;
 
 @Service("postService")
 public class PostServiceImpl implements PostService {
@@ -158,10 +159,17 @@ public class PostServiceImpl implements PostService {
 					if (filePath.exists() == false) {
 						filePath.mkdirs();
 					}
+					
+					System.out.println("book_img_name : " + book_img_name);
+					System.out.println("extensionName : " + extName);
+					System.out.println("book_img_size : " + book_img_size);
+					System.out.println("book_img_storedName : " + book_img_storedName);
+					System.out.println("save_path : " + save_path);
+					System.out.println("fileName : " + fileName);
 
-					multipartFile.transferTo(new File(save_path + "\\" + fileName));
+					multipartFile.transferTo(new File(save_path + "/" + fileName));
 
-					/* writeFile(multipartFile, book_img_storedName, save_path); */
+//					writeFile(multipartFile, book_img_storedName, save_path); 
 				}
 
 			} catch (IOException e) {
@@ -350,7 +358,7 @@ public class PostServiceImpl implements PostService {
 						filePath.mkdirs();
 					}
 
-					multipartFile.transferTo(new File(save_path + "\\" + fileName));
+					multipartFile.transferTo(new File(save_path + "/" + fileName));
 
 					/* writeFile(multipartFile, book_img_storedName, save_path); */
 				}
@@ -464,6 +472,77 @@ public class PostServiceImpl implements PostService {
 	@Override
 	public QnaAdminCommand getQnaAnswer(QnaAdminCommand qnaAdminCommand) {
 		return postMapper.getQnaAnswer(qnaAdminCommand);
+	}
+
+	@Override
+	public void uploadSample(SampleCommand sampleCommand, String save_img_path, MultipartHttpServletRequest mtf_request)  {
+		List<MultipartFile> imgList = mtf_request.getFiles("sample_img");
+		try {
+			// 파일 경로 없으면 생성
+			File saveImgPath = new File(save_img_path);
+			if (saveImgPath.exists() == false) saveImgPath.mkdirs();
+			
+			String sample_calling_name = Long.toString(System.currentTimeMillis())+(int)(Math.random()*50);
+			
+			for (MultipartFile mf : imgList) {//다중 파일 업로드
+				
+				String originimgName = mf.getOriginalFilename(); // 원본 파일 명
+				String rand_name = Long.toString(System.currentTimeMillis())+(int)(Math.random()*50);
+				String sample_img_storedName = save_img_path +"\\"+ rand_name;
+				String imgExtName = originimgName.substring(originimgName.lastIndexOf("."), originimgName.length());//확장자
+				
+				if(log.isDebugEnabled()){
+					log.debug("sample_img origin: " + save_img_path +"\\"+ originimgName);
+					log.debug("sample_img rand : " + sample_img_storedName);
+					log.debug("extensionImgName : " + imgExtName);
+				}
+				
+				HashMap<String, Object> hm = new HashMap<String, Object>();
+				hm.put("sample_img_title", sampleCommand.getSample_img_title());
+				hm.put("sample_calling_name", sample_calling_name);
+				hm.put("sample_img_name", originimgName);
+				hm.put("sample_img_storedName", "/sample_img/"+rand_name+imgExtName);
+				
+				mf.transferTo(new File(save_img_path +"/"+ rand_name+imgExtName));
+				postMapper.uploadSample(hm);
+			}
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}catch (IllegalStateException e) {
+            e.printStackTrace();
+        }
+	}
+
+	@Override
+	public List<SampleCommand> getSampleList() {
+		return postMapper.getSampleList();
+	}
+
+	@Override
+	public void postingSampleDel(List<SampleCommand> del_list, String sample_calling_name , String save_img_path) {
+		if(del_list.size() > 0) {
+			for (SampleCommand file_list : del_list) {
+				String del_img_db = file_list.getSample_img_storedName();
+				
+				String del_img_name = del_img_db.substring(del_img_db.lastIndexOf("/") + 1);
+				String del_img = save_img_path + "\\" + del_img_name;
+				
+				File file = new File(del_img);
+				if (file.exists()) {
+					file.delete();
+					if(log.isDebugEnabled()) log.debug("삭제된 샘플 이미지 : " + del_img_name);
+				}
+			}
+			postMapper.postingSampleDel(sample_calling_name);
+		}
+		
+		
+	}
+
+	@Override
+	public List<SampleCommand> getSampleImg(String sample_calling_name) {
+		return postMapper.getSampleImg(sample_calling_name);
 	}
 
 }

@@ -88,9 +88,4 @@
  		<put-attribute name="body" value="/WEB-INF/views/admin/sampleImgList.jsp"/>
  	</definition>
  	
-	<definition name="SampleImgEditForm" extends="admin.index">
- 		<put-attribute name="title" value="샘플 이미지 리스트"/>
- 		<put-attribute name="body" value="/WEB-INF/views/admin/sampleImgEditForm.jsp"/>
- 	</definition>
-
 </tiles-definitions>

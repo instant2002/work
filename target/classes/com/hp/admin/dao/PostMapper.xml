@@ -213,4 +213,41 @@
 			)
 			]]>
 	</insert>
+	
+	<insert id="uploadSample" parameterType="hashmap"> 
+	<![CDATA[ 
+			INSERT INTO 
+			sample_img(
+				sample_img_title,
+				sample_calling_name,
+				sample_img_name,
+				sample_img_storedName
+				)
+			VALUES (
+				#{sample_img_title},
+				#{sample_calling_name},
+				#{sample_img_name},
+				#{sample_img_storedName}
+			)
+			]]>
+	</insert>
+	
+	<select id="getSampleList" resultType="SampleCommand">
+		SELECT
+			*
+		FROM
+			sample_img
+		GROUP BY sample_calling_name
+		ORDER BY idx DESC
+	</select>
+	
+	<select id="getSampleImg" resultType="SampleCommand">
+		SELECT
+			*
+		FROM
+			sample_img
+		WHERE 
+			sample_calling_name = #{sample_calling_name}
+		ORDER BY sample_img_name ASC
+	</select>
 </mapper>

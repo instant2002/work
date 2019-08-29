@@ -3,12 +3,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<script src="${pageContext.request.contextPath}/js/datepicker-ko.js"></script>
-
-<form class="form-horizontal" id="posting_form" action="/admin/postingBookSub.do" enctype="multipart/form-data" method="post">
-<fieldset>
-
 <div class="text-center"><legend>공지사항 목록</legend></div>
 
 <div class="col-xs-12">

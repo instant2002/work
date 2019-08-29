@@ -14,6 +14,8 @@
 <meta name="description" content="">
 <meta name="keywords" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<meta property="og:title" content="${img_list[0].sample_img_title }">
+<meta property="og:image" content="http://unionbooks.kr${img_list[0].sample_img_storedName }">
 <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 <%-- <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/accessiblemegamenu/megamenu.css"> --%>
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,700'	rel='stylesheet' type='text/css'>

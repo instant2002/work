@@ -8,7 +8,7 @@
 			<div class="accordion-body">
 				<div class="row">
 					<div class="col-md-12" style="padding-top: 20px;">
-						<p>세트책은 별도 배송료를 받지 않으며 3만원 미만 주문시 배송비는 3천원이 추가됩니다.</p>
+						<p>입금 확인 후 전국적으로 2~3일 내에 받아보실 수 있습니다. 예상 배송 시간은 지역 배송 방법 등의 이유로 다소 지연될 수 있습니다. </p>
 					</div>
 				</div>
 			</div>
