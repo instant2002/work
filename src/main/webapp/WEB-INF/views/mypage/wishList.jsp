@@ -49,7 +49,7 @@
 					<input id="wish_checkbox_${status.index}" type="checkbox" name="checkbox" value="${status.index}" class="stl wish_checkbox hidden-sm hidden-md hidden-lg" checked="checked">
 					<label for="wish_checkbox_${status.index}" class="stl"><span></span></label>
 				</td>
-				<td style="vertical-align: middle;"><img src="${pageContext.request.contextPath}${wish.book_img_storedName}"></td>
+				<td style="vertical-align: middle;"><img src="${pageContext.request.contextPath}${wish.book_img_storedName}" style="max-width: 180px;"></td>
 				<td style="vertical-align: middle;">
 					<font class="mobile_product_text"><b><a href="/book/detailView.do?product_no=${wish.product_no }">${wish.book_name}</a></b></font><br>
 					<div class="hidden-sm hidden-md hidden-lg">

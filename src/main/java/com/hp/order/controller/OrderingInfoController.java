@@ -74,10 +74,8 @@ public class OrderingInfoController {
 		
 		//이니페이 키 생성 시작
 		String mid					= "unionbooks";		// 가맹점 ID(가맹점 수정후 고정)					
-//		String signKey			    = "SU5JTElURV9UUklQTEVERVNfS0VZU1RS";	// 가맹점에 제공된 웹 표준 사인키(가맹점 수정후 고정)
 		String signKey			    = "MXNSWkF6a1gvcEZlVUF5N1NUN1lvdz09";	// 가맹점에 제공된 웹 표준 사인키(가맹점 수정후 고정)
 		String timestamp			= SignatureUtil.getTimestamp();			// util에 의해서 자동생성
-//		String oid					= mid+"_"+SignatureUtil.getTimestamp();	// 가맹점 주문번호(가맹점에서 직접 설정)
 		String oid = order_code;
 		
 		Map<String, String> signParam = new HashMap<String, String>();

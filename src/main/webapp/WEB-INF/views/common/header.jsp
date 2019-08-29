@@ -20,7 +20,6 @@
 							<li class="btn-group"><a href="/customer/mypage.do" class="pm_item visible-xs"> <i class="icon-user"></i></a></li>
 							<li class="btn-group"><a href="/customer/basketList.do" class="pm_item visible-xs"> <i class="icon-bag"></i></a></li>
 							<li class="btn-group"><a href="/customer/orderList.do" class="pm_item visible-xs"> <i class="fas fa-truck"></i></a></li>
-							</a>
 							<li class="btn-group dropdown hidden-sm hidden-xs"><c:choose>
 								<c:when test="${!empty user_id}">
 									<a href="/member/logout.do" class="pm_item" title="logout"> <i class="icon-logout"></i> <span class="hidden-sm hidden-xs">로그아웃</span>
@@ -94,7 +93,6 @@
 						</button>
 					</div>
 					<div class="col-md-5 top-search-box hide_mobile" style="margin-top: 30px;">
-						<!-- 						<form action="/book/bookList.do" method="get"> -->
 						<div class="required">
 							<form action="/book/bookList.do" method="get" id="top_searchForm">
 								<input type="text" name=keyword placeholder="도서 검색" class="placeholder-fix top-search" autocomplete="off" value="${keyword}" style="border: 4px solid #265198; font-style: unset; height: 50px;">
@@ -103,7 +101,6 @@
 								</button>
 							</form>
 						</div>
-						</form>
 					</div>
 					<div class="col-md-3 hide_mobile" style="margin-top: 30px; float: right;">
 						<div id="shopping-cart-wrapper">

@@ -5,7 +5,7 @@
 	<welcome-file-list>
 		<welcome-file>/main.do</welcome-file>
 	</welcome-file-list>
-
+	
 	<!-- UTF-8 설정 -->
 	<filter>
 		<filter-name>encodingFilter</filter-name>

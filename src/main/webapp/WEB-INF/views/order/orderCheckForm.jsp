@@ -38,7 +38,7 @@
 					<tbody>
 						<c:forEach var="order" items="${order}" varStatus="status">
 							<tr>
-								<td style="padding: 8px 0;"><img src="${pageContext.request.contextPath}${order.book_img_storedName}"></td>
+								<td style="padding: 8px 0;"><img src="${pageContext.request.contextPath}${order.book_img_storedName}" style="max-width: 180px;"></td>
 								<td style="vertical-align: middle;">
 									<font class="mobile_product_text"><b><a href="/book/detailView.do?product_no=${order.product_no }">${order.book_name}</a></b></font><br>
 									<div class="hidden-sm hidden-md hidden-lg">
@@ -83,7 +83,7 @@
 						<td colspan="2" class="total-head hidden-sm hidden-md hidden-lg">Total</td>
 					</tr>
 					<tr class="hidden-xs">
-						<td><b>상품 금액</b><br></td>
+						<td><b>상품 금액</b></td>
 						<td><b>할인 금액</b></td>
 						<td><b>배송비</b></td>
 						<td><b>합계 금액</b></td>
@@ -96,7 +96,6 @@
 					</tr>
 					<tr class="hidden-sm hidden-md hidden-lg">
 						<td><b>상품 금액</b></td>
-						</td>
 						<td class="price_sum"><b><fmt:formatNumber value="${price_sum}" groupingUsed="true" />원</b></td>
 					</tr>
 					<tr class="hidden-sm hidden-md hidden-lg">

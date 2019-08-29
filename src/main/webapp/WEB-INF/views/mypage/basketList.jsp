@@ -52,7 +52,7 @@
 				<td style="vertical-align: middle;">
 					<input id="checkbox${status.index}" type="checkbox" name="checkbox" class="stl basket_checkbox basket_checkbox_${status.index}" checked="checked" value="${status.index}"><label for="checkbox${status.index}" class="stl"><span></span></label>
 				</td>
-				<td style="vertical-align: middle; padding: 8px 0;"><img src="${pageContext.request.contextPath}${basket.book_img_storedName}"></td>
+				<td style="vertical-align: middle; padding: 8px 0;"><img src="${pageContext.request.contextPath}${basket.book_img_storedName}" style="max-width: 180px;"></td>
 				<td style="vertical-align: middle;">
 					<font class="mobile_product_text"><b><a href="/book/detailView.do?product_no=${basket.product_no }">${basket.book_name}</a></b></font><br>
 					<div class="hidden-sm hidden-md hidden-lg">

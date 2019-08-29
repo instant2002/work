@@ -31,7 +31,7 @@
 			<tbody>
 				<c:forEach var="cancel_view" items="${cancel_view}" varStatus="status">
 					<tr>
-						<td><img src="${pageContext.request.contextPath}${cancel_view.book_img_storedName}" style="width: 80px;"></td>
+						<td><img src="${pageContext.request.contextPath}${cancel_view.book_img_storedName}" style="max-width: 180px;"></td>
 						<td style="vertical-align: middle;"><a href="/book/detailView.do?product_no=${cancel_view.product_no }">${cancel_view.book_name}</a></td>
 						<td style="vertical-align: middle;">${cancel_view.quantity}</td>
 						<td style="vertical-align: middle;"><fmt:formatNumber value="${cancel_view.origin_price*cancel_view.quantity}" groupingUsed="true" />원</td>

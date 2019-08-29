@@ -31,7 +31,7 @@
 			<tbody>
 				<c:forEach var="order_view" items="${order_view}" varStatus="status">
 					<tr>
-						<td><img src="${pageContext.request.contextPath}${order_view.book_img_storedName}" style="width: 80px;"></td>
+						<td><img src="${pageContext.request.contextPath}${order_view.book_img_storedName}" style="max-width: 180px;"></td>
 						<td style="vertical-align: middle;"><a href="/book/detailView.do?product_no=${order_view.product_no }">${order_view.book_name}</a></td>
 						<td style="vertical-align: middle;">${order_view.quantity}</td>
 						<td style="vertical-align: middle;"><fmt:formatNumber value="${order_view.origin_price*order_view.quantity}" groupingUsed="true" />원</td>
@@ -45,7 +45,7 @@
 					<c:set var="total_price" value="${total_price+((order_view.origin_price-order_view.dc_price)*order_view.quantity) }" />
 				</c:forEach>
 				<tr style="background: #d7d9db;">
-					<td colspan="7" style="text-align: right;">기본 배송비 : 2,500원</td>
+					<td colspan="7" style="text-align: right;">기본 배송비 : 3,000원</td>
 				</tr>
 			</tbody>
 		</table>
@@ -64,44 +64,39 @@
 							<font style="color: #08a61c99;">상품을 준비중입니다. <br>신속하게 배송해 드리겠습니다.
 							</font>
 						</c:otherwise>
-					</c:choose>
-				</td>
+					</c:choose></td>
 			</tr>
-		<c:if test="${order_view[0].delivery_status != 'W' }">
-			<colgroup>
+			<c:if test="${order_view[0].delivery_status != 'W' }">
+				<colgroup>
 					<col style="width: 20%">
 					<col style="width: 20%">
 					<col style="width: 20%">
 					<col style="width: 20%">
-			</colgroup>
-			<tr>
-				<td><b>택배사</b></td>
-				<td><b>송장번호</b></td>
-				<td><b>배송 시작일</b></td>
-				<td><b>주문 번호</b></td>
-			</tr>
-			<tr>
-				<td>
-					<c:choose>
-						<c:when test="${order_view[0].courier_company == 'logen'}">
+				</colgroup>
+				<tr>
+					<td><b>택배사</b></td>
+					<td><b>송장번호</b></td>
+					<td><b>배송 시작일</b></td>
+					<td><b>주문 조회</b></td>
+				</tr>
+				<tr>
+					<td><c:choose>
+							<c:when test="${order_view[0].courier_company == 'logen'}">
 							로젠 택배
 						</c:when>
-						<c:otherwise>
+							<c:otherwise>
 							${order_view[0].courier_company}
 						</c:otherwise>
-					</c:choose>
-				</td>
-				<td>${order_view[0].courier_number}</td>
-				<td>${order_view[0].courier_date}</td>
-				<td class="text-center">
-					<button type="button" class="btn btn-yet-col btn-sm" onclick="DelivTracking(${order_view[0].courier_number})" style="border: 1px solid #acc; height: 23px; padding: 0;">
-						배송 조회
-					</button>
-				</td>
-			</tr>
-		</c:if>
+						</c:choose></td>
+					<td>${order_view[0].courier_number}</td>
+					<td>${order_view[0].courier_date}</td>
+					<td class="text-center">
+						<button type="button" class="btn btn-yet-col btn-sm" onclick="DelivTracking(${order_view[0].courier_number})" style="border: 1px solid #acc; height: 23px; padding: 0;">배송 조회</button>
+					</td>
+				</tr>
+			</c:if>
 		</table>
-		
+
 		<c:if test="${order_view[0].delivery_status != 'W' }">
 			<table class="table payInfo-table" style="margin-top: 50px; text-align: center;">
 				<tr>
@@ -131,7 +126,7 @@
 					<td>${order_view[0].cardNum }</td>
 					<td>${order_view[0].cardQuota }개월</td>
 					<td>${order_view[0].order_code }</td>
-	
+
 				</tr>
 			</table>
 		</c:if>
@@ -150,8 +145,8 @@
 			<tr>
 				<td id="price_sum"><fmt:formatNumber value="${price_sum}" groupingUsed="true" />원</td>
 				<td id="dc_price_sum"><fmt:formatNumber value="${dc_price_sum}" groupingUsed="true" />원</td>
-				<td id="shipping_fee">2,500원</td>
-				<td id="total_price"><fmt:formatNumber value="${total_price+2500 }" groupingUsed="true" />원</td>
+				<td id="shipping_fee">3,000원</td>
+				<td id="total_price"><fmt:formatNumber value="${total_price+3000 }" groupingUsed="true" />원</td>
 			</tr>
 		</table>
 
@@ -264,15 +259,11 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-xs-12" style="margin-bottom: 100px;">
-			<div class="col-md-4"></div>
-			<div class="col-md-4">
-				<div class="col-md-12">
-					<button class="btn btn-buy-col pull-left add-cart" onclick="location.href='/customer/orderList.do'">목록으로</button>
-					<button class="btn btn-buy-col pull-left add-cart" onclick="$('#orderCancelModal').modal();" style="margin-left: 10px;">주문취소</button>
-				</div>
+		<div class="col-xs-12">
+			<div style="display: table; margin: 0 auto; margin-bottom: 100px;">
+				<button class="btn btn-buy-col pull-left add-cart" onclick="location.href='/customer/orderList.do'">목록으로</button>
+				<button class="btn btn-buy-col pull-left add-cart" onclick="$('#orderCancelModal').modal();" style="margin-left: 10px;">주문취소</button>
 			</div>
-			<div class="col-md-4"></div>
 		</div>
 
 		<script type="text/javascript">
@@ -318,7 +309,7 @@
 					url:'/customer/orderCancelReqSub.do',
 					type:'POST',
 					data:{
-						order_code:${order_view[0].order_code },
+						order_code:'${order_view[0].order_code }',
 						tid:'${order_view[0].tid }',
 						canceler_tel:$("#canceler_tel").val(),
 						canceler_email:$("#canceler_email").val(),

@@ -85,7 +85,7 @@
 				<c:forEach var="cancel_list" items="${cancel_list}">
 				<tr>
 					<td class="text-center" style="border-left: none;">${cancel_list.cancel_rquest_date}</td>
-					<td style="border: none;"><img src="${pageContext.request.contextPath}${cancel_list.book_img_storedName}"></td> 
+					<td style="border: none;"><img src="${pageContext.request.contextPath}${cancel_list.book_img_storedName}" style="max-width: 180px;"></td> 
 					<td style="border-width: 1px 1px 1px 0px; "><a href="/admin/orderCancelDetail.do?order_code=${cancel_list.order_code }">
 						<b>${cancel_list.book_name}</b>
 						<c:if test="${cancel_list.group_count > 1}">

@@ -46,7 +46,7 @@
 			<input type="hidden" name="payment_list[${status.index}].quantity" value="${quantity[status.index]}">
 			<input type="hidden" name="payment_list[${status.index}].origin_price" value="${order.origin_price }">
 			<input type="hidden" name="payment_list[${status.index}].dc_price" value="${order.dc_price }">
-				<td style="vertical-align: middle;"><img src="${pageContext.request.contextPath}${order.book_img_storedName}"></td>
+				<td style="vertical-align: middle;"><img src="${pageContext.request.contextPath}${order.book_img_storedName}" style="max-width: 180px;"></td>
 				<td style="vertical-align: middle;">
 					<font class="mobile_product_text"><b><a href="/book/detailView.do?product_no=${order.product_no }">${order.book_name}</a></b></font><br>
 					<div class="hidden-sm hidden-md hidden-lg">
@@ -243,12 +243,12 @@
 	<input type="hidden" name="timestamp" value="${inipay.timestamp }">
 	<input type="hidden" name="signature" value="${inipay.signature }">
 	<input type="hidden" name="mKey" value="${inipay.mKey }">
-	<input type="hidden" name="returnUrl" value="http://localhost:8080/order/paymentResult.do">
-	<input type="hidden" name="closeUrl" value="http://localhost:8080/order/close.do">
-	<input type="hidden" name="popupUrl" value="http://localhost:8080/order/popup.do">
-	<!-- <input type="hidden" name="returnUrl" value="http://${pageContext.request.serverName}/order/paymentResult.do"> 변경!
-	<input type="hidden" name="closeUrl" value="http://${pageContext.request.serverName}/order/close.do">
-	<input type="hidden" name="popupUrl" value="http://${pageContext.request.serverName}/order/popup.do"> -->
+	<input type="hidden" name="returnUrl" value="${pageContext.request.scheme}://localhost:8080/order/paymentResult.do">
+	<input type="hidden" name="closeUrl" value="${pageContext.request.scheme}://localhost:8080/order/close.do">
+	<input type="hidden" name="popupUrl" value="${pageContext.request.scheme}://localhost:8080/order/popup.do">
+	<!-- <input type="hidden" name="returnUrl" value="${pageContext.request.scheme}://${pageContext.request.serverName}/order/paymentResult.do"> 변경!
+	<input type="hidden" name="closeUrl" value="${pageContext.request.scheme}://${pageContext.request.serverName}/order/close.do">
+	<input type="hidden" name="popupUrl" value="${pageContext.request.scheme}://${pageContext.request.serverName}/order/popup.do"> -->
 	
 	<input type="hidden" name="buyername" id="buyername_form" value="">
 	<input type="hidden" name="buyeremail" id="buyeremail_form" value="">
@@ -283,7 +283,7 @@ function callInipay(){
 	$("#buyername_form").val($("#buyername").val());
 	$("#buyeremail_form").val($("#buyeremail").val());
 	$("#buyertel_form").val($("#buyertel").val());
-	$("#P_NOTI").val($("#orderInfo").serialize());
+	$("#merchantData_form").val($("#orderInfo").serialize());
 	
 	INIStdPay.pay('SendPayForm');
 }
