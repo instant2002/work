@@ -2,20 +2,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<form action="/book/bookList.do" id="searchForm">
-	<input type="hidden" name="sortby" value="${ordering.sortby}"> <input type="hidden" name="perPageNum" value="${ordering.perPageNum}"> <input type="hidden" name="book_group" value="${ordering.book_group}">
-	<div class="input-group" style="margin-top: 20px;">
-		<input type="text" class="form-control" name="keyword" id="keyword" placeholder="도서명을 입력하세요!" style="box-shadow: 0 0 0 2px #a8a8a8 inset;"> <span class="input-group-btn">
-			<button class="btn btn-secondary" type="button" onclick="document.getElementById('searchForm').submit();">
-				<i class="fas fa-search"></i>
-			</button>
-		</span>
-	</div>
-</form>
-
 <form action="/book/bookList.do" id="orderingForm">
 	<input type="hidden" name="keyword" value="${keyword}">
-	<div class="cat-view-options">
+	<div class="cat-view-options" style="margin-top: 0;">
 		<div class="row">
 			<div class="col-md-4">
 				<div class="row no-gutter form-group">
@@ -51,7 +40,7 @@
 					</select>
 				</div>
 			</div>
-			<div class="col-md-2 text-left">
+			<div class="col-md-2 filter_btn">
 				<button class="btn btn-yet-col" type="button" onclick="document.getElementById('orderingForm').submit();" style="font-size: 12px; padding: 2px 10px; font-family: -webkit-body;">적용</button>
 				<button class="btn btn-yet-col" type="button" onclick="location.href='/book/bookList.do?page=${pageMaker.page}&keyword=${keyword}'" style="font-size: 12px; padding: 2px 10px; font-family: -webkit-body;">초기화</button>
 			</div>

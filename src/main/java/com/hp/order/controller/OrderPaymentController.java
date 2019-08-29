@@ -114,7 +114,7 @@ public class OrderPaymentController {
 			try{
 //				String u = "http://"+request.getServerName()+"/payment/complete.do?"+paymentCommand.getMerchantData()+"&user_id="+user_id+"&payMethod="+resultMap.get("payMethod")+"&cardNum="+resultMap.get("CARD_Num")+"&cardQuota="+resultMap.get("CARD_Quota")+"&tid="+resultMap.get("tid"); //변경!
 				String u = "http://"+request.getServerName()+":8080/payment/complete.do?"+paymentCommand.getMerchantData()+"&user_id="+user_id+"&payMethod="+resultMap.get("payMethod")+"&cardNum="+resultMap.get("CARD_Num")+"&cardQuota="+resultMap.get("CARD_Quota")+"&tid="+resultMap.get("tid");
-				System.out.println(u);
+				System.out.println("URL : " + u);
 				URL url =new URL(u);
 				URLConnection connection = url.openConnection();
 				HttpURLConnection hurlc = (HttpURLConnection)connection;

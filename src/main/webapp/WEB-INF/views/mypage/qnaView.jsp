@@ -71,7 +71,7 @@
 		</div>
 		<div>
 			<c:if test="${empty(answer.ansContents) }">
-				<pre style="border: 1px solid white; padding: 10px; white-space: pre-wrap;">고객님의 소중한 문의에 운영진이 답변을 준비 중이오니, 조금만 더 기다려 주세요.</pre>
+				<pre style="border: 1px solid white; padding: 10px; white-space: pre-wrap;">고객님의 소중한 문의에 운영진이 답변을 준비 중입니다.</pre>
 			</c:if>
 			<c:if test="${!empty(answer.ansContents) }">
 				<pre style="border: 1px solid white; padding: 10px; white-space: pre-wrap;">${answer.ansContents}</pre>

@@ -65,7 +65,7 @@
 			</div>
 		</div>
 	</form>
-	<table class="table table-hover order_history">
+	<table class="table table-hover order_history" style="table-layout: fixed;">
 			<colgroup>
 				<col width="13%" />
 				<col width="12%" />
@@ -91,7 +91,7 @@
 				<c:forEach var="order_list" items="${order_list}">
 				<tr>
 					<td class="text-center" style="border-left: none;">${order_list.order_date}</td>
-					<td style="border: none;"><img src="${pageContext.request.contextPath}${order_list.book_img_storedName}" style="max-width: 180px;"></td> 
+					<td style="border: none;"><img src="${pageContext.request.contextPath}${order_list.book_img_storedName}"></td> 
 					<td style="border-width: 1px 1px 1px 0px; "><a href="/admin/orderDetail.do?order_code=${order_list.order_code }">
 						<b>${order_list.book_name}</b>
 						<c:if test="${order_list.group_count > 1}">

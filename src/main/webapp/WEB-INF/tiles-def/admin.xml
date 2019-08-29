@@ -88,4 +88,9 @@
  		<put-attribute name="body" value="/WEB-INF/views/admin/sampleImgList.jsp"/>
  	</definition>
  	
+	<definition name="memberList" extends="admin.index">
+ 		<put-attribute name="title" value="회원 리스트"/>
+ 		<put-attribute name="body" value="/WEB-INF/views/admin/memberList.jsp"/>
+ 	</definition>
+ 	
 </tiles-definitions>

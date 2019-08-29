@@ -15,11 +15,12 @@
 						<strong>주문 상품 확인</strong>
 					</h2>
 				</div>
-				<table class="table table-striped">
+				<table class="table" style="table-layout: fixed;">
 					<colgroup>
-						<col width="15%" class="hidden-xs">
 						<col width="30%" class="hidden-sm hidden-md hidden-lg">
-						<col width="45%">
+						<col width="70%" class="hidden-sm hidden-md hidden-lg">
+						<col width="15%" class="hidden-xs">
+						<col width="45%" class="hidden-xs">
 						<col width="10%" class="hidden-xs">
 						<col width="10%" class="hidden-xs">
 						<col width="10%" class="hidden-xs">
@@ -38,7 +39,7 @@
 					<tbody>
 						<c:forEach var="order" items="${order}" varStatus="status">
 							<tr>
-								<td style="padding: 8px 0;"><img src="${pageContext.request.contextPath}${order.book_img_storedName}" style="max-width: 180px;"></td>
+								<td style="padding: 8px 0;"><img src="${pageContext.request.contextPath}${order.book_img_storedName}"></td>
 								<td style="vertical-align: middle;">
 									<font class="mobile_product_text"><b><a href="/book/detailView.do?product_no=${order.product_no }">${order.book_name}</a></b></font><br>
 									<div class="hidden-sm hidden-md hidden-lg">

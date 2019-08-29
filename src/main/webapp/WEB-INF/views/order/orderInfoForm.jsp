@@ -17,16 +17,17 @@
 	<div class="col-xs-12 text-center">
 		<h2><strong>주문/결제</strong></h2>
 	</div>
-	<table class="table table-striped">
+	<table class="table" style="table-layout: fixed;">
 		<colgroup>
+			<col width="35%" class="hidden-sm hidden-md hidden-lg" >
+			<col width="65%" class="hidden-sm hidden-md hidden-lg" >
 			<col width="15%" class="hidden-xs">
-			<col width="30%" class="hidden-sm hidden-md hidden-lg" >
-			<col width="35%">
-			<col width="10%">
-			<col width="10%">
-			<col width="10%">
-			<col width="10%">
-			<col width="10%">
+			<col width="35%" class="hidden-xs">
+			<col width="10%" class="hidden-xs">
+			<col width="10%" class="hidden-xs">
+			<col width="10%" class="hidden-xs">
+			<col width="10%" class="hidden-xs">
+			<col width="10%" class="hidden-xs">
 		</colgroup>
 		<thead class="hidden-xs" style="font-weight: bold; border: solid #ddd; border-width: 2px 0px;">
 			<tr>
@@ -46,7 +47,7 @@
 			<input type="hidden" name="payment_list[${status.index}].quantity" value="${quantity[status.index]}">
 			<input type="hidden" name="payment_list[${status.index}].origin_price" value="${order.origin_price }">
 			<input type="hidden" name="payment_list[${status.index}].dc_price" value="${order.dc_price }">
-				<td style="vertical-align: middle;"><img src="${pageContext.request.contextPath}${order.book_img_storedName}" style="max-width: 180px;"></td>
+				<td style="vertical-align: middle;"><img src="${pageContext.request.contextPath}${order.book_img_storedName}"></td>
 				<td style="vertical-align: middle;">
 					<font class="mobile_product_text"><b><a href="/book/detailView.do?product_no=${order.product_no }">${order.book_name}</a></b></font><br>
 					<div class="hidden-sm hidden-md hidden-lg">
@@ -59,7 +60,7 @@
 				<td class="hidden-xs" style="vertical-align: middle;">${quantity[status.index]}개</td>
 				<td class="hidden-xs" id="origin_price_${status.index }" style="vertical-align: middle;"><fmt:formatNumber value="${order.origin_price}" groupingUsed="true"/>원</td>
 				<td class="hidden-xs" id="dc_price_${status.index }" style="vertical-align: middle;"><fmt:formatNumber value="${order.dc_price}" groupingUsed="true"/>원</td>
-				<td class="hidden-xs" id="dc_price_${status.index }" style="vertical-align: middle;"><fmt:formatNumber value="${(order.origin_price*quantity[status.index])-(order.dc_price*quantity[status.index])}" groupingUsed="true"/>원</td>
+				<td class="hidden-xs" style="vertical-align: middle;"><fmt:formatNumber value="${(order.origin_price*quantity[status.index])-(order.dc_price*quantity[status.index])}" groupingUsed="true"/>원</td>
 				<td class="hidden-xs" style="vertical-align: middle;">기본 배송비</td>
 			</tr>
 			<c:set var="price_sum" value="${price_sum+(order.origin_price*quantity[status.index]) }"/>
@@ -246,9 +247,9 @@
 	<input type="hidden" name="returnUrl" value="${pageContext.request.scheme}://localhost:8080/order/paymentResult.do">
 	<input type="hidden" name="closeUrl" value="${pageContext.request.scheme}://localhost:8080/order/close.do">
 	<input type="hidden" name="popupUrl" value="${pageContext.request.scheme}://localhost:8080/order/popup.do">
-	<!-- <input type="hidden" name="returnUrl" value="${pageContext.request.scheme}://${pageContext.request.serverName}/order/paymentResult.do"> 변경!
+	<%-- <input type="hidden" name="returnUrl" value="${pageContext.request.scheme}://${pageContext.request.serverName}/order/paymentResult.do"> 변경!
 	<input type="hidden" name="closeUrl" value="${pageContext.request.scheme}://${pageContext.request.serverName}/order/close.do">
-	<input type="hidden" name="popupUrl" value="${pageContext.request.scheme}://${pageContext.request.serverName}/order/popup.do"> -->
+	<input type="hidden" name="popupUrl" value="${pageContext.request.scheme}://${pageContext.request.serverName}/order/popup.do"> --%>
 	
 	<input type="hidden" name="buyername" id="buyername_form" value="">
 	<input type="hidden" name="buyeremail" id="buyeremail_form" value="">
@@ -257,16 +258,17 @@
 </form>
 
 <form id="SendMobilePayForm" method="POST" action="https://mobile.inicis.com/smart/wcard/" target="BTPG_WALLET" accept-charset="EUC-KR">
-	<%-- <input type="hidden" name="P_MID" value="${inipay.mid }"> --%>
-	<input type="hidden" name="P_MID" value="INIpayTest">
+	<!-- <input type="hidden" name="P_MID" value="INIpayTest">
+	<input type="hidden" name="P_AMT" value="1000"/> -->
+	<input type="hidden" name="P_MID" value="${inipay.mid }">
+	<input type="hidden" name="P_AMT" value="${total_price + shipping_fee}"/>
 	<input type="hidden" name="P_OID" value="${order_code }">
-	<input type="hidden" name="P_AMT" value="1000"/>
 	<input type="hidden" name="P_UNAME" id="P_UNAME" value="">
 	<input type="hidden" name="P_GOODS" id="P_GOODS" value="${goodsname}">
-	<%-- <input type="hidden" name="P_NEXT_URL" value="http://${pageContext.request.serverName}/order/paymentMobileResult.do"> 변경!
-	<input type="hidden" name="P_NOTI_URL" value="http://${pageContext.request.serverName}/payment/mobileNoti.do"> --%>
-	<input type="hidden" name="P_NEXT_URL" value="http://192.168.0.100:8080/order/paymentMobileResult.do">
-	<input type="hidden" name="P_NOTI_URL" value="http://192.168.0.100:8080/payment/mobileNoti.do">
+	<%-- <input type="hidden" name="P_NEXT_URL" value="${pageContext.request.scheme}://${pageContext.request.serverName}/order/paymentMobileResult.do"> 변경!
+	<input type="hidden" name="P_NOTI_URL" value="${pageContext.request.scheme}://${pageContext.request.serverName}/payment/mobileNoti.do"> --%>
+	<input type="hidden" name="P_NEXT_URL" value="${pageContext.request.scheme}://192.168.0.100:8080/order/paymentMobileResult.do">
+	<input type="hidden" name="P_NOTI_URL" value="${pageContext.request.scheme}://192.168.0.100:8080/payment/mobileNoti.do">
 	<input type="hidden" name="P_RESERVED" value="twotrs_isp=Y&block_isp=Y&twotrs_isp_noti=N&ismart_use_sign=Y&vbank_receipt=Y&bank_receipt=N&apprun_check=Y">
 	<input type="hidden" name="P_HPP_METHOD" value="1">
 	<input type="hidden" name="P_EMAIL" id="P_EMAIL" value="">
@@ -292,7 +294,7 @@ function mobile_callInipay(){
 	$("#P_UNAME").val($("#buyername").val());
 	$("#P_EMAIL").val($("#buyeremail").val());
 	$("#P_MOBILE").val($("#buyertel").val());
-	$("#P_NOTI").val($("#orderInfo").serialize().replace(/&/gi,",,"));
+	$("#P_NOTI").val($("#orderInfo").serialize().replace(/&/gi,"#!"));
 	
 	
 	var width = 330;

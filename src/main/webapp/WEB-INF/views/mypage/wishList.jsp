@@ -12,12 +12,13 @@
 	</div>
 	<input id="wish_checkbox_all_m" type="checkbox" name="checkbox" class="stl wish_checkbox_all" checked="checked">
 	<label for="wish_checkbox_all_m" class="stl hidden-sm hidden-md hidden-lg" style="margin-left: 15px;"><span></span></label>
-	<table class="table">
+	<table class="table" style="table-layout: fixed;">
 		<colgroup>
-			<col width="1%">
+			<col width="3%" class="hidden-xs">
+			<col width="8%" class="hidden-sm hidden-md hidden-lg">
 			<col width="14%" class="hidden-xs">
 			<col width="30%" class="hidden-sm hidden-md hidden-lg" >
-			<col width="40%">
+			<col width="38%">
 			<col width="15%" class="hidden-xs">
 			<col width="15%" class="hidden-xs">
 			<col width="15%" class="hidden-xs">
@@ -49,7 +50,7 @@
 					<input id="wish_checkbox_${status.index}" type="checkbox" name="checkbox" value="${status.index}" class="stl wish_checkbox hidden-sm hidden-md hidden-lg" checked="checked">
 					<label for="wish_checkbox_${status.index}" class="stl"><span></span></label>
 				</td>
-				<td style="vertical-align: middle;"><img src="${pageContext.request.contextPath}${wish.book_img_storedName}" style="max-width: 180px;"></td>
+				<td style="vertical-align: middle;"><img src="${pageContext.request.contextPath}${wish.book_img_storedName}"></td>
 				<td style="vertical-align: middle;">
 					<font class="mobile_product_text"><b><a href="/book/detailView.do?product_no=${wish.product_no }">${wish.book_name}</a></b></font><br>
 					<div class="hidden-sm hidden-md hidden-lg">

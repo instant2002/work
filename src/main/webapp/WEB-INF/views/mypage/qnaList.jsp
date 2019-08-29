@@ -33,12 +33,12 @@
 				<td class="hidden-xs"><a href="/customer/qnaView.do?idx=${qna_list.idx }">${qna_list.title }</a></td>
 				<td class="hidden-xs">${qna_list.question_upload_date }</td>
 				<c:if test="${qna_list.isAnswer == 'Y' }">
-					<c:set value="준비중" var="aswer_status"/>
-				</c:if>
-				<c:if test="${qna_list.isAnswer == 'N' }">
 					<c:set value="답변 완료" var="aswer_status"/>
 				</c:if>
-				<td class="text-center hidden-xs"><c:out value="${aswer_status}"/></td>
+				<c:if test="${qna_list.isAnswer == 'N' }">
+					<c:set value="준비중" var="aswer_status"/>
+				</c:if>
+				<td class="text-center hidden-xs"><c:out value="${aswer_status}"/>${qna_list.isAnswer }</td>
 				<td class="hidden-sm hidden-md hidden-lg">
 					<a href="/customer/qnaView.do?idx=${qna_list.idx }">
 					<div>

@@ -19,6 +19,8 @@
 					<h5><strong>주문 관련</strong></h5>
 					<li><a href="/admin/orderList.do">주문 목록</a></li>
 					<li><a href="/admin/orderCancelList.do">주문 취소 목록</a></li>
+					<h5><strong>회원 관련</strong></h5>
+					<li><a href="/admin/memberList.do">회원 목록</a></li>
 				</ul>
 			</div>
 		</div>

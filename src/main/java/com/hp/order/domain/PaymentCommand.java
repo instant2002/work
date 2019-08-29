@@ -31,7 +31,7 @@ public class PaymentCommand {
 	private String merchantData;
 	private String payMethod;
 	private String cardNum;
-	private String cardQuota;
+	private String cardQuota; //할부 개월
 	private String book_name;
 	private int origin_price;
 	private int dc_price;

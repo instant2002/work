@@ -33,7 +33,7 @@
 							</select>
 						</div>
 					</div>
-					<div class="col-md-2 text-left">
+					<div class="col-md-2 filter_btn">
 						<button class="btn btn-yet-col" type="button" onclick="document.getElementById('orderingForm').submit();" style="font-size: 12px; padding: 2px 10px; font-family: -webkit-body;">적용</button>
 						<button class="btn btn-yet-col" type="button" onclick="location.href='/customer/orderList.do?page=${pageMaker.page}'" style="font-size: 12px; padding: 2px 10px; font-family: -webkit-body;">초기화</button>
 					</div>
@@ -41,15 +41,17 @@
 			</div>
 		</form>
 	</div>
-	<table class="table table-hover order_history">
+	<table class="table order_history" style="table-layout: fixed;">
 			<colgroup>
-				<col width="13%" />
-				<col width="12%" />
-				<col width="45%" />
-				<col width="15%" />
-				<col width="15%" />
+				<col width="30" class="hidden-sm hidden-md hidden-lg">
+				<col width="70" class="hidden-sm hidden-md hidden-lg">
+				<col width="13" class="hidden-xs">
+				<col width="10" class="hidden-xs">
+				<col width="47" class="hidden-xs">
+				<col width="15" class="hidden-xs">
+				<col width="15" class="hidden-xs">
 			</colgroup>
-			<thead class="text-center" style="font-weight: bold; border: solid #ddd; border-width: 2px 0px; background: #f9f9f9;">
+			<thead class="hidden-xs" class="text-center" style="font-weight: bold; border: solid #ddd; border-width: 2px 0px; background: #f9f9f9;">
 				<tr>
 					<td>날짜</td>
 					<td></td>
@@ -58,7 +60,7 @@
 					<td></td>
 				</tr>
 			</thead>
-<c:choose>
+	<c:choose>
 	<c:when test="${empty order_list}">
 		<td colspan="5" class="text-center">주문하신 상품이 없습니다.</td>
 	</c:when>
@@ -66,18 +68,55 @@
 			<tbody>
 				<c:forEach var="order_list" items="${order_list}">
 				<tr>
-					<td class="text-center" style="border-left: none;">${order_list.order_date}</td>
-					<td style="border: none;"><img src="${pageContext.request.contextPath}${order_list.book_img_storedName}" style="max-width: 180px;"></td> 
-					<td style="border-width: 1px 1px 1px 0px; "><a href="/customer/orderDetail.do?order_code=${order_list.order_code }">
+					<td class="text-center hidden-xs" style="border-left: none;">${order_list.order_date}</td>
+					<td style="border-right: none; border-left: none;"><img src="${pageContext.request.contextPath}${order_list.book_img_storedName}"></td> 
+					<td style="border-width: 1px 0px;">
+						<div class="hidden-xs">
+							<a href="/customer/orderDetail.do?order_code=${order_list.order_code }">
+							<b>${order_list.book_name}</b>
+							<c:if test="${order_list.group_count > 1}">
+								..외 ${order_list.group_count -1}건
+							</c:if>
+							</a><br>
+							<font style="font-size: 12px;">주문번호 : ${order_list.order_code}<br></font>
+							<font style="font-size: 20px; font-weight: bold;"><fmt:formatNumber value="${order_list.amount_payment}" groupingUsed="true"/>원</font>  
+						</div>
+						
+						<div class="hidden-sm hidden-md hidden-lg">
+						<a href="/customer/orderDetail.do?order_code=${order_list.order_code }">
 						<b>${order_list.book_name}</b>
 						<c:if test="${order_list.group_count > 1}">
 							..외 ${order_list.group_count -1}건
 						</c:if>
 						</a><br>
-						<font style="font-size: 12px;">주문번호 : ${order_list.order_code}<br></font>
-						<font style="font-size: 20px; font-weight: bold;"><fmt:formatNumber value="${order_list.amount_payment}" groupingUsed="true"/>원</font>  
+						<font class="mobile_price_text">주문번호 : ${order_list.order_code}</font><br>
+						<font class="mobile_price_text">${order_list.order_date}</font><br>
+						<font class="mobile_total_price_text"><fmt:formatNumber value="${order_list.amount_payment}" groupingUsed="true"/>원 </font> /
+						<c:choose>
+							<c:when test="${order_list.delivery_status == 'W'}">
+								<font class="mobile_price_text" style="font-weight: bold; color: #08a61c">배송 준비중</font>
+								<c:choose>
+									<c:when test="${order_list.payment_status == 'P'}">
+										<font class="mobile_price_text" style="font-weight: bold; color: #08a61c">(결제 완료)</font>
+									</c:when>
+									<c:otherwise>
+										<font class="mobile_price_text" style="font-weight: bold; color: #08a61c">(결제 대기)</font>
+									</c:otherwise>
+								</c:choose>
+							</c:when>
+							<c:when test="${order_list.delivery_status == 'D'}">
+								<font class="mobile_price_text" style="font-weight: bold; color: #a608a0">배송중</font>
+							</c:when>
+							<c:when test="${order_list.delivery_status == 'F'}">
+								<font class="mobile_price_text" style="font-weight: bold; color: #1b34ee">배송 완료</font>
+							</c:when>
+						</c:choose> 
+						<br><button class="btn btn-buy-col" onclick="location.href='/customer/orderDetail.do?order_code=${order_list.order_code }'" style="width: 50%; height: 30px; padding: 0;">
+							상세보기
+						</button>
+						</div>
 					</td>
-					<td class="text-center">
+					<td class="text-center hidden-xs">
 						<c:choose>
 							<c:when test="${order_list.delivery_status == 'W'}">
 								<font style="font-weight: bold; color: #08a61c;">배송 준비중</font><br>
@@ -104,7 +143,7 @@
 							</c:when>
 						</c:choose>
 					</td>
-					<td class="text-center" style="border-right: none;">
+					<td class="text-center hidden-xs" style="border-right: none;">
 						<!-- <button class="btn btn-buy-col pull-left add-cart" onclick="location.href='/customer/cancel.do'" style="width: 100%; height: 30px; padding: 0;"> -->
 						<button class="btn btn-buy-col pull-left add-cart" onclick="location.href='/customer/orderDetail.do?order_code=${order_list.order_code }'" style="width: 100%; height: 30px; padding: 0;">
 							상세보기

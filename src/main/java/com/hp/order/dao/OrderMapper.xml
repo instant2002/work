@@ -95,4 +95,86 @@
 		WHERE
 			a.order_code = #{order_code}; 
 	</select>
+	
+	
+	<insert id="orderComplete_m" parameterType="PaymentMobileCommand"> 
+	<![CDATA[ 
+			INSERT INTO 
+			order_books(
+				product_no,
+				quantity,
+				order_code,
+				tid,
+				user_id,
+				buyername,
+				buyeremail,
+				recipientname,
+				recipientemail,
+				buyertel,
+				recipienttel,
+				buyertel2,
+				recipienttel2,
+				recipient_postnum,
+				recipient_address1,
+				recipient_address2,
+				buyer_memo,
+				amount_payment,
+				payMethod,
+				origin_price,
+				dc_price,
+				cardNum,
+				cardQuota,
+				isPayment,
+				payment_status,
+				delivery_status
+				)
+			VALUES (
+				#{product_no},
+				#{quantity},
+				#{order_code},
+				#{tid},
+				#{user_id},
+				#{buyername},
+				#{buyeremail},
+				#{recipientname},
+				#{recipientemail},
+				#{buyertel},
+				#{recipienttel},
+				#{buyertel2},
+				#{recipienttel2},
+				#{recipient_postnum},
+				#{recipient_address1},
+				#{recipient_address2},
+				#{buyer_memo},
+				#{amount_payment},
+				#{payMethod},
+				#{origin_price},
+				#{dc_price},
+				#{cardNum},
+				#{cardQuota},
+				'Y',
+				'P',
+				'W'
+			)ON DUPLICATE KEY
+			UPDATE
+			order_date = CURRENT_TIMESTAMP
+			]]>
+	</insert>
+	
+	<select id="getMobilePaymentList" parameterType="String" resultType="PaymentMobileCommand">
+		SELECT
+			a.*,
+            b.book_name,
+            b.origin_price,
+            b.dc_price,
+            b.book_img_storedName
+		FROM 
+			order_books a
+		LEFT JOIN  
+			book_info b
+        ON 
+        	a.product_no = b.product_no
+		WHERE
+			a.order_code = #{order_code}; 
+	</select>
 </mapper>

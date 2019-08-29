@@ -233,6 +233,7 @@
 			</if>
 		</where> 
 		GROUP BY a.order_code
+		ORDER BY order_date DESC
 		LIMIT #{pageStart}, #{perPageNum}
 	</select>
 	

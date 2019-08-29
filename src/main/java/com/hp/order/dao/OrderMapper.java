@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import com.hp.order.domain.OrderCommand;
 import com.hp.order.domain.PaymentCommand;
+import com.hp.order.domain.PaymentMobileCommand;
 
 @Repository
 public interface OrderMapper {
@@ -15,5 +16,9 @@ public interface OrderMapper {
 	void orderComplete(PaymentCommand paymentCommand);
 
 	List<PaymentCommand> getPaymentList(String order_code);
+
+	void orderComplete_m(PaymentMobileCommand paymentMobileCommand);
+
+	List<PaymentMobileCommand> getMobilePaymentList(String order_code);
 
 }

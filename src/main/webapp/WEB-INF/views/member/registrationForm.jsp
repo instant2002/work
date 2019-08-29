@@ -4,9 +4,8 @@
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <form class="form-horizontal" id="register_form" action='/member/regist.do' method="POST">
   <fieldset>
-    <div id="legend" class="text-center">
-      <legend>회원가입</legend>
-    </div>
+    <h2 class="text-center"><strong>회원가입</strong></h2>
+    <hr>
     <div class="row" style="margin-bottom: 40px;">
 <div class="regist-form center-block" id="regist">
       <div class="required form-group">
@@ -74,7 +73,7 @@
     
     <div class="control-group">
       <div class="controls">
-        <button class="btn btn-success center-block" onclick="registSubFunc(); return false;">가입하기</button>
+        <button class="btn btn-buy-col center-block" onclick="registSubFunc(); return false;">가입하기</button>
       </div>
     </div>
 </div>
