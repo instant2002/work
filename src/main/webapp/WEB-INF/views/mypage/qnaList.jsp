@@ -38,7 +38,7 @@
 				<c:if test="${qna_list.isAnswer == 'N' }">
 					<c:set value="준비중" var="aswer_status"/>
 				</c:if>
-				<td class="text-center hidden-xs"><c:out value="${aswer_status}"/>${qna_list.isAnswer }</td>
+				<td class="text-center hidden-xs"><c:out value="${aswer_status}"/></td>
 				<td class="hidden-sm hidden-md hidden-lg">
 					<a href="/customer/qnaView.do?idx=${qna_list.idx }">
 					<div>

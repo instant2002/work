@@ -10,7 +10,7 @@
 	<div class="col-xs-12 text-center">
 		<h2><strong>장바구니</strong></h2>
 	</div>
-		<input id="checkbox_all" type="checkbox" name="checkbox" value="2" class="stl basket_checkbox_all hidden-sm hidden-md hidden-lg" checked="checked">
+		<input type="checkbox" name="checkbox" value="2" class="stl basket_checkbox_all hidden-sm hidden-md hidden-lg" checked="checked">
 		<label for="checkbox_all" class="stl hidden-sm hidden-md hidden-lg" style="margin-left: 15px;"><span></span></label>
 	<table class="table" style="table-layout: fixed;">
 		<colgroup>
@@ -29,7 +29,7 @@
 		<thead class="hidden-xs" style="font-weight: bold; border: solid #ddd; border-width: 2px 0px; background: #f9f9f9;">
 			<tr>
 				<td>
-					<input id="checkbox_all" type="checkbox" name="checkbox" class="stl basket_checkbox_all" checked="checked">
+					<input type="checkbox" name="checkbox" class="stl basket_checkbox_all" checked="checked">
 					<label for="checkbox_all" class="stl"><span></span></label>
 				</td>
 				<td></td>
@@ -65,13 +65,13 @@
 						<br><br>
 						<div class="cart_quantity_button clrfix product-count pull-left">
 							<a rel="nofollow" class="btn btn-default btn-minus" href="#" title="Subtract" onclick="edit_quantity_minus('${status.index }','${basket.origin_price}','${basket.dc_price}');">–</a> 
-							<input type="text" size="2" autocomplete="off" id="quantity_${status.index }" class="cart_quantity_input form-control grey count quantity_${status.index }" id="book_quantity" value="${basket.quantity}" style="width: 50px; font-size: 16px;" onkeyup="this.value=this.value.replace(/[^0-9]/g,'');"> 
+							<input type="text" size="2" autocomplete="off" id="quantity_${status.index }" class="cart_quantity_input form-control grey count quantity_${status.index }" value="${basket.quantity}" style="width: 50px; font-size: 16px;" onkeyup="this.value=this.value.replace(/[^0-9]/g,'');"> 
 							<a rel="nofollow" class="btn btn-default btn-plus" href="#" title="Add" onclick="edit_quantity_plus('${status.index }','${basket.origin_price}','${basket.dc_price}');">+</a>
 						</div>
 					</div>
 				</td>
 				<td class="hidden-xs" style="vertical-align: middle;">
-					<input type="number" value="${basket.quantity}" class="quantity_${status.index }" id="quantity_${status.index }" min="1" style="width: 50px;" onkeyup="this.value=this.value.replace(/[^0-9]/g,'');">
+					<input type="number" value="${basket.quantity}" id="quantity_${status.index }" class="quantity_${status.index }" min="1" style="width: 50px;" onkeyup="this.value=this.value.replace(/[^0-9]/g,'');">
 				</td>
 				<td class="hidden-xs origin_price_${status.index }" style="vertical-align: middle;"><fmt:formatNumber value="${basket.origin_price*basket.quantity}" groupingUsed="true"/>원</td>
 				<td class="hidden-xs dc_price_${status.index }" style="vertical-align: middle;"><fmt:formatNumber value="${basket.dc_price*basket.quantity}" groupingUsed="true"/>원</td>
@@ -202,6 +202,13 @@ function orderSubFunc(){
 	var a = 0;
 	for(var i=0;i<checkedVal.length;i++){
 		if(checkedVal[i] != undefined){
+			if($(".quantity_"+checkedVal[i]).val() == "" || $(".quantity_"+checkedVal[i]).val() == "0"){
+				alert("주문 수량은 최소 1개 이상이어야 합니다.");
+				$(".quantity_"+checkedVal[i]).focus();
+				return false;
+			}else{
+				
+				
 			product_no_input = '<input type="hidden" name="order_list['+checkedVal[i]+'].product_no" value="'+$(".product_no_"+checkedVal[i]).val()+'"/>';
 			quantity_input = '<input type="hidden" name="order_list['+checkedVal[i]+'].quantity" value="'+$(".quantity_"+checkedVal[i]).val()+'"/>';
 			total_price = '<input type="hidden" name="total_price" value="'+(parseInt(price))+'"/>';
@@ -209,9 +216,10 @@ function orderSubFunc(){
 			$("#orderInfoSubForm").append(quantity_input);
 			if(a==0)$("#orderInfoSubForm").append(total_price);
 			a++;
+			}
 		}
 	}
-	$("#orderInfoSubForm").submit();
+	/* $("#orderInfoSubForm").submit(); */
 }
 
 //장바구니 제거
@@ -369,17 +377,13 @@ $(document).ready(function(){
 	 
 	$("input[id^='quantity_']").on("propertychange change keyup paste input", function() {
 		var quantity_val = $(this).val();
-		var select_val = $(this).attr('id').substr($(this).attr('id').length-1);
+		var select_val = $(this).attr('class').substr($(this).attr('class').length-1);
 		var isChecked = $(".basket_checkbox_"+select_val).is(":checked");
-		
-		if(quantity_val == "") $('.quantity_'+select_val).val("1");
+		$(".quantity_"+select_val).val(quantity_val);
 	    if(quantity_val == oldVal) {
 	        return;
 	    }
 	    oldVal = quantity_val;
-	    
-	    if(quantity_val <= 0) quantity_val = 1;
-		
 		window["price_calc_"+select_val] = window["price_"+select_val] * quantity_val;
 		window["dc_price_calc_"+select_val] = window["dc_price_"+select_val] * quantity_val;
 		window["quantity_calc_"+select_val] = Number(quantity_val);
@@ -423,6 +427,8 @@ $(document).ready(function(){
 		   var currentVal = parseInt($('.quantity_'+num).val(),10);
 		   var currentVal = currentVal + 1; 
 		   var isChecked = $(".basket_checkbox_"+num).is(":checked");
+		   
+		   if(isNaN(currentVal)) currentVal = 1;
 		   
 			if(total_price-total_dc_price < 30000){
 				shipping_fee = 3000;
@@ -472,7 +478,8 @@ $(document).ready(function(){
 	function edit_quantity_minus(num, origin_price, dc_price) {
 		   var currentVal = parseInt($('.quantity_'+num).val(),10);
 		   var currentVal = currentVal - 1; 
-			if(currentVal <= 0) currentVal = 0;
+		   if(currentVal <= 0) currentVal = 0;
+		   if(isNaN(currentVal)) currentVal = 0;
 			
 		   var isChecked = $(".basket_checkbox_"+num).is(":checked");
 		   

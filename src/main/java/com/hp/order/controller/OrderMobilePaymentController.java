@@ -61,7 +61,7 @@ public class OrderMobilePaymentController {
 		String P_RMESG1 = paymentMobileCommand.getP_RMESG1();
 		String P_TID = paymentMobileCommand.getP_TID();
 		String P_REQ_URL = paymentMobileCommand.getP_REQ_URL();
-		String P_MID = "unionbooks"; //변경!
+		String P_MID = "unionbooks";
 		String param = "?P_MID="+P_MID+"&P_TID="+P_TID;
 		P_REQ_URL = P_REQ_URL + param;
 		

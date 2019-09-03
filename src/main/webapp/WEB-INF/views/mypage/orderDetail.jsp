@@ -223,7 +223,7 @@
 			<tr class="hidden-xs">
 				<td>
 				<c:choose>
-					<c:when test="${order_view[0].payMethod == 'VCard' || order_view[0].payMethod == 'CARD'}">
+					<c:when test="${order_view[0].payMethod == 'VCard' || order_view[0].payMethod == 'Card'}">
 						카드				
 					</c:when>
 					<c:otherwise>

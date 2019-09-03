@@ -45,7 +45,8 @@
 					<c:set var="total_price" value="${total_price+((order_view.origin_price-order_view.dc_price)*order_view.quantity) }" />
 				</c:forEach>
 				<tr style="background: #d7d9db;">
-					<td colspan="7" style="text-align: right;">기본 배송비 : 2,500원</td>
+					<td class="hidden-xs" colspan="7" style="text-align: right; background: #d7d9db;">(30,000원 이상 결제시 배송비 무료) 기본 배송비 : 3,000원</td>
+					<td class="hidden-sm hidden-md hidden-lg" colspan="2" style="text-align: right; background: #d7d9db;">기본 배송비 : 3,000원<br>(30,000원 이상 결제시 배송비 무료)</td>
 				</tr>
 			</tbody>
 		</table>
@@ -100,6 +101,15 @@
 			</tr>
 		</c:if>
 		</table>
+		
+		<c:choose>
+			<c:when test="${total_price < 30000 }">
+				<c:set var="shipping_fee" value="3000"/>
+			</c:when>
+			<c:otherwise>
+				<c:set var="shipping_fee" value="0"/>
+			</c:otherwise>
+		</c:choose>
 
 		<table class="table total-table" style="margin-top: 50px;">
 			<tr>
@@ -115,8 +125,8 @@
 			<tr>
 				<td id="price_sum"><fmt:formatNumber value="${price_sum}" groupingUsed="true" />원</td>
 				<td id="dc_price_sum"><fmt:formatNumber value="${dc_price_sum}" groupingUsed="true" />원</td>
-				<td id="shipping_fee">2,500원</td>
-				<td id="total_price"><fmt:formatNumber value="${total_price+2500 }" groupingUsed="true" />원</td>
+				<td id="shipping_fee"><fmt:formatNumber value="${shipping_fee}" groupingUsed="true"/>원</td>
+				<td id="total_price"><fmt:formatNumber value="${total_price+shipping_fee }" groupingUsed="true" />원</td>
 			</tr>
 		</table>
 
@@ -139,7 +149,7 @@
 			</tr>
 			<tr>
 				<td><c:choose>
-						<c:when test="${order_view[0].payMethod == 'VCard'}">
+						<c:when test="${order_view[0].payMethod == 'VCard' || order_view[0].payMethod == 'CARD'}">
 				카드				
 			</c:when>
 						<c:otherwise>

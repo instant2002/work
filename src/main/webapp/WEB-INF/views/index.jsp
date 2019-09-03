@@ -11,8 +11,9 @@
 <head>
 <meta charset="utf-8">
 <title>Unionbooks - 유니온북스</title>
-<meta name="description" content="">
-<meta name="keywords" content="">
+<link rel="canonical" href="http://unionbooks.kr">
+<meta name="description" content="유니온북스는 최선을 다해 최고의 품질을 추구합니다.">
+<meta name="keywords" content="임상의학종합평가(임종평) 해설, 의사국가고시 단권화, KMLE 단권화, 의사국가고시 수험서, 전공의시험 문제집">
 <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 <%-- <link rel="stylesheet" href="${pageContext.request.contextPath}/plugins/accessiblemegamenu/megamenu.css"> --%>

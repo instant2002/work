@@ -11,6 +11,10 @@
 	http://www.springframework.org/schema/aop/spring-aop.xsd ">
 
 	<mvc:annotation-driven />
+	
+	<!-- robots.txt 설정 -->
+	<beans:bean class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping" />
+	<resources mapping="/robots.txt" location="/robots.txt" order="0"/>
 		
 	<!-- [컨트롤러 스캔]
 	해당 경로에서 @Controller, @Repository, @Service, @Component.. 
@@ -99,6 +103,5 @@
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
-	
 	
 </beans:beans>

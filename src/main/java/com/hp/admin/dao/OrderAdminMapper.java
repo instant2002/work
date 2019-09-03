@@ -30,10 +30,10 @@ public interface OrderAdminMapper {
 
 	public void shipProduct(CourierCommand courierCommand);
 
-	@Update("UPDATE order_books SET delivery_status = #{courier_status} WHERE order_code = #{order_code}")
+	@Update("UPDATE order_books SET delivery_status = #{courier_status}, delivery_date = CURRENT_TIMESTAMP WHERE order_code = #{order_code}")
 	public void updateOrderTable(CourierCommand courierCommand);
 
-	@Update("UPDATE order_cancel SET delivery_status = #{courier_status} WHERE order_code = #{order_code}")
+	@Update("UPDATE order_cancel SET delivery_status = #{courier_status}, cancel_success_date = CURRENT_TIMESTAMP WHERE order_code = #{order_code}")
 	public void updateCancelTable(CourierCommand courierCommand);
 
 	public CourierCommand getCourierData(String order_code);

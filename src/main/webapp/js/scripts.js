@@ -554,6 +554,7 @@ $('.thumbnails-carousel').thumbnailsCarousel();
   $('.btn-plus').on('click', function () {
     var $count = $(this).parent().find('.count');
     var val = parseInt($count.val(),10);
+    if(isNaN(val)) val = 0;
     $count.val(val+1);
     return false;
   });
@@ -561,6 +562,7 @@ $('.thumbnails-carousel').thumbnailsCarousel();
   $('.btn-minus').on('click', function () {
     var $count = $(this).parent().find('.count');
     var val = parseInt($count.val(),10);
+    if(isNaN(val)) val = 1;
     if(val > 0 || val != "") $count.val(val-1);
     return false;
   });

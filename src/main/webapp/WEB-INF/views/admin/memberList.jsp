@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>   
 <div class="col-xs-12">
 <div class="col-xs-12 text-center" style="border: 1px solid #ddd; border-width: 2px 0px;">
-		<h2><strong>고객 주문 내역</strong></h2>
+		<h2><strong>회원 목록</strong></h2>
 	</div>
 	<table class="table">
 		<colgroup>

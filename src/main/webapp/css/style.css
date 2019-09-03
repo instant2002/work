@@ -31,12 +31,12 @@ Table of Contents:
 
 @font-face {
 	font-family: "NANUMBARUNGOTHIC";
-	src: url(fonts/NANUMBARUNGOTHIC.TTF)
+	src: url(fonts/NanumBarunGothic.otf)
 }
 
 @font-face {
 	font-family: "NANUMBARUNGOTHICBOLD";
-	src: url(fonts/NANUMBARUNGOTHICBOLD.TTF)
+	src: url(fonts/NanumBarunGothicBold.otf)
 }
 
 *{

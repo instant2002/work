@@ -178,11 +178,11 @@
 				<i class="fas fa-book-medical side_mainMenu_i1"></i>&nbsp;&nbsp;&nbsp;<strong>전체 도서</strong>
 				<i class="fas fa-chevron-right side_mainMenu_i2"></i>
 		</div>
-		<div class="col-xs-12 side_mainMenu" onclick="location.href='/book/bookList.do'" style="border: none;">
+		<div class="col-xs-12 side_mainMenu" onclick="location.href='/book/bookList.do?book_group=1'" style="border: none;">
 				<i class="fas fa-book-medical side_mainMenu_i1"></i>&nbsp;&nbsp;&nbsp;<strong>신간 도서</strong>
 				<i class="fas fa-chevron-right side_mainMenu_i2"></i>
 		</div>
-		<div class="col-xs-12 side_mainMenu" onclick="location.href='/book/bookList.do'" style="border-bottom: 10px solid #f8f8f8;">
+		<div class="col-xs-12 side_mainMenu" onclick="location.href='/book/bookList.do?book_group=2'" style="border-bottom: 10px solid #f8f8f8;">
 				<i class="fas fa-book-medical side_mainMenu_i1"></i>&nbsp;&nbsp;&nbsp;<strong>추천 도서</strong>
 				<i class="fas fa-chevron-right side_mainMenu_i2"></i>
 		</div>

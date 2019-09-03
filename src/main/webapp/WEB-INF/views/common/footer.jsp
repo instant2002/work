@@ -21,16 +21,15 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-2 hidden-xs hidden-sm">
-						<img src="/images/unionbooks/logo_nonback.png" style="width: 90%">
+						<img src="/images/unionbooks/logo_nonback.png" style="width: 60%">
 					</div>
 					<div class="col-xs-12 col-md-10">
-						상호명 : 유니온북스<br>
-						사업장주소 : 서울시 강서구 마곡중앙6로 11 보타닉파크타워3 1018호<br>
-						사업자번호 : 377-91-00849<br>
-						이메일 : unionbooks@daum.net<br>
-						전화번호 : 02-6953-0822<br>
-						대표자 : 김수영<br>
-						통신판매업신고번호 : 2019-서울강서-1082
+					<br>
+					<p>
+						상호명 : 유니온북스 | 사업장주소 : 서울시 강서구 마곡중앙6로 11 보타닉파크타워3 1018호<br>
+						이메일 : unionbooks@daum.net | 전화번호 : 02-6953-0822<br>
+						대표자 : 김수영 | 사업자번호 : 377-91-00849 | 통신판매업신고번호 : 2019-서울강서-1082
+						</p>
 					</div>
 				</div>
 			</div>

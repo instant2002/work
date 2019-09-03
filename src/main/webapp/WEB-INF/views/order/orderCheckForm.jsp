@@ -134,8 +134,9 @@ function comma(str) {
 }
 
 function orderSubFunc(){
-	if($(".count").val() <= 0){
-		alert("주문하실 수량이 없습니다.");
+	if($(".count").val() == "" || $(".count").val() == "0"){
+		alert("주문 수량은 최소 1개 이상이어야 합니다.");
+		$(".count").focus();
 		return false;
 	}
 	var price = $(".sum_price").html().replace(/,/,"");
@@ -149,6 +150,7 @@ function orderSubFunc(){
 function edit_quantity_plus() {
 	   var currentVal = parseInt($('.count').val(),10);
 	   var currentVal = currentVal + 1; 
+	   if(isNaN(currentVal)) currentVal = 1;
 	   var price = (${order[0].origin_price} * currentVal);
 	   var dc_price = (${order[0].dc_price} * currentVal);
 	   var total_price = (price - dc_price);
@@ -167,7 +169,7 @@ function edit_quantity_plus() {
 function edit_quantity_minus() {
 	   var currentVal = parseInt($('.count').val(),10);
 	   var currentVal = currentVal - 1;
-	   
+	   if(isNaN(currentVal)) currentVal = 0;
 	   if(currentVal >= 0){
 		   if(!isNaN(total_price)){
 			   total_price = 0;
@@ -190,7 +192,7 @@ function edit_quantity_minus() {
 
 $(".count").on("propertychange change keyup paste input", function() {
 	    var currentVal = $(this).val();
-	    if(currentVal == "") $('.count').val("1");
+	    $(".count").val(currentVal);
 	    if(currentVal == oldVal) {
 	        return;
 	    }

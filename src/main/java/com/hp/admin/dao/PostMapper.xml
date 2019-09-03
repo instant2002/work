@@ -59,6 +59,7 @@
 			*
 		FROM
 			book_info
+		ORDER BY upload_date DESC
 	</select>
 	
 	<select id="getMainBooksInfo" parameterType="List" resultType="PostCommand">
@@ -160,6 +161,7 @@
 			*
 		FROM
 			notice
+		ORDER BY upload_date DESC;
 	</select>
 	
 	<select id="getNoticeFile" parameterType="Integer" resultType="NoticeCommand">
@@ -198,6 +200,7 @@
 			*
 		FROM
 			question
+		ORDER BY isAnswer ASC, question_upload_date DESC 
 	</select>
 	
 	<insert id="qnaAnsSub" parameterType="QnaAdminCommand"> 

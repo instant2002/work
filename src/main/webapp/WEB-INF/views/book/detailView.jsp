@@ -168,7 +168,7 @@
 				<div class="hr"></div>
 				
 				<c:if test="${book.stock == 'Y' }">
-					<button class="btn btn-buy-col pull-left add-cart detail_btn_mobile" onclick="document.getElementById('orderSubForm').submit();">
+					<button class="btn btn-buy-col pull-left add-cart detail_btn_mobile" onclick="orderSubFunc();">
 						<i class="fas fa-book-open"></i>&nbsp;&nbsp;주문하기
 					</button>
 					<button class="btn btn-cart-col pull-left add-cart detail_btn_mobile" onclick="insertBasket(${book.product_no});">
@@ -272,7 +272,8 @@
    
    function edit_quantity_plus() {
 	   var currentVal = parseInt($('#book_quantity').val(),10);
-	   var currentVal = currentVal + 1; 
+	   currentVal = currentVal + 1; 
+	   if(isNaN(currentVal)) currentVal = 1;
 	   var price = <c:out value="${book_price}"/>;
 	   var total_price = numberWithCommas(price * currentVal);
 	   $("#total_price").html("<font class='detail_price'>"+total_price+"원</font>");
@@ -280,7 +281,8 @@
    
    function edit_quantity_minus() {
 	   var currentVal = parseInt($('#book_quantity').val(),10);
-	   var currentVal = currentVal - 1; 
+	   currentVal = currentVal - 1; 
+	   if(isNaN(currentVal)) currentVal = 0;
 	   if(currentVal >= 0){
 		   var price = <c:out value="${book_price}"/>;
 		   var total_price = numberWithCommas(price * currentVal);
@@ -293,7 +295,6 @@
 
    $("#book_quantity").on("propertychange change keyup paste input", function() {
 	    var currentVal = $(this).val();
-	    if(currentVal == "") $('#book_quantity').val("1");
 	    if(currentVal == oldVal) {
 	        return;
 	    }
@@ -360,4 +361,14 @@
     		alert("로그인이 필요한 서비스입니다.");
     	}
 	}
+    
+    function orderSubFunc(){
+    	if($("#book_quantity").val() == "" || $("#book_quantity").val() == "0"){
+    		alert("주문 수량은 최소 1개 이상이어야 합니다.");
+    		$("#book_quantity").focus();
+    		return false;
+    	}else{
+    		$("#orderSubForm").submit();
+    	}
+    }
    </script>
