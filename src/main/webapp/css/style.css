@@ -1054,7 +1054,8 @@ input.stl[type=radio]:not(old):checked + label > span > span { display: block; w
 .pl-item { text-align: center; margin-bottom: 30px;}
 @media (max-width: 992px) { .pl-item{ height: 230px;} }
 @media (min-width: 992px) {.pl-item figure { position: relative; height: 340px; line-height: 340px; overflow: hidden; border: 1px solid transparent; }}
-.pl-item figure img { max-width: 100%; max-height: 100%; opacity: 1; vertical-align: middle; transition: opacity 0.5s ease; -moz-backface-visibility: hidden; }
+.pl-item figure img { max-width: 90%; max-height: 100%; opacity: 1; vertical-align: middle; transition: opacity 0.5s ease; -moz-backface-visibility: hidden; }
+@media (max-width: 992px) {.pl-item figure img { max-height: 200px; max-width: 100%; }}
 .pl-item figure .pl-backside { display: block; position: absolute; left: 0; top: 0; width: 100%; height: 100%; }
 .pl-item figure .pl-backside img { opacity: 0; }
 .pl-item figure figcaption { display: block; position: absolute; left: 0; bottom: 0; width: 100%; height: 55px; margin-bottom: -55px; background-color: rgba(0, 0, 0, 0.7); transition: all 0.5s ease; }
@@ -2790,7 +2791,7 @@ body.home-v5 footer #social-buttons .skype a { background: #12a5f4; }
 .ellipsis_2{ overflow: hidden; text-overflow: ellipsis; white-space: nowrap; width: 80px; }
 .ellipsis_3{ overflow: hidden; text-overflow: ellipsis; white-space: nowrap; width: 100px; }
 .ellipsis_4{ overflow: hidden; text-overflow: ellipsis; white-space: nowrap; width: 120px; }
-.ellipsis_5{ overflow: hidden; text-overflow: ellipsis; white-space: nowrap; width: 150px; }
+.ellipsis_5{ overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 110px; }
 .ellipsis_6{ overflow: hidden; text-overflow: ellipsis; white-space: nowrap; width: 180px; }
 .ellipsis_7{ overflow: hidden; text-overflow: ellipsis; white-space: nowrap; width: 200px; }
 @media (min-width: 992px) { .ellipsis_8{ overflow: hidden; text-overflow: ellipsis; white-space: nowrap; width: 219px; }}
@@ -2815,7 +2816,7 @@ body.home-v5 footer #social-buttons .skype a { background: #12a5f4; }
 .login_btn:hover {background: #61acfa; color: #060606;}
 .logout_btn { background: #ddd; color: #000000; }
 .logout_btn:hover {background: #808080; color: #ffffff;}
-.side-bar{position: fixed; top: 0; right: 0; bottom: 0; z-index: 200; width: 100%; max-width: 420px; margin-left: 210px; background-color: #fff; margin-left: 0;}
+.side-bar{position: fixed; top: 0; right: 0; bottom: 0; z-index: 200; width: 100%; margin-left: 210px; background-color: #fff; margin-left: 0;}
 .sideBar_top{padding-top: 12px; margin-bottom: 10px;}
 .detail_dc{color: #f89412; font-size: 19px; font-weight: bold;}
 @media (max-width: 992px) { .detail_dc{ font-size: 17px;} }
@@ -2847,6 +2848,6 @@ table.product_detail > tbody > tr > td {vertical-align: middle;}
 @media (max-width: 992px){.secesson_radio{margin-left: 10px;}}
 .filter_btn{text-align: left;}
 @media (max-width: 992px){.filter_btn{text-align: right;}}
-
 .css-cancel {float: right; margin : 10px 20px; display: inline-block; position: relative; padding: 0; width: 4px; height: 20px; background: #000; transform: rotate(45deg);}
 .css-cancel:before {display: block; content: ""; position: absolute; top: 50%; left: -8px; width: 20px; height: 4px; margin-top: -2px; background: #000;}
+

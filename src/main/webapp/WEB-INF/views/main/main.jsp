@@ -8,13 +8,13 @@
 				<h2 class="news-title">신간 도서</h2>
 			</div>
 			<div class="row relative">
-				<div class="news-container clearfix" style="border-bottom: 10px solid #f8f8f8;">
+				<div class="news-container clearfix">
 					<c:forEach var="book_new" items="${book_new}">
 					<div class="col-md-3 col-xs-4 pl-item news-item">
 						<figure>
 							<a href="/book/detailView.do?product_no=${book_new.product_no }"> <img
 								src="${pageContext.request.contextPath}${book_new.book_img_storedName }"
-								alt="" style="width: 200px;">
+								alt="">
 							</a>
 							<c:if test="${book_new.discounted == 'Y'}">
 							<label class="pl-badge hide_mobile"><fmt:formatNumber value="${(book_new.dc_price / book_new.origin_price * 100)}" pattern="#"/>%↓</label>
@@ -59,7 +59,7 @@
 						<figure>
 							<a href="/book/detailView.do?product_no=${book_commend.product_no }"> <img
 								src="${pageContext.request.contextPath}${book_commend.book_img_storedName }"
-								alt="" style="width: 200px;">
+								alt="">
 							</a>
 							<c:if test="${book_commend.discounted == 'Y'}">
 							<label class="pl-badge hide_mobile"><fmt:formatNumber value="${(book_commend.dc_price / book_commend.origin_price * 100)}" pattern="#"/>%↓</label>

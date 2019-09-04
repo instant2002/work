@@ -85,7 +85,7 @@
 				<c:forEach var="book_list" items="${book_list}">
 					<div class="col-md-3 col-xs-4 pl-item">
 						<figure>
-							<a href="/book/detailView.do?product_no=${book_list.product_no }"> <img src="${pageContext.request.contextPath}${book_list.book_img_storedName }" width="200px">
+							<a href="/book/detailView.do?product_no=${book_list.product_no }"> <img src="${pageContext.request.contextPath}${book_list.book_img_storedName }">
 							</a>
 							<c:choose>
 								<c:when test="${book_list.discounted == 'Y'}">

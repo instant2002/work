@@ -250,7 +250,6 @@ public class PostServiceImpl implements PostService {
 			postMapper.uploadNotice(noticeCommand);
 			
 			int notice_idx = noticeCommand.getNum(); //생성된 공지 게시판의 idx값 얻어오기 
-			
 			for (MultipartFile mf : fileList) {//다중 파일 업로드
 				
 				String originFileName = mf.getOriginalFilename(); // 원본 파일 명

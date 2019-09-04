@@ -128,7 +128,7 @@
 			</if>
 		</where> 
 		GROUP BY b.order_code
-		ORDER BY b.cancel_rquest_date DESC
+		ORDER BY a.cancel_rquest_date DESC
 		LIMIT #{pageStart}, #{perPageNum}
 	</select>
 	

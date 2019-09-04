@@ -128,7 +128,7 @@
 			</if>
 		</where> 
 		GROUP BY b.order_code
-		ORDER BY b.cancel_rquest_date DESC
+		ORDER BY a.cancel_rquest_date DESC
 		LIMIT #{pageStart}, #{perPageNum}
 	</select>
 	
@@ -168,7 +168,6 @@
 			courier_company = #{courier_company},
 			courier_number = #{courier_number},
 			courier_status = #{courier_status}
-			ORDER BY courier_date DESC
 			]]>
 	</insert>
 	

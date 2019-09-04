@@ -110,7 +110,16 @@
 							<tr>
 								<td><font class="book-detail_1">판매가</font></td>
 								<td><font class="detail_price"><fmt:formatNumber value="${book.origin_price}" groupingUsed="true" />원</font></td>
-								<td></td>
+								<td>
+									<p class="availability col-sm-pull-right col-xs-pull-left hidden-xs" style="float: right;">
+										재고 : <span> <c:if test="${book.stock == 'Y' }">
+												<span class="in-stock"> </span>있음</span>
+										</c:if>
+										<c:if test="${book.stock != 'Y' }">
+											<span class="out-stock"> </span>없음</span>
+										</c:if>
+									</p>
+								</td>
 							</tr>
 						</table>
 					</c:otherwise>
