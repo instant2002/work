@@ -1,9 +1,15 @@
 package com.hp.customer.controller;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
@@ -39,15 +45,57 @@ public class BasketController {
 	
 	@ResponseBody
 	@RequestMapping(value="/customer/basketSub.do")
-	public boolean basketSub(@ModelAttribute("customerCommand") CustomerCommand customerCommand, HttpSession session) {
+	public boolean basketSub(@ModelAttribute("customerCommand") CustomerCommand customerCommand, 
+			HttpServletResponse response, HttpServletRequest request, HttpSession session) throws UnsupportedEncodingException {
 		String user_id = (String) session.getAttribute("user_id");
-		
 		customerCommand.setUser_id(user_id);
 		
 		if(log.isDebugEnabled()) log.debug("CustomerCommand : " + customerCommand);
 		
+		String basket_value = "";
+		Cookie get_cookie[] = request.getCookies();
+		if (get_cookie != null) {
+			for (int i = 0; i < get_cookie.length; i++) {
+				if (get_cookie[i].getName().equals("basket_cookie")) {
+					basket_value = URLDecoder.decode(get_cookie[i].getValue(), "UTF-8");
+				}
+			}
+		}
+		
+		String key = "basket_cookie";
+		String value = basket_value+customerCommand.getProduct_no() + "_" + customerCommand.getQuantity()+",";
+		boolean Duplicate = true;
+		
+		String[] basket_split = basket_value.split(",");
+		String basket_stringval;
+		if(basket_value != "") {
+			for(int i=0; i < basket_split.length; i++) {
+				basket_stringval = basket_split[i].substring(0,1); 
+				if(basket_stringval.equals(customerCommand.getProduct_no())) {
+					Duplicate = false;
+					break;
+				}
+				basket_stringval  = "";
+			}
+			if(Duplicate) {
+				Cookie cookie = new Cookie(key, value);
+				cookie.setMaxAge(60 * 60 * 24 * 1);
+				cookie.setPath("/");
+				cookie.setVersion(0);
+				response.addCookie(cookie);
+			}
+		}else {
+			Cookie cookie = new Cookie(key, value);
+			cookie.setMaxAge(60 * 60 * 24 * 1);
+			cookie.setPath("/");
+			cookie.setVersion(0);
+			response.addCookie(cookie);
+		}
+		
 		try {
-			customerService.insertBasket(customerCommand);
+			if(user_id != null) {
+				customerService.insertBasket(customerCommand);
+			}
 			return true;
 		} catch (Exception e) {
 			e.printStackTrace();

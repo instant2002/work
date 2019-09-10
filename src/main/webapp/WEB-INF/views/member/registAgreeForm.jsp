@@ -816,7 +816,7 @@ E-mail : unionbooks@ daum.net
 	</div>
 	
 	<form id="agreedRegist" action="/member/registForm.do" method="post"/>
-	<script>
+	<script type="text/javascript">
 	//약관 전체 동의
 	$(document).ready(function(){
 		   $("#agree_all").click(function(){

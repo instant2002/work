@@ -69,4 +69,6 @@ public interface CustomerService {
 	public List<BookCommand> getMypageBasketList(String user_id);
 
 	public HashMap<String, Object> getMypageCount(String user_id);
+
+	public List<PaymentCommand> getNonmemOrderTracking(Map<String, String> map);
 }

@@ -19,5 +19,15 @@
     	<put-attribute name="title" value="회원 가입 폼"/>
     	<put-attribute name="body" value="/WEB-INF/views/member/registrationForm.jsp"/>
     </definition>
+    
+	<definition name="orderTrackingForm" extends="non.left"> 
+    	<put-attribute name="title" value="비회원 주문 조회 폼"/>
+    	<put-attribute name="body" value="/WEB-INF/views/member/orderTrackingForm.jsp"/>
+    </definition>
+    
+	<definition name="orderTracking" extends="non.left"> 
+    	<put-attribute name="title" value="비회원 주문 조회 폼"/>
+    	<put-attribute name="body" value="/WEB-INF/views/member/orderTracking.jsp"/>
+    </definition>
  	 	
 </tiles-definitions>

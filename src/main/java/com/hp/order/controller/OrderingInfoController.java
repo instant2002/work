@@ -39,6 +39,7 @@ public class OrderingInfoController {
 		if(log.isDebugEnabled())log.debug("total_price : " + total_price);
 		
 		String user_id = (String) session.getAttribute("user_id");
+		String nonMem = (String) session.getAttribute("nonMem");
 		
 		//주문번호 생성
 		Random rand = new Random();
@@ -107,6 +108,7 @@ public class OrderingInfoController {
 		model.addAttribute("user", memberCommand);
 		model.addAttribute("inipay", inipay);
 		model.addAttribute("order_code", order_code);
+		model.addAttribute("nonMem", nonMem);
 		
 		return "orderInfoForm";
 	}

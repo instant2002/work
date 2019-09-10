@@ -48,8 +48,15 @@ public class OrderPaymentController {
 	
 	@RequestMapping(value="/order/paymentResult.do")
 	public String form(@ModelAttribute("paymentComman") PaymentCommand paymentCommand, HttpSession session, HttpServletRequest request, Model model) throws Exception {
+		String user_id = "";
+		if((String) session.getAttribute("nonMem") == "Y") {
+			if(log.isDebugEnabled())log.debug("비회원 주문 시도");
+			user_id = "nonmember";
+		}else {
+			if(log.isDebugEnabled())log.debug("회원 주문 시도");
+			user_id = (String) session.getAttribute("user_id");
+		}
 		
-		String user_id = (String) session.getAttribute("user_id");
 		String order_code = "";
 		
 		request.setCharacterEncoding("UTF-8");
@@ -103,7 +110,7 @@ public class OrderPaymentController {
 		String secureSignature = SignatureUtil.makeSignatureAuth(secureMap);
 		
 		if("0000".equals(resultMap.get("resultCode")) && secureSignature.equals(resultMap.get("authSignature")) && paymentCommand.getMerchantData() != ""){//결제 보안
-			System.out.println("성공인데...");
+			if(log.isDebugEnabled())log.debug("보안 인증 성공");
 			String[] merchatData = paymentCommand.getMerchantData().split("&");
 					for(String data : merchatData) {
 						if(data.indexOf("order_code=") == 0) {

@@ -389,4 +389,21 @@
 	    (SELECT COUNT(*) FROM wishList a LEFT JOIN book_info b ON a.product_no = b.product_no WHERE a.user_id = #{user_id} AND b.is_sale !='N') wish_count
 	FROM DUAL
 	</select>
+	
+	<select id="getNonmemOrderTracking" parameterType="map" resultType="PaymentCommand">
+	SELECT 
+			a.*, b.book_name, b.book_img_storedName, c.*
+		FROM 
+			order_books a
+		LEFT JOIN 
+			book_info b
+		ON a.product_no = b.product_no
+		LEFT JOIN 
+			delivery c
+		ON a.order_code = c.order_code
+		WHERE 
+			a.refund_status = 'N' AND 
+			a.buyername = #{buyername} AND
+			a.order_code = #{order_code}
+	</select>
 </mapper>

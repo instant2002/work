@@ -40,13 +40,21 @@
 		</mvc:interceptor>
 	</mvc:interceptors>
 	
-	<!-- 로그온 체크 인터셉터 -->
+	<!-- 회원 로그온 체크 인터셉터 -->
 	<mvc:interceptors>
 		<mvc:interceptor>
 			<mvc:mapping path="/customer/**" />
-			<mvc:mapping path="/order/**" />
 			<mvc:mapping path="/service/qnaForm.do" />
+			<mvc:exclude-mapping path="/customer/basket*"/>
 			<beans:bean id="logonCheckInterceptor" class="com.hp.common.logger.LogonCheckInterceptor"></beans:bean>
+		</mvc:interceptor>
+	</mvc:interceptors>
+	
+	<!-- 비회원 로그온 체크 인터셉터 -->
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/order/**" />
+			<beans:bean id="NonMemLogonCheckInterceptor" class="com.hp.common.logger.NonMemLogonCheckInterceptor"></beans:bean>
 		</mvc:interceptor>
 	</mvc:interceptors>
 	
@@ -54,6 +62,7 @@
 	<mvc:interceptors>
 		<mvc:interceptor> 
 			<mvc:mapping path="/member/loginSub.do" />
+			<mvc:mapping path="/member/nonMemberSub.do" />
 			<beans:bean id="LoginRedirectPaging" class="com.hp.common.logger.LoginRedirectPaging"></beans:bean>
 		</mvc:interceptor>
 	</mvc:interceptors>

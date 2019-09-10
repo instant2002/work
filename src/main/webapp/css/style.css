@@ -2812,8 +2812,8 @@ body.home-v5 footer #social-buttons .skype a { background: #12a5f4; }
 @media (min-width: 992px) { .mobile_sidebar_btn{ display: none; width: 48px; height: 48px; border: none; background-color: #fff; background-image: url(/images/unionbooks/top-menu.svg); background-position: center center; background-size: contain; background-repeat: no-repeat; box-sizing: inherit;} }
 
 
-.login_btn { background: #11539d; color: #ffffff; border: 1px solid #11539d;}
-.login_btn:hover {background: #61acfa; color: #060606;}
+.login_btn { background: #11539d; color: #ffffff;}
+.login_btn:hover {background: #0027b6; color: #fff; border: none;}
 .logout_btn { background: #ddd; color: #000000; }
 .logout_btn:hover {background: #808080; color: #ffffff;}
 .side-bar{position: fixed; top: 0; right: 0; bottom: 0; z-index: 200; width: 100%; margin-left: 210px; background-color: #fff; margin-left: 0;}

@@ -4,7 +4,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <div class="col-xs-12 text-center">
 	<h2>
-		<strong>주문 내역</strong>
+		<strong>비회원 주문 내역</strong>
 	</h2>
 </div>
 <c:choose>
@@ -86,7 +86,7 @@
 							<font style="color: #a608a0c2;">상품을 배송중입니다.</font>
 						</c:when>
 						<c:when test="${order_view[0].delivery_status == 'F' }">
-							<font style="color: #1b34eebd;">배송 완료<br> 고객님이 주문하신 상품이 배송완료 되었습니다.
+							<font style="color: #1b34eebd;"> ${order_view[0].delivery_date}(<fmt:formatDate value="${order_view[0].delivery_date}" pattern="E" />) 배송 완료<br> 고객님이 주문하신 상품이 배송완료 되었습니다.
 							</font>
 						</c:when>
 						<c:otherwise>
@@ -375,11 +375,8 @@
 			</div>
 		</div>
 		
-		
-		
-		
 		<div style="display: table; margin: 0 auto; margin-bottom: 100px;">
-			<button class="btn btn-buy-col pull-left add-cart" onclick="location.href='/customer/orderList.do'">목록으로</button>
+			<button class="btn btn-buy-col pull-left add-cart" onclick="location.href='/member/orderTrackingForm.do'">다시조회</button>
 			<button class="btn btn-buy-col pull-left add-cart" onclick="$('#orderCancelModal').modal();" style="margin-left: 10px;">주문취소</button>
 		</div>
 
@@ -423,7 +420,7 @@
 		function orderCancelFunc(){
 			if(confirm("해당 상품의 주문을 취소하시겠습니까?")){
 				$.ajax({
-					url:'/customer/orderCancelReqSub.do',
+					url:'/member/nonMemOrderCancel.do',
 					type:'POST',
 					data:{
 						order_code:'${order_view[0].order_code }',
@@ -440,7 +437,7 @@
 						if(data){
 							if(data.able){
 								alert(data.msg);
-								location.href='/customer/orderCancelList.do';
+								location.href='/main.do';
 							}else{
 								alert(data.msg);
 							}

@@ -55,6 +55,9 @@
 											</div>
 											<div class="dd-delimiter"></div>
 										</form>
+											<div>
+											<input type="button" class="btn btn-cart-col" style="width: 100%; margin-bottom: 15px;" value="비회원 주문 조회" onclick="location.href='/member/orderTrackingForm.do';">
+											</div>
 									</div>
 								</div>
 							</div>

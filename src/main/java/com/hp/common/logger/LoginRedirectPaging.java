@@ -31,6 +31,7 @@ public class LoginRedirectPaging extends HandlerInterceptorAdapter {
     	
     	HttpSession httpSession = request.getSession();
     	Object userVO = modelAndView.getModelMap().get("user_id");
+    	Object nonMem = modelAndView.getModelMap().get("nonMem");
     	
     	if(log.isDebugEnabled())log.debug("userVO : " + userVO);
     	
@@ -44,11 +45,31 @@ public class LoginRedirectPaging extends HandlerInterceptorAdapter {
     		redirectPage = destination != null ? destination : referrer;
     		
     		if((redirectPage.toString()).indexOf("/member/loginForm.do") > -1) {
+    			if(log.isDebugEnabled()) log.debug("referrer = '/member/loginForm.do' ...set null");
+    			redirectPage = null;
+    		}
+
+    		if(log.isDebugEnabled()) {
+    			log.debug("referrer : " + referrer);
+    			log.debug("destination : " + destination);
+    			log.debug("redirectPage : " + redirectPage );
+    		}
+    		
+    		response.sendRedirect(redirectPage != null ? (String) redirectPage : "/main.do");
+    	}else if(nonMem != null && nonMem == "Y") {
+    		Object destination = httpSession.getAttribute("destination");
+    		Object referrer = request.getHeader("Referer");
+    		Object redirectPage;
+    		
+    		redirectPage = destination != null ? destination : referrer;
+    		
+    		if((redirectPage.toString()).indexOf("/member/loginForm.do") > -1) {
     			if(log.isDebugEnabled()) log.debug("referrer = /member/loginForm.do... set Null");
     			redirectPage = null;
     		}
 
     		if(log.isDebugEnabled()) {
+    			log.debug("비회원 주문 시도");
     			log.debug("referrer : " + referrer);
     			log.debug("destination : " + destination);
     			log.debug("redirectPage : " + redirectPage );

@@ -78,6 +78,23 @@
 </c:otherwise>
 </c:choose>
 </div>
+<c:if test="${nonMem == 'Y' }">
+	<div class="col-xs-12">
+		<div class="col-xs-12 text-center hidden-xs" style="margin: 40px 0 10px 0">
+			<span><b>(필수)비회원 주문에 대한 개인정보 수집 이용 동의</b></span>
+		</div>
+		<div class="col-xs-12 text-center hidden-xs">
+		<textarea rows="5" cols="150">
+- 수집항목: 성명, 이메일, 휴대폰 번호, 주소, 전화번호
+- 수집/이용목적: 서비스 제공 및 계약의 이행, 구매 및 대금결제, 물품배송 또는 청구지 발송, 불만처리 등 민원처리, 회원관리 등을 위한 목적
+- 이용기간: 원칙적으로 개인정보 수집 및 이용목적이 달성된 후에는 해당 정보를 지체 없이 파기합니다.
+단, 관계법령의 규정에 의하여 보전할 필요가 있는 경우 일정기간 동안 개인정보를 보관할 수 있습니다.
+그 밖의 사항은 (재)천주교서울대교구 가톨릭출판사 개인정보처리방침을 준수합니다.</textarea>
+	<input id="nonMemAgree" type="checkbox" name="checkbox" class="stl basket_checkbox_all hidden-sm hidden-md hidden-lg">
+	<label for="nonMemAgree" class="stl"><span></span>비회원 주문에 대한 개인정보 수집 이용에 동의합니다.</label>
+	</div>
+	</div>
+</c:if>
 <c:choose>
 	<c:when test="${total_price < 30000 }">
 		<c:set var="shipping_fee" value="3000"/>

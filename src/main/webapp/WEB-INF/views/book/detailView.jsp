@@ -315,8 +315,6 @@
 	});
    
     function insertBasket (product_no){
-    	var isLogin = "${isLogin}" ;
-    	if(isLogin != 'no'){
 		$.ajax({
 			url:'/customer/basketSub.do',
 			type:'get',
@@ -339,9 +337,6 @@
 				alert("처리 중 오류가 발생하였습니다.\n지속적인 오류가 발생될 시 고객센터에 문의해 주시기 바랍니다.");
 			}
 		});
-    	}else{
-    		alert("로그인이 필요한 서비스입니다.");
-    	}
 	}
     
     function insertWishList (product_no){

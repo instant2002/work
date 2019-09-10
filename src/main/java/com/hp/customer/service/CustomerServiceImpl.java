@@ -180,4 +180,9 @@ public class CustomerServiceImpl implements CustomerService {
 		return customerMapper.getMypageCount(user_id);
 	}
 
+	@Override
+	public List<PaymentCommand> getNonmemOrderTracking(Map<String, String> map) {
+		return customerMapper.getNonmemOrderTracking(map);
+	}
+
 }

@@ -15,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.FlashMap;
 import org.springframework.web.servlet.FlashMapManager;
 import org.springframework.web.servlet.support.RequestContextUtils;
@@ -49,7 +50,7 @@ public class MemberLoginController {
 	   }
 	
 	@RequestMapping(value="/member/loginForm.do", method=RequestMethod.GET) //로그인 폼으로 이동
-	public String form(HttpServletRequest request,  HttpServletResponse response,  Model model){
+	public String form(@RequestParam(value="orderLogin", required=false) String orderLogin, HttpServletRequest request,  HttpServletResponse response,  Model model){
 		
 		Map<String, ?> flashMap = RequestContextUtils.getInputFlashMap(request);
 		FlashMap fm = new FlashMap();
@@ -63,6 +64,8 @@ public class MemberLoginController {
 			FlashMapManager flashMapManager = RequestContextUtils.getFlashMapManager(request);
 		    flashMapManager.saveOutputFlashMap(fm, request, response);
 		}
+		
+		model.addAttribute("orderLogin",orderLogin);
 		
 		return "memberLoginForm";
 	}
@@ -101,6 +104,8 @@ public class MemberLoginController {
 			if(check) {
 				if(log.isDebugEnabled()) log.debug("Login True memberCommand : " + memberCommand);
 				session.setAttribute("user_id", member.getUser_id());
+				session.setAttribute("nonMem", "N");
+				model.addAttribute("nonMem", "N");
 				model.addAttribute("user_id", member.getUser_id());
 				saveDestination(request);
 				return "main";
@@ -129,9 +134,64 @@ public class MemberLoginController {
 		}
 	}
 	
+	@RequestMapping(value="/member/nonMemberSub.do", method=RequestMethod.POST) //비회원 주문 시도
+	public String nonMemSubmit(@RequestParam(value="nonMem", required=false) String nonMem, HttpSession session, HttpServletResponse response, Model model, HttpServletRequest request){
+		try{
+			if(log.isDebugEnabled()) log.debug("nonMem : " + nonMem);
+			
+			boolean check = false;
+			
+			if(nonMem != null) {
+				check = true;
+			}
+			
+			Map<String, ?> flashMap = RequestContextUtils.getInputFlashMap(request);
+			FlashMap fm = new FlashMap();
+			
+			if(flashMap !=null) {
+				fm.put("product_no", flashMap.get("product_no"));
+				fm.put("quantity", flashMap.get("quantity"));
+				
+				if(log.isDebugEnabled()) log.debug("LoginSub flashMap : " + flashMap);
+				
+				FlashMapManager flashMapManager = RequestContextUtils.getFlashMapManager(request);
+				flashMapManager.saveOutputFlashMap(fm, request, response);
+			}
+			
+			if(check) {
+				if(log.isDebugEnabled()) log.debug("비회원 주문 페이지 요청 완료");
+				session.setAttribute("nonMem", "Y");
+				model.addAttribute("nonMem", "Y");
+				saveDestination(request);
+				return "main";
+			}else {
+				if(log.isDebugEnabled()) log.debug("비회원 주문 페이지 요청 실패");
+				
+				HttpSession httpSession = request.getSession();
+				/* 로그인 실패 시 머물렀던 페이지 저장... 다시 로그인 시 저장된 페이지로 이동시키게  destination 설정*/
+				if(!request.getHeader("referer").contains("/member/loginForm.do")) {
+					request.getSession().setAttribute("destination", request.getHeader("referer"));
+					Object destination = httpSession.getAttribute("destination");
+					if(log.isDebugEnabled()) log.debug("destination_referer : " + destination);
+				}
+				
+				model.addAttribute("user_id","itsNotUser");
+				
+				response.setContentType("text/html; charset=UTF-8");
+				PrintWriter out = response.getWriter();
+				out.println("<script>alert('잘못된 시도입니다.'); location.href='/member/loginForm.do?orderLogin=Y';</script>");
+				out.flush();
+				return "memberLoginForm";
+			}
+		}catch (Exception e) {
+			return "memberLoginForm";
+		}
+	}
+	
 	@RequestMapping(value="/member/logout.do") //로그아웃
 	public String logout(HttpSession session) {
 		session.removeAttribute("user_id");
+		session.removeAttribute("nonMem");
 		session.invalidate();
 		return "redirect: /main.do";
 	}

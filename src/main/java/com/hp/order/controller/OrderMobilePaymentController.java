@@ -55,7 +55,14 @@ public class OrderMobilePaymentController {
 	public String form(@ModelAttribute("paymentMobileCommand") PaymentMobileCommand paymentMobileCommand, HttpSession session, HttpServletRequest request, HttpServletResponse response, Model model) throws IOException{
 		if(log.isDebugEnabled())log.debug("paymentMobileCommand : " + paymentMobileCommand);
 		
-		String user_id = (String) session.getAttribute("user_id");
+		String user_id = "";
+		if((String) session.getAttribute("nonMem") == "Y") {
+			if(log.isDebugEnabled())log.debug("비회원 주문 시도");
+			user_id = "nonmember";
+		}else {
+			if(log.isDebugEnabled())log.debug("회원 주문 시도");
+			user_id = (String) session.getAttribute("user_id");
+		}
 		
 		String P_STATUS = paymentMobileCommand.getP_STATUS();
 		String P_RMESG1 = paymentMobileCommand.getP_RMESG1();

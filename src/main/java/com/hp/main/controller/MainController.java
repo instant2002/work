@@ -3,6 +3,7 @@ package com.hp.main.controller;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
@@ -26,12 +27,14 @@ public class MainController {
 	private ServicesService servicesService;
 	
 	@RequestMapping(value = "/")
-	public String form() {
+	public String form(HttpServletRequest request) {
+		request.getSession().setAttribute("destination", null);
 		return "redirect:/main.do";
 	}
 	
 	@RequestMapping(value = "/main.do")
-	public String openSampleList(Model model) {
+	public String openSampleList(HttpServletRequest request, Model model) {
+		request.getSession().setAttribute("destination", null);
 		
 		String book_new_num = "1";
 		String book_commend_num = "2";

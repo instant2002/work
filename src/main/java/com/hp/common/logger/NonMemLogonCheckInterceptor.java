@@ -12,7 +12,7 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 import org.springframework.web.servlet.support.RequestContextUtils;
 
 @Component
-public class LogonCheckInterceptor extends HandlerInterceptorAdapter{
+public class NonMemLogonCheckInterceptor extends HandlerInterceptorAdapter{
 	private Logger log = Logger.getLogger(this.getClass());
    
    //페이지 요청 정보 저장
@@ -32,7 +32,7 @@ public class LogonCheckInterceptor extends HandlerInterceptorAdapter{
    @Override
    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)throws Exception{
       if(log.isDebugEnabled()){
-         log.debug("===LogonCheckInterceptor 진입===");
+         log.debug("===NonMemLogonCheckInterceptor 진입===");
       }
       
       HttpSession session = request.getSession();
@@ -42,6 +42,7 @@ public class LogonCheckInterceptor extends HandlerInterceptorAdapter{
       
       System.out.println("product_no : " + product_no);
       System.out.println("quantity : " + quantity);
+      System.out.println("nonMem : " + session.getAttribute("nonMem"));
       
       if(product_no != null && quantity != null) {
     	  FlashMap flashMap = new FlashMap();
@@ -54,6 +55,10 @@ public class LogonCheckInterceptor extends HandlerInterceptorAdapter{
     	  flashMapManager.saveOutputFlashMap(flashMap, request, response);
       }
 
+	  if(session.getAttribute("nonMem") == "Y") {
+		  return true;
+	  }
+      
       String param = "";
       
       if(session.getAttribute("user_id")==null){
