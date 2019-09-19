@@ -92,4 +92,6 @@ public interface CustomerMapper {
 	public HashMap<String, Object> getMypageCount(String user_id);
 
 	public List<PaymentCommand> getNonmemOrderTracking(Map<String, String> map);
+
+	public List<BookCommand> getBasketCookieList(List<String> product_list);
 }

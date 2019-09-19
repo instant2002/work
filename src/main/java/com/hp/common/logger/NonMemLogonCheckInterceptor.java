@@ -1,5 +1,7 @@
 package com.hp.common.logger;
 
+import java.util.Arrays;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -24,7 +26,6 @@ public class NonMemLogonCheckInterceptor extends HandlerInterceptorAdapter{
 	   }else {
 		   query = "?" + query;
 	   }
-	   
 		   if(log.isDebugEnabled())log.debug("func destination : " + (uri + query));
 		   request.getSession().setAttribute("destination", uri + query);
    }
@@ -37,17 +38,15 @@ public class NonMemLogonCheckInterceptor extends HandlerInterceptorAdapter{
       
       HttpSession session = request.getSession();
       
-      String product_no = request.getParameter("order_list[0].product_no");
-      String quantity = request.getParameter("order_list[0].quantity");
+      String[] product_no_list = request.getParameterValues("product_no_list");
+      String[] quantity_list = request.getParameterValues("quantity_list");
+      String total_price = request.getParameter("total_price");
       
-      System.out.println("product_no : " + product_no);
-      System.out.println("quantity : " + quantity);
-      System.out.println("nonMem : " + session.getAttribute("nonMem"));
-      
-      if(product_no != null && quantity != null) {
+      if(product_no_list != null && quantity_list != null) {
     	  FlashMap flashMap = new FlashMap();
-    	  flashMap.put("product_no", product_no);
-    	  flashMap.put("quantity", quantity);
+    	  flashMap.put("product_no_list", product_no_list);
+    	  flashMap.put("quantity_list", quantity_list);
+    	  flashMap.put("total_price", total_price);
     	  
     	  if(log.isDebugEnabled()) log.debug("Setting flashMap : " + flashMap);
     	  
@@ -63,7 +62,7 @@ public class NonMemLogonCheckInterceptor extends HandlerInterceptorAdapter{
       
       if(session.getAttribute("user_id")==null){
     	  saveDestination(request);
-    	  if(product_no != null) {
+    	  if(product_no_list != null) {
     		  param = "?orderLogin=Y";
     	  }
     	  response.sendRedirect(request.getContextPath()+"/member/loginForm.do"+param);

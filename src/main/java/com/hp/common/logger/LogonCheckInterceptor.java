@@ -37,16 +37,20 @@ public class LogonCheckInterceptor extends HandlerInterceptorAdapter{
       
       HttpSession session = request.getSession();
       
-      String product_no = request.getParameter("order_list[0].product_no");
-      String quantity = request.getParameter("order_list[0].quantity");
+      /*String product_no_list = request.getParameter("order_list[0].product_no");
+      String quantity_list = request.getParameter("order_list[0].quantity");*/
+      String product_no_list = request.getParameter("product_no_list");
+      String quantity_list = request.getParameter("quantity_list");
+      String total_price = request.getParameter("total_price");
       
-      System.out.println("product_no : " + product_no);
-      System.out.println("quantity : " + quantity);
+      System.out.println("product_no_list : " + product_no_list);
+      System.out.println("quantity_list : " + quantity_list);
       
-      if(product_no != null && quantity != null) {
+      if(product_no_list != null && quantity_list != null) {
     	  FlashMap flashMap = new FlashMap();
-    	  flashMap.put("product_no", product_no);
-    	  flashMap.put("quantity", quantity);
+    	  flashMap.put("product_no_list", product_no_list);
+    	  flashMap.put("quantity_list", quantity_list);
+    	  flashMap.put("total_price", total_price);
     	  
     	  if(log.isDebugEnabled()) log.debug("Setting flashMap : " + flashMap);
     	  
@@ -58,7 +62,7 @@ public class LogonCheckInterceptor extends HandlerInterceptorAdapter{
       
       if(session.getAttribute("user_id")==null){
     	  saveDestination(request);
-    	  if(product_no != null) {
+    	  if(product_no_list != null) {
     		  param = "?orderLogin=Y";
     	  }
     	  response.sendRedirect(request.getContextPath()+"/member/loginForm.do"+param);

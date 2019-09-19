@@ -50,6 +50,9 @@
 		<tbody>
 		<c:forEach var="basket" items="${basket}" varStatus="status">
 		<input type="hidden" value="${basket.product_no }" class="product_no_${status.index}">
+		<c:if test="${basket.quantity == null }">
+			<c:set target="${basket}" property="quantity" value="${quantity_list[status.index]}"/>
+		</c:if>
 			<tr>
 				<td style="vertical-align: middle;">
 					<input id="checkbox${status.index}" type="checkbox" name="checkbox" class="stl basket_checkbox basket_checkbox_${status.index}" checked="checked" value="${status.index}"><label for="checkbox${status.index}" class="stl"><span></span></label>
@@ -71,7 +74,7 @@
 					</div>
 				</td>
 				<td class="hidden-xs" style="vertical-align: middle;">
-					<input type="number" value="${basket.quantity}" id="quantity_${status.index }" class="quantity_${status.index }" min="1" style="width: 50px;" onkeyup="this.value=this.value.replace(/[^0-9]/g,'');">
+					<input type="number" value="${basket.quantity}" id="quantity_${status.index }" class="quantity_${status.index }" min="1" style="width: 50px;" autocomplete="off" onkeyup="this.value=this.value.replace(/[^0-9]/g,'');">
 				</td>
 				<td class="hidden-xs origin_price_${status.index }" style="vertical-align: middle;"><fmt:formatNumber value="${basket.origin_price*basket.quantity}" groupingUsed="true"/>원</td>
 				<td class="hidden-xs dc_price_${status.index }" style="vertical-align: middle;"><fmt:formatNumber value="${basket.dc_price*basket.quantity}" groupingUsed="true"/>원</td>
@@ -207,10 +210,8 @@ function orderSubFunc(){
 				$(".quantity_"+checkedVal[i]).focus();
 				return false;
 			}else{
-				
-				
-			product_no_input = '<input type="hidden" name="order_list['+checkedVal[i]+'].product_no" value="'+$(".product_no_"+checkedVal[i]).val()+'"/>';
-			quantity_input = '<input type="hidden" name="order_list['+checkedVal[i]+'].quantity" value="'+$(".quantity_"+checkedVal[i]).val()+'"/>';
+			product_no_input = '<input type="hidden" name="product_no_list" value="'+$(".product_no_"+checkedVal[i]).val()+'"/>';
+			quantity_input = '<input type="hidden" name="quantity_list" value="'+$(".quantity_"+checkedVal[i]).val()+'"/>';
 			total_price = '<input type="hidden" name="total_price" value="'+(parseInt(price))+'"/>';
 			$("#orderInfoSubForm").append(product_no_input);
 			$("#orderInfoSubForm").append(quantity_input);
@@ -219,7 +220,7 @@ function orderSubFunc(){
 			}
 		}
 	}
-	/* $("#orderInfoSubForm").submit(); */
+	$("#orderInfoSubForm").submit();
 }
 
 //장바구니 제거

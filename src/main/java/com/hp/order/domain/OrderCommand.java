@@ -7,6 +7,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class OrderCommand {
 	private String product_no;
+	private List<String> product_no_list;
+	private List<String> quantity_list;
 	private Date upload_date;
 	private String book_name;
 	private int origin_price;
@@ -27,13 +29,23 @@ public class OrderCommand {
 	private String book_explanation;
 	private String quantity;
 	private List<OrderCommand> order_list;
-	private List<Integer> quantity_list;
-	
 	public String getProduct_no() {
 		return product_no;
 	}
 	public void setProduct_no(String product_no) {
 		this.product_no = product_no;
+	}
+	public List<String> getProduct_no_list() {
+		return product_no_list;
+	}
+	public void setProduct_no_list(List<String> product_no_list) {
+		this.product_no_list = product_no_list;
+	}
+	public List<String> getQuantity_list() {
+		return quantity_list;
+	}
+	public void setQuantity_list(List<String> quantity_list) {
+		this.quantity_list = quantity_list;
 	}
 	public Date getUpload_date() {
 		return upload_date;
@@ -155,22 +167,16 @@ public class OrderCommand {
 	public void setOrder_list(List<OrderCommand> order_list) {
 		this.order_list = order_list;
 	}
-	public List<Integer> getQuantity_list() {
-		return quantity_list;
-	}
-	public void setQuantity_list(List<Integer> quantity_list) {
-		this.quantity_list = quantity_list;
-	}
-	
 	@Override
 	public String toString() {
-		return "OrderCommand [product_no=" + product_no + ", upload_date=" + upload_date + ", book_name=" + book_name
-				+ ", origin_price=" + origin_price + ", discounted=" + discounted + ", dc_price=" + dc_price
-				+ ", book_group=" + book_group + ", book_cate=" + book_cate + ", book_priority=" + book_priority
-				+ ", book_order=" + book_order + ", book_img_file=" + book_img_file + ", book_img_name=" + book_img_name
-				+ ", book_img_storedName=" + book_img_storedName + ", book_img_size=" + book_img_size + ", writer="
-				+ writer + ", translator=" + translator + ", book_page=" + book_page + ", release_date=" + release_date
-				+ ", book_explanation=" + book_explanation + ", quantity=" + quantity + ", order_list=" + order_list
-				+ ", quantity_list=" + quantity_list + "]";
+		return "OrderCommand [product_no=" + product_no + ", product_no_list=" + product_no_list + ", quantity_list="
+				+ quantity_list + ", upload_date=" + upload_date + ", book_name=" + book_name + ", origin_price="
+				+ origin_price + ", discounted=" + discounted + ", dc_price=" + dc_price + ", book_group=" + book_group
+				+ ", book_cate=" + book_cate + ", book_priority=" + book_priority + ", book_order=" + book_order
+				+ ", book_img_file=" + book_img_file + ", book_img_name=" + book_img_name + ", book_img_storedName="
+				+ book_img_storedName + ", book_img_size=" + book_img_size + ", writer=" + writer + ", translator="
+				+ translator + ", book_page=" + book_page + ", release_date=" + release_date + ", book_explanation="
+				+ book_explanation + ", quantity=" + quantity + ", order_list=" + order_list + "]";
 	}
+	
 }

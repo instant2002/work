@@ -406,4 +406,16 @@
 			a.buyername = #{buyername} AND
 			a.order_code = #{order_code}
 	</select>
+	
+	<select id="getBasketCookieList" parameterType="List" resultType="BookCommand">
+		SELECT
+			*
+		FROM 
+			book_info
+		WHERE 
+		product_no IN
+		<foreach collection="list" item="item" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</select>
 </mapper>

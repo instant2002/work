@@ -185,4 +185,9 @@ public class CustomerServiceImpl implements CustomerService {
 		return customerMapper.getNonmemOrderTracking(map);
 	}
 
+	@Override
+	public List<BookCommand> getBasketCookieList(List<String> product_list) {
+		return customerMapper.getBasketCookieList(product_list);
+	}
+
 }

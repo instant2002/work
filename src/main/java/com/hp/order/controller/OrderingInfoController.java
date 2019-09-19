@@ -1,8 +1,5 @@
 package com.hp.order.controller;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
 import java.util.*;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -15,6 +12,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.FlashMap;
+import org.springframework.web.servlet.FlashMapManager;
+import org.springframework.web.servlet.support.RequestContextUtils;
 
 import com.hp.customer.service.CustomerService;
 import com.hp.member.domain.MemberCommand;
@@ -52,17 +52,58 @@ public class OrderingInfoController {
         }
 		
 		/*상품번호 배열로 받아오기*/
-		List<String> product_no_list = new ArrayList<String>();
+        List<String> product_no_list = new ArrayList<String>();
 		List<String> quantity_list = new ArrayList<String>();
-
-		if(orderCommand.getOrder_list() != null) {
-			Iterator<OrderCommand> it = orderCommand.getOrder_list().iterator();
+		
+		Map<String, ?> flashMap = RequestContextUtils.getInputFlashMap(request);
+		
+		/*if(flashMap != null && orderCommand.getProduct_no_list() == null) {*/
+		if(flashMap != null && orderCommand.getProduct_no_list()==null) {
+			if(log.isDebugEnabled())log.debug("OrderingInfoController flashMap : " + flashMap);
+			
+			String[] product_no_arr = (String[]) flashMap.get("product_no_list");
+			String[] quantity_arr = (String[]) flashMap.get("quantity_list");
+			if(total_price == "" || total_price == null) {
+				total_price = (String) flashMap.get("total_price");
+			}
+			
+			for(int i=0; i<product_no_arr.length; i++) {
+				product_no_list.add(product_no_arr[i]);
+				quantity_list.add(quantity_arr[i]);
+			}
+			
+			FlashMap flashMap2 = new FlashMap();
+			flashMap2.put("product_no_list", flashMap.get("product_no_list"));
+			flashMap2.put("quantity_list", flashMap.get("quantity_list"));
+			flashMap2.put("total_price", flashMap.get("total_price"));
+			
+			if(log.isDebugEnabled()) log.debug("setting again flashMap1 : " + flashMap2);
+			
+			FlashMapManager flashMapManager = RequestContextUtils.getFlashMapManager(request);
+			flashMapManager.saveOutputFlashMap(flashMap2, request, response);
+		}else {
+/*		if(orderCommand.getProduct_no_list() != null) {*/			
+			
+			FlashMap flashMap2 = new FlashMap();
+			flashMap2.put("product_no_list", orderCommand.getProduct_no_list());
+			flashMap2.put("quantity_list", orderCommand.getQuantity_list());
+			flashMap2.put("total_price", total_price);
+			
+			if(log.isDebugEnabled()) log.debug("setting again flashMap2 : " + flashMap2);
+			
+			FlashMapManager flashMapManager = RequestContextUtils.getFlashMapManager(request);
+			flashMapManager.saveOutputFlashMap(flashMap2, request, response);
+			
+			Iterator<String> it = orderCommand.getProduct_no_list().iterator();
+			Iterator<String> it2 = orderCommand.getQuantity_list().iterator();
 			while(it.hasNext()) {
-				OrderCommand str = it.next();
-				product_no_list.add(str.getProduct_no());
-				quantity_list.add(str.getQuantity());
+				String str = it.next();
+				String str2 = it2.next();
+				product_no_list.add(str);
+				quantity_list.add(str2);
 			}
 		}
+		
 		//List의 null값 제거
 		product_no_list.removeAll(Collections.singleton(null));
 		quantity_list.removeAll(Collections.singleton(null));
@@ -71,7 +112,10 @@ public class OrderingInfoController {
 		if(log.isDebugEnabled())log.debug("quantity_list : " + quantity_list);
 		
 		List<OrderCommand> orderList = orderService.getOrderBook(product_no_list);
-		MemberCommand memberCommand = customerService.getUserInfo(user_id);
+		if(session.getAttribute("user_id") != null) {
+			MemberCommand memberCommand = customerService.getUserInfo(user_id);
+			model.addAttribute("user", memberCommand);
+		}
 		
 		//이니페이 키 생성 시작
 		String mid					= "unionbooks";		// 가맹점 ID(가맹점 수정후 고정)					
@@ -105,7 +149,6 @@ public class OrderingInfoController {
 		
 		model.addAttribute("order", orderList);
 		model.addAttribute("quantity", quantity_list);
-		model.addAttribute("user", memberCommand);
 		model.addAttribute("inipay", inipay);
 		model.addAttribute("order_code", order_code);
 		model.addAttribute("nonMem", nonMem);

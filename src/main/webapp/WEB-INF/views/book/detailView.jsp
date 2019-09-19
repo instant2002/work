@@ -154,10 +154,12 @@
 						<td><font class="book-detail_1">주문 수량</font></td>
 						<td>
 							<form action="/order/orderCheckForm.do" method="POST" id="orderSubForm">
+								
 								<div class="cart_quantity_button clrfix product-count pull-left">
-									<a rel="nofollow" class="btn btn-default btn-minus" href="#" title="Subtract" onclick="edit_quantity_minus();">&ndash;</a> <input type="text" size="2" autocomplete="off" class="cart_quantity_input form-control grey count" id="book_quantity" value="1" name="order_list[0].quantity" style="width: 80px; font-size: 16px;" onkeyup="this.value=this.value.replace(/[^0-9]/g,'');"> <a rel="nofollow" class="btn btn-default btn-plus" href="#" title="Add" onclick="edit_quantity_plus();">+</a>
+									<a rel="nofollow" class="btn btn-default btn-minus" href="#" title="Subtract" onclick="edit_quantity_minus();">&ndash;</a> <input type="text" size="2" autocomplete="off" class="cart_quantity_input form-control grey count" id="book_quantity" value="1" name="quantity_list" style="width: 80px; font-size: 16px;" onkeyup="this.value=this.value.replace(/[^0-9]/g,'');"> <a rel="nofollow" class="btn btn-default btn-plus" href="#" title="Add" onclick="edit_quantity_plus();">+</a>
 								</div>
-								<input type="hidden" name="order_list[0].product_no" value="${book.product_no}">
+								<input type="hidden" name="product_no_list" value="${book.product_no}">
+								<input type="hidden" name="total_price" id="total_price_hidden" value="">
 							</form>
 						</td>
 					</tr>
@@ -301,7 +303,6 @@
 		   $("#total_price").html("<font class='detail_price'>"+total_price+"원</font>");
    		}
    }
-
    $("#book_quantity").on("propertychange change keyup paste input", function() {
 	    var currentVal = $(this).val();
 	    if(currentVal == oldVal) {
@@ -372,6 +373,10 @@
     		$("#book_quantity").focus();
     		return false;
     	}else{
+    		var currentVal = parseInt($('#book_quantity').val(),10);
+    		var price = <c:out value="${book_price}"/>;
+    		var total_price = price * currentVal;
+    		$("#total_price_hidden").val(total_price);
     		$("#orderSubForm").submit();
     	}
     }
