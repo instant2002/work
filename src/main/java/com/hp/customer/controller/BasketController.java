@@ -79,48 +79,49 @@ public class BasketController {
 		
 		if(log.isDebugEnabled()) log.debug("CustomerCommand : " + customerCommand);
 		
-		String basket_value = "";
-		Cookie get_cookie[] = request.getCookies();
-		if (get_cookie != null) {
-			for (int i = 0; i < get_cookie.length; i++) {
-				if (get_cookie[i].getName().equals("basket_cookie")) {
-					basket_value = URLDecoder.decode(get_cookie[i].getValue(), "UTF-8");
-				}
-			}
-		}
-		
-		String key = "basket_cookie";
-		String value = basket_value+customerCommand.getProduct_no() + "_" + customerCommand.getQuantity()+",";
-		boolean Duplicate = true;
-		
-		String[] basket_split = basket_value.split(",");
-		String basket_stringval;
-		if(basket_value != "") {
-			for(int i=0; i<basket_split.length; i++) {
-				basket_stringval = basket_split[i].substring(0,1);
-				if(basket_stringval.equals(customerCommand.getProduct_no())) {
-					Duplicate = false;
-					break;
-				}
-				basket_stringval  = "";
-			}
-			if(Duplicate) {
-				Cookie cookie = new Cookie(key, value);
-				cookie.setMaxAge(60 * 60 * 24 * 1);
-				cookie.setPath("/");
-				cookie.setVersion(0);
-				response.addCookie(cookie);
-			}
-		}else {
-			Cookie cookie = new Cookie(key, value);
-			cookie.setMaxAge(60 * 60 * 24 * 1);
-			cookie.setPath("/");
-			cookie.setVersion(0);
-			response.addCookie(cookie);
-		}
-		
 		try {
-			if(user_id != null) {
+			if (user_id == null) {
+				String basket_value = "";
+				Cookie get_cookie[] = request.getCookies();
+				if (get_cookie != null) {
+					for (int i = 0; i < get_cookie.length; i++) {
+						if (get_cookie[i].getName().equals("basket_cookie")) {
+							basket_value = URLDecoder.decode(get_cookie[i].getValue(), "UTF-8");
+						}
+					}
+				}
+
+				String key = "basket_cookie";
+				String value = basket_value + customerCommand.getProduct_no() + "_" + customerCommand.getQuantity()	+ ",";
+				boolean Duplicate = true;
+
+				String[] basket_split = basket_value.split(",");
+				String basket_stringval;
+				if (basket_value != "") {
+					for (int i = 0; i < basket_split.length; i++) {
+						basket_stringval = basket_split[i].substring(0, 1);
+						if (basket_stringval.equals(customerCommand.getProduct_no())) {
+							Duplicate = false;
+							break;
+						}
+						basket_stringval = "";
+					}
+					if (Duplicate) {
+						Cookie cookie = new Cookie(key, value);
+						cookie.setMaxAge(60 * 60 * 24 * 1);
+						cookie.setPath("/");
+						cookie.setVersion(0);
+						response.addCookie(cookie);
+					}
+				} else {
+					Cookie cookie = new Cookie(key, value);
+					cookie.setMaxAge(60 * 60 * 24 * 1);
+					cookie.setPath("/");
+					cookie.setVersion(0);
+					response.addCookie(cookie);
+				}
+
+			} else {
 				customerService.insertBasket(customerCommand);
 			}
 			return true;

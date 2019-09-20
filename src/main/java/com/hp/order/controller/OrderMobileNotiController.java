@@ -133,21 +133,17 @@ if("118.129.210.25".equals(addr) || "203.238.37.15".equals(addr) || "183.109.71.
 		writeLog(file_path, paymentMobileCommand);
 		  
 		if (P_STATUS.equals("00")){
-			System.out.println("0101 여기 ok");
 			out.print("OK");
 	     		return "";
 
 		}else {
-			System.out.println("0202 여기 fail");
 			out.print("FAIL");
 		}
 		
 	}catch(Exception e){
-		System.out.println("0303 여기 error");
 		return e.getMessage();
 	}
 }
-System.out.println("0404 여기 fail");
 out.print("FAIL");
 	return "";
 	}

@@ -7,6 +7,7 @@
 <form id="orderInfo">
 <input type="hidden" name="order_code" value="${order_code }">
 <input type="hidden" name="amount_payment" value="${inipay.price }">
+<input type="hidden" id="nonMem" value="${nonMem }">
 
 <div class="col-xs-12">
 <c:choose>
@@ -66,7 +67,7 @@
 			<c:set var="price_sum" value="${price_sum+(order.origin_price*quantity[status.index]) }"/>
 			<c:set var="dc_price_sum" value="${dc_price_sum+(order.dc_price*quantity[status.index]) }"/>
 			<c:set var="quantity_sum" value="${quantity_sum+quantity[status.index] }"/>
-			<c:set var="total_price" value="${total_price+((order.origin_price-order.dc_price)*quantity[status.index]) }"/>
+			<c:set var="total_price_val" value="${total_price_val+((order.origin_price-order.dc_price)*quantity[status.index]) }"/>
 			<c:set var="goodsname" value="${goodsname}${order.book_name}${status.first ? '' : ','}"/> 
 		</c:forEach>
 			<tr style="background: #d7d9db;">
@@ -79,24 +80,45 @@
 </c:choose>
 </div>
 <c:if test="${nonMem == 'Y' }">
-	<div class="col-xs-12">
-		<div class="col-xs-12 text-center hidden-xs" style="margin: 40px 0 10px 0">
-			<span><b>(필수)비회원 주문에 대한 개인정보 수집 이용 동의</b></span>
-		</div>
-		<div class="col-xs-12 text-center hidden-xs">
-		<textarea rows="5" cols="150">
+		<div class="col-xs-12">
+			<div id="accordion-order" class="col-xs-12 hidden-sm hidden-md hidden-lg">
+				<div class="accordion-group panel">
+					<a href="#collapse-1" data-toggle="collapse" class="accordion-header collapsed"><b style="font-size: 11px;">(필수)비회원 개인정보 수집 이용 동의</b></a>
+					<div class="collapse" id="collapse-1" style="height: 0px;">
+						<div class="accordion-body">
+							<div class="row">
+								<div class="col-md-12" style="padding-top: 20px;">
+									<pre style="white-space: pre-wrap;">- 수집항목: 성명, 이메일, 휴대폰 번호, 주소, 전화번호
+- 수집/이용목적: 서비스 제공 및 계약의 이행, 구매 및 대금결제, 물품배송 또는 청구지 발송, 불만처리 등 민원처리, 회원관리 등을 위한 목적
+- 이용기간: 원칙적으로 개인정보 수집 및 이용목적이 달성된 후에는 해당 정보를 지체 없이 파기합니다.
+단, 관계법령의 규정에 의하여 보전할 필요가 있는 경우 일정기간 동안 개인정보를 보관할 수 있습니다.
+그 밖의 사항은 (재)천주교서울대교구 가톨릭출판사 개인정보처리방침을 준수합니다.</pre>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-xs-12 text-center hidden-xs" style="margin: 40px 0 10px 0">
+				<span><b>(필수)비회원 주문에 대한 개인정보 수집 이용 동의</b></span>
+			</div>
+			<div class="col-xs-12 text-center hidden-xs">
+				<textarea rows="5" cols="150">
 - 수집항목: 성명, 이메일, 휴대폰 번호, 주소, 전화번호
 - 수집/이용목적: 서비스 제공 및 계약의 이행, 구매 및 대금결제, 물품배송 또는 청구지 발송, 불만처리 등 민원처리, 회원관리 등을 위한 목적
 - 이용기간: 원칙적으로 개인정보 수집 및 이용목적이 달성된 후에는 해당 정보를 지체 없이 파기합니다.
 단, 관계법령의 규정에 의하여 보전할 필요가 있는 경우 일정기간 동안 개인정보를 보관할 수 있습니다.
 그 밖의 사항은 (재)천주교서울대교구 가톨릭출판사 개인정보처리방침을 준수합니다.</textarea>
-	<input id="nonMemAgree" type="checkbox" name="checkbox" class="stl basket_checkbox_all hidden-sm hidden-md hidden-lg">
-	<label for="nonMemAgree" class="stl"><span></span>비회원 주문에 대한 개인정보 수집 이용에 동의합니다.</label>
-	</div>
-	</div>
-</c:if>
+			</div>
+			<div class="text-center">
+				<input id="nonMemAgree" type="checkbox" name="checkbox" class="stl basket_checkbox_all hidden-sm hidden-md hidden-lg"> 
+				<label for="nonMemAgree" class="stl"><span></span>비회원 개인정보 수집 이용에 동의합니다.</label>
+			</div>
+		</div>
+	</c:if>
 <c:choose>
-	<c:when test="${total_price < 30000 }">
+	<c:when test="${total_price_val < 30000 }">
 		<c:set var="shipping_fee" value="3000"/>
 	</c:when>
 	<c:otherwise>
@@ -215,7 +237,7 @@
 		<td id="price_sum"><fmt:formatNumber value="${price_sum}" groupingUsed="true"/>원</td>
 		<td id="dc_price_sum"><fmt:formatNumber value="${dc_price_sum}" groupingUsed="true"/>원</td>
 		<td id="shipping_fee"><fmt:formatNumber value="${shipping_fee}" groupingUsed="true"/>원</td>
-		<td id="total_price"><fmt:formatNumber value="${total_price+shipping_fee }" groupingUsed="true"/>원</td>
+		<td id="total_price"><fmt:formatNumber value="${total_price_val+shipping_fee }" groupingUsed="true"/>원</td>
 	</tr>
 	<tr class="hidden-sm hidden-md hidden-lg">
 		<td>상품 금액 / <font class="total_num">${fn:length(order)}종</font> <font class="total_quantity">(${quantity_sum }개)</font></td>
@@ -232,7 +254,7 @@
 	</tr>	
 	<tr class="hidden-sm hidden-md hidden-lg">
 		<td><b>합계 금액</b></td>
-		<td class="sum_price"><b><fmt:formatNumber value="${total_price+shipping_fee }" groupingUsed="true"/>원</b></td>
+		<td class="sum_price"><b><fmt:formatNumber value="${total_price_val+shipping_fee }" groupingUsed="true"/>원</b></td>
 	</tr>	
 </table>
 </div>
@@ -252,8 +274,8 @@
 <!-- 이니페이 테스트 -->
 	<input type="hidden" name="version" value="1.0">
 	<input type="hidden" name="goodname" value="${goodsname}"/>
-	<%-- <input type="hidden" name="price" value="${total_price+shipping_fee }"/> --%>
-	<input type="hidden" name="price" value="${total_price+shipping_fee }"/>
+	<%-- <input type="hidden" name="price" value="${total_price_val+shipping_fee }"/> --%>
+	<input type="hidden" name="price" value="${total_price_val+shipping_fee }"/>
 	<input type="hidden" name="currency" value="WON">
 	<input type="hidden" name="gopaymethod" value="Card"/><!-- 카드로 -->
 	<input type="hidden" name="mid" value="${inipay.mid }">
@@ -278,7 +300,7 @@
 	<!-- <input type="hidden" name="P_MID" value="INIpayTest">
 	<input type="hidden" name="P_AMT" value="1000"/> -->
 	<input type="hidden" name="P_MID" value="${inipay.mid }">
-	<input type="hidden" name="P_AMT" value="${total_price + shipping_fee}"/>
+	<input type="hidden" name="P_AMT" value="${total_price_val + shipping_fee}"/>
 	<input type="hidden" name="P_OID" value="${order_code }">
 	<input type="hidden" name="P_UNAME" id="P_UNAME" value="">
 	<input type="hidden" name="P_GOODS" id="P_GOODS" value="${goodsname}">

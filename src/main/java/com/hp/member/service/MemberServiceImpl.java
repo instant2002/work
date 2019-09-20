@@ -29,4 +29,9 @@ public class MemberServiceImpl implements MemberService{
 		return memberMapper.selectMember(user_id);
 	}
 
+	@Override
+	public void insertCooikeBasket(String product_no, String quantity, String user_id) {
+		memberMapper.insertCooikeBasket(product_no, quantity, user_id);
+	}
+
 }

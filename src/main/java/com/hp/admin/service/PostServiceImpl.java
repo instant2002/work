@@ -47,11 +47,6 @@ public class PostServiceImpl implements PostService {
 				postCommand.setBook_img_name(book_img_name);
 				postCommand.setBook_img_storedName("/unionbooks_img/" + book_img_storedName);
 
-				System.out.println("book_img_name : " + book_img_name);
-				System.out.println("extensionName : " + extName);
-				System.out.println("book_img_size : " + book_img_size);
-				System.out.println("book_img_storedName : " + book_img_storedName);
-
 				// 파일 경로 없으면 생성
 				File filePath = new File(save_path);
 				if (filePath.exists() == false) {
@@ -160,16 +155,8 @@ public class PostServiceImpl implements PostService {
 						filePath.mkdirs();
 					}
 					
-					System.out.println("book_img_name : " + book_img_name);
-					System.out.println("extensionName : " + extName);
-					System.out.println("book_img_size : " + book_img_size);
-					System.out.println("book_img_storedName : " + book_img_storedName);
-					System.out.println("save_path : " + save_path);
-					System.out.println("fileName : " + fileName);
-
 					multipartFile.transferTo(new File(save_path + "/" + fileName));
 
-//					writeFile(multipartFile, book_img_storedName, save_path); 
 				}
 
 			} catch (IOException e) {

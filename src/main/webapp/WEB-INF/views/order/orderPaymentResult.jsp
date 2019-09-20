@@ -87,8 +87,8 @@
 		<col class="hidden-sm hidden-md hidden-lg" style="width: 50%">
 	</colgroup>
 	<tr>
-		<td colspan="4" class="total-head hidden-xs">Total</td>
-		<td colspan="2" class="total-head hidden-sm hidden-md hidden-lg">Total</td>
+		<td colspan="4" class="total-head hidden-xs">결제 내역</td>
+		<td colspan="2" class="total-head hidden-sm hidden-md hidden-lg">결제 내역</td>
 	</tr>
 	<tr class="hidden-xs">
 		<td>상품 금액 / <font id="total_num">${fn:length(paymentList)}종</font> <font id="total_quantity">(${quantity_sum }개)</font> </td>

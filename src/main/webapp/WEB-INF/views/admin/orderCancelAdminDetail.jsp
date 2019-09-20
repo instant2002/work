@@ -65,7 +65,7 @@
 
 		<table class="table total-table" style="margin-top: 50px;">
 			<tr>
-				<td colspan="4" class="total-head">Total</td>
+				<td colspan="4" class="total-head">결제 내역</td>
 			</tr>
 			<tr>
 				<td>상품 금액 / <font id="total_num">${fn:length(cancel_view)}종</font> <font id="total_quantity">(${quantity_sum }개)</font>

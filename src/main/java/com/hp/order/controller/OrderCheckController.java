@@ -42,7 +42,6 @@ public class OrderCheckController {
 		
 		Map<String, ?> flashMap = RequestContextUtils.getInputFlashMap(request);
 		
-		
 		if(flashMap != null && orderCommand.getProduct_no_list()==null) {
 			if(log.isDebugEnabled())log.debug("OrderCheckController flashMap : " + flashMap);
 			

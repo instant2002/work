@@ -51,14 +51,14 @@
 										</div>
 									</div></td>
 								<td class="hidden-xs" style="vertical-align: middle;"><input type="number" class="count" value="${quantity[status.index]}" min="1" style="width: 50px;" onkeyup="this.value=this.value.replace(/[^0-9]/g,'');"></td>
-								<td class="hidden-xs" id="origin_price_${status.index }" style="vertical-align: middle;"><fmt:formatNumber value="${order.origin_price*quantity[status.index]}" groupingUsed="true" />원</td>
-								<td class="hidden-xs" id="dc_price_${status.index }" style="vertical-align: middle;"><fmt:formatNumber value="${order.dc_price*quantity[status.index]}" groupingUsed="true" />원</td>
+								<td class="hidden-xs" id="origin_price_${status.index }" style="vertical-align: middle;"><fmt:formatNumber value="${order.origin_price}" groupingUsed="true" />원</td>
+								<td class="hidden-xs" id="dc_price_${status.index }" style="vertical-align: middle;"><fmt:formatNumber value="${order.dc_price}" groupingUsed="true" />원</td>
 								<td class="hidden-xs" style="vertical-align: middle;">기본 배송비</td>
 							</tr>
 							<c:set var="price_sum" value="${price_sum+(order.origin_price*quantity[status.index]) }" />
 							<c:set var="dc_price_sum" value="${dc_price_sum+(order.dc_price*quantity[status.index]) }" />
 							<c:set var="quantity_sum" value="${quantity_sum+quantity[status.index] }" />
-							<c:set var="total_price" value="${total_price+((order.origin_price-order.dc_price)*quantity[status.index]) }" />
+							<c:set var="total_price_val" value="${total_price_val+((order.origin_price-order.dc_price)*quantity[status.index]) }" />
 
 						</c:forEach>
 						<tr style="background: #d7d9db;">
@@ -70,7 +70,7 @@
 				</table>
 
 				<c:choose>
-					<c:when test="${total_price < 30000 }">
+					<c:when test="${total_price_val < 30000 }">
 						<c:set var="shipping_fee" value="3000" />
 					</c:when>
 					<c:otherwise>
@@ -93,7 +93,7 @@
 						<td class="price_sum"><fmt:formatNumber value="${price_sum}" groupingUsed="true" />원</td>
 						<td class="dc_price_sum"><fmt:formatNumber value="${dc_price_sum}" groupingUsed="true" />원</td>
 						<td class="shipping_fee"><fmt:formatNumber value="${shipping_fee}" groupingUsed="true" />원</td>
-						<td class="sum_price" style="font-weight: bold;"><fmt:formatNumber value="${total_price+shipping_fee }" groupingUsed="true" />원</td>
+						<td class="sum_price" style="font-weight: bold;"><fmt:formatNumber value="${total_price_val+shipping_fee }" groupingUsed="true" />원</td>
 					</tr>
 					<tr class="hidden-sm hidden-md hidden-lg">
 						<td><b>상품 금액</b></td>
@@ -109,7 +109,7 @@
 					</tr>
 					<tr class="hidden-sm hidden-md hidden-lg">
 						<td><b>합계 금액</b></td>
-						<td class="sum_price" style="font-weight: bold;"><fmt:formatNumber value="${total_price+shipping_fee }" groupingUsed="true" />원</td>
+						<td class="sum_price" style="font-weight: bold;"><fmt:formatNumber value="${total_price_val+shipping_fee }" groupingUsed="true" />원</td>
 					</tr>
 				</table>
 			</c:otherwise>

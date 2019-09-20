@@ -111,13 +111,6 @@ public class NonMemberController {
 					String CancelTime = inipay.GetResult("CancelTime");//취소 시각
 					String cancelmsg = inipay.GetResult("cancelmsg");//취소 메시지
 					
-					System.out.println("ResultCode : " + ResultCode);
-					System.out.println("ResultMsg : " + ResultMsg);
-					System.out.println("CSHR_CancelNum : " + CSHR_CancelNum);
-					System.out.println("CancelTime : " + CancelTime);
-					System.out.println("CancelDate : " + CancelDate);
-					System.out.println("cancelmsg : " + cancelmsg);
-					
 					if(ResultCode == "00") {
 						msg = "고객님의 주문을 취소하였습니다.\n감사합니다.";
 						able = true;

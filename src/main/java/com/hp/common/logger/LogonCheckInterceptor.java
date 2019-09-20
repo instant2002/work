@@ -43,9 +43,6 @@ public class LogonCheckInterceptor extends HandlerInterceptorAdapter{
       String quantity_list = request.getParameter("quantity_list");
       String total_price = request.getParameter("total_price");
       
-      System.out.println("product_no_list : " + product_no_list);
-      System.out.println("quantity_list : " + quantity_list);
-      
       if(product_no_list != null && quantity_list != null) {
     	  FlashMap flashMap = new FlashMap();
     	  flashMap.put("product_no_list", product_no_list);

@@ -77,7 +77,6 @@ public class OrderMobilePaymentController {
 			model.addAttribute("isResult", false);
 			if(log.isDebugEnabled())log.debug("***************결제 실패***************");
     	}else {
-    		System.out.println("P_REQ_URL : " + P_REQ_URL);
     		HttpClient client = new HttpClient();
     		GetMethod method = new GetMethod(P_REQ_URL);
     		method.getParams().setParameter(HttpMethodParams.RETRY_HANDLER, 
@@ -88,7 +87,6 @@ public class OrderMobilePaymentController {
         	try {
         		int statusCode = client.executeMethod(method);
         		if (statusCode != HttpStatus.SC_OK) {
-        			System.out.println("Method failed: " + method.getStatusLine());
         	      }
         		
         		byte[] responseBody = method.getResponseBody();   //  승인결과 파싱
@@ -103,13 +101,10 @@ public class OrderMobilePaymentController {
         			}
         			map.put(key1, value1);  
         		  }
-        		  System.out.println("map 1 : " + map);
         		  
 			}catch (HttpException e) {
-				System.out.println("Fatal protocol violation: " + e.getMessage());
 		      e.printStackTrace();
 		    } catch (IOException e) {
-		    	System.out.println("Fatal transport error: " + e.getMessage());
 		      e.printStackTrace();
 		    } finally {
 		      // Release the connection.
@@ -134,7 +129,6 @@ public class OrderMobilePaymentController {
 //        	String u = "http://"+request.getServerName()+"/payment/complete_m.do?"+paraVal+"&user_id="+user_id; //변경!
         	String u = "http://"+request.getServerName()+":8080/payment/complete_m.do?"+paraVal+"&user_id="+user_id;
         	
-			System.out.println("URL : " + u);
 			URL url =new URL(u);
 			URLConnection connection = url.openConnection();
 			HttpURLConnection hurlc = (HttpURLConnection)connection;
@@ -150,7 +144,7 @@ public class OrderMobilePaymentController {
 			BufferedReader in = new BufferedReader(new InputStreamReader(hurlc.getInputStream()));
 			in.close();
         	}catch (Exception e) {
-        		System.out.println("error : "+e);
+        		if(log.isDebugEnabled())log.debug("error : " + e);
 			}
         	String order_code = map.get("order_code");
         	List<PaymentMobileCommand> paymentList = orderService.getMobilePaymentList(order_code);

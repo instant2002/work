@@ -34,4 +34,24 @@
 				sysdate()
 			)
 	</select>
+	
+	<insert id="insertCooikeBasket" parameterType="String"> 
+	<![CDATA[ 
+			INSERT INTO 
+			basket(
+				product_no,
+				quantity,
+				user_id
+				)
+			VALUES (
+				#{0},
+				#{1},
+				#{2}
+			)
+			ON DUPLICATE KEY
+			UPDATE
+			basket_date = CURRENT_TIMESTAMP,
+			quantity = #{1}
+			]]>
+	</insert>
 </mapper>

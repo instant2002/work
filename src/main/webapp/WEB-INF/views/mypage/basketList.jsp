@@ -10,8 +10,8 @@
 	<div class="col-xs-12 text-center">
 		<h2><strong>장바구니</strong></h2>
 	</div>
-		<input type="checkbox" name="checkbox" value="2" class="stl basket_checkbox_all hidden-sm hidden-md hidden-lg" checked="checked">
-		<label for="checkbox_all" class="stl hidden-sm hidden-md hidden-lg" style="margin-left: 15px;"><span></span></label>
+		<input type="checkbox" id="checkbox_all_m" name="checkbox" value="2" class="stl basket_checkbox_all hidden-sm hidden-md hidden-lg" checked="checked">
+		<label for="checkbox_all_m" class="stl hidden-sm hidden-md hidden-lg" style="margin-left: 15px;"><span></span></label>
 	<table class="table" style="table-layout: fixed;">
 		<colgroup>
 			<col width="15%" class="hidden-sm hidden-md hidden-lg">
@@ -29,8 +29,8 @@
 		<thead class="hidden-xs" style="font-weight: bold; border: solid #ddd; border-width: 2px 0px; background: #f9f9f9;">
 			<tr>
 				<td>
-					<input type="checkbox" name="checkbox" class="stl basket_checkbox_all" checked="checked">
-					<label for="checkbox_all" class="stl"><span></span></label>
+					<input type="checkbox" id="checkbox_all_p" name="checkbox" class="stl basket_checkbox_all" checked="checked">
+					<label for="checkbox_all_p" class="stl"><span></span></label>
 				</td>
 				<td></td>
 				<td>상품 정보</td>

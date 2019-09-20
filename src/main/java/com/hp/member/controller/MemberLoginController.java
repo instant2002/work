@@ -24,8 +24,6 @@ import org.springframework.web.servlet.FlashMap;
 import org.springframework.web.servlet.FlashMapManager;
 import org.springframework.web.servlet.support.RequestContextUtils;
 
-import com.extrus.util.Arrays;
-import com.hp.book.domain.BookCommand;
 import com.hp.member.domain.MemberCommand;
 import com.hp.member.service.MemberService;
 
@@ -131,25 +129,19 @@ public class MemberLoginController {
 					}
 				}
 				String[] basket_split = basket_value.split(",");
-				List<String> product_list = new ArrayList<String>();
-				List<String> quantity_list = new ArrayList<String>();
-				String product_no = null;
 				if(!basket_value.equals("")) {
 					for(int i=0; i<basket_split.length; i++) {
-						product_no = product_no + basket_split[i].substring(0,1);
-						product_list.add(basket_split[i].substring(0,1));
-						quantity_list.add(basket_split[i].substring(2,3));
+						memberService.insertCooikeBasket(basket_split[i].substring(0,1), basket_split[i].substring(2,3),member.getUser_id());
 					}
-					List<BookCommand> bookCommand = customerService.getBasketCookieList(product_list);
-					model.addAttribute("basket", bookCommand);
-					model.addAttribute("quantity_list", quantity_list);
-				}else {
-					model.addAttribute("basket", "");
+					Cookie cookie = new Cookie("basket_cookie", "");
+					cookie.setMaxAge(60 * 60 * 24 * 1);
+					cookie.setPath("/");
+					cookie.setVersion(0);
+					response.addCookie(cookie);
 				}
-				
 				return "main";
 			}else {
-				if(log.isDebugEnabled()) log.debug("Login Flase memberCommand : " + memberCommand);
+				if(log.isDebugEnabled()) log.debug("Login False memberCommand : " + memberCommand);
 				
 				HttpSession httpSession = request.getSession();
 				/* 로그인 실패 시 머물렀던 페이지 저장... 다시 로그인 시 저장된 페이지로 이동시키게  destination 설정*/

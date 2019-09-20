@@ -98,7 +98,14 @@
 							..외 ${order_list.group_count -1}건
 						</c:if>
 						</a><br>
-						<font style="font-size: 12px;">아이디 : ${order_list.user_id}<br></font>
+						<font style="font-size: 12px;">아이디 :
+						<c:if test="${order_list.user_id == 'nonmember'}">
+							비회원 주문
+						</c:if>
+						<c:if test="${order_list.user_id != 'nonmember'}">
+							${order_list.user_id}
+						</c:if>
+						<br></font>
 						<font style="font-size: 12px;">주문번호 : ${order_list.order_code}<br></font>
 						<font style="font-size: 20px; font-weight: bold;"><fmt:formatNumber value="${order_list.amount_payment}" groupingUsed="true"/>원</font>  
 					</td>

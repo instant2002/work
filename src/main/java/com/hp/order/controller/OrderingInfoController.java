@@ -61,12 +61,19 @@ public class OrderingInfoController {
 		if(flashMap != null && orderCommand.getProduct_no_list()==null) {
 			if(log.isDebugEnabled())log.debug("OrderingInfoController flashMap : " + flashMap);
 			
-			String[] product_no_arr = (String[]) flashMap.get("product_no_list");
+			String[] product_no_arr = (String[]) flashMap.get("product_no_list"); 
 			String[] quantity_arr = (String[]) flashMap.get("quantity_list");
+			/*List<String> product_no_stringList = (List<String>) flashMap.get("product_no_list"); 
+			List<String> quantity_list_stringList = (List<String>) flashMap.get("quantity_list");*/
+			
 			if(total_price == "" || total_price == null) {
 				total_price = (String) flashMap.get("total_price");
 			}
 			
+			/*for(int i=0; i<product_no_stringList.size(); i++) {
+				product_no_list.add(product_no_stringList.get(i));
+				quantity_list.add(quantity_list_stringList.get(i));
+			}*/
 			for(int i=0; i<product_no_arr.length; i++) {
 				product_no_list.add(product_no_arr[i]);
 				quantity_list.add(quantity_arr[i]);
@@ -84,9 +91,12 @@ public class OrderingInfoController {
 		}else {
 /*		if(orderCommand.getProduct_no_list() != null) {*/			
 			
+			String[] product_no_arr = new String[orderCommand.getProduct_no_list().size()];
+			String[] quantity_arr = new String[orderCommand.getQuantity_list().size()];
+			
 			FlashMap flashMap2 = new FlashMap();
-			flashMap2.put("product_no_list", orderCommand.getProduct_no_list());
-			flashMap2.put("quantity_list", orderCommand.getQuantity_list());
+			flashMap2.put("product_no_list", product_no_arr);
+			flashMap2.put("quantity_list", quantity_arr);
 			flashMap2.put("total_price", total_price);
 			
 			if(log.isDebugEnabled()) log.debug("setting again flashMap2 : " + flashMap2);
@@ -140,12 +150,6 @@ public class OrderingInfoController {
 		inipay.put("signature", signature);
 		inipay.put("mKey", mKey);
 		//이니페이 키 생성 끝
-		
-		System.out.println("product_no_list"+product_no_list);
-		System.out.println("quantity_list"+quantity_list);
-		System.out.println("oid"+oid);
-		System.out.println("signature"+signature);
-		System.out.println("mKey"+mKey);
 		
 		model.addAttribute("order", orderList);
 		model.addAttribute("quantity", quantity_list);

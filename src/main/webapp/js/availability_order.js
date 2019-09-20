@@ -59,6 +59,13 @@ function orderSubFunc(){
 		$('#recipient_address2').focus();
 		return false;
 	}
+	if($("#nonMem").val() == "Y"){
+		if(!$("#nonMemAgree").prop("checked")){
+			alert('비회원 주문에 대한 개인정보 수집 이용 동의가 필요합니다.');
+			$('#nonMemAgree').focus();
+			return false;
+		}
+	}
 
 	if(isMobile()){
 		mobile_callInipay();
